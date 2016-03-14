@@ -1,10 +1,12 @@
 package Controller;
 
+import Model.Map;
+
 /**
  * Created by Lucas on 14/03/2016.
  */
 public interface IGameEngine {
-    // mon constructeur créé la map, créé ball et goal engine avec un timer
+    // mon constructeur créé ball et goal engine avec un timer
     void startGame();
     void pauseGame();
     void resumeGame();
@@ -14,5 +16,5 @@ public interface IGameEngine {
     void updateBallEngine();
     void updateGoalEngine();
     void updateView();
-    void getMap();
+    Map getMap();
 }
