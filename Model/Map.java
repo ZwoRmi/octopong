@@ -9,7 +9,18 @@ public class Map {
     private ArrayList<Ball> balls;
     private ArrayList<GoalGoalKeeper> goalsGoalKeepers;
     private float diameter;
+
+
     private float ballSpawnInterval;
+    private float ballSpeed;
+
+    public float getBallSpeed() {
+        return ballSpeed;
+    }
+
+    public void setBallSpeed(float speed) {
+        this.ballSpeed = speed;
+    }
 
     public float getBallSpawnInterval() {
         return ballSpawnInterval;
@@ -42,4 +53,5 @@ public class Map {
     public void setDiameter(float diameter) {
         this.diameter = diameter;
     }
+
 }
