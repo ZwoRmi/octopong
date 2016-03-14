@@ -6,7 +6,7 @@ package Model;
 public class GoalKeeper {
     private float speed;
     private float size;
-    private int score;
+    private Score score;
     private Position actualPosition;
     private Position targetPosition;
 
@@ -26,11 +26,11 @@ public class GoalKeeper {
         this.size = size;
     }
 
-    public int getScore() {
+    public Score getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(Score score) {
         this.score = score;
     }
 
