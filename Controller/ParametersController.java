@@ -11,8 +11,8 @@ public class ParametersController implements IParametersController {
 
     private Map map;
 
-    public ParametersController(Map m) {
-        this.map = m;
+    public ParametersController(Map map) {
+        this.map = map;
     }
 
     @Override
