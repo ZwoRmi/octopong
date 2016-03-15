@@ -4,22 +4,23 @@ import Model.Map;
 
 import java.security.InvalidParameterException;
 import View.*;
-import javafx.event.ActionEvent;
 /**
  * Created by DanyPatient on 14/03/2016.
  */
 public class ParametersController implements IParametersController {
 
+    private ApplicationWindow rootWindow;
     private Map map;
 
-    public ParametersController(Map map) {
+    public ParametersController(Map map, ApplicationWindow rootWindow) {
         this.map = map;
+        this.rootWindow = rootWindow;
     }
 
     public void init() {
         System.out.println("Hello World!");
     }
-    
+
     @Override
     public void setBallSpeed(int value) {
         switch (value) {
@@ -64,5 +65,15 @@ public class ParametersController implements IParametersController {
             default:
                 throw new InvalidParameterException("value should be between 1-5 but the current value is : " + value);
         }
+    }
+
+    @Override
+    public void startParameters() {
+        this.rootWindow.showParameters();
+    }
+
+    @Override
+    public void startGame() {
+        this.rootWindow.showGame();
     }
 }

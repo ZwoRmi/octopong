@@ -69,7 +69,6 @@ public class GameEngine implements IGameEngine {
 
     @Override
     public void stopGame() {
-        //TODO show parameters view
         timer.stop();
     }
 

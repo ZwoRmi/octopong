@@ -6,4 +6,6 @@ package Controller;
 public interface IParametersController {
     void setBallSpeed(int value); // Faire le transfert d'une valeur en int passée par l'utilisateur en valeur en ms puis set ballSpeed
     void setBallSPawnInterval (int value); // Faire le transfert d'une valeur en int passée par l'utilisateur en valeur en ms puis set interval
+    void startParameters();
+    void startGame();
 }

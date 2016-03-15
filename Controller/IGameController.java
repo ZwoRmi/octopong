@@ -6,4 +6,11 @@ package Controller;
 public interface IGameController {
     void updateView();
     void getMap();
+    void setGameEngine(IGameEngine gameEngine);
+    void goBackToParameters();
+    void startGame();
+    void pauseGame();
+    void resumeGame();
+    void restartGame();
+    void stopGame();
 }
