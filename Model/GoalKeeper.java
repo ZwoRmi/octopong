@@ -1,14 +1,20 @@
 package Model;
 
-/**
- * Created by Lucas on 14/03/2016.
- */
 public class GoalKeeper {
     private float speed;
     private float size;
+    private GoalPosition goalPosition;
     private Score score;
-    private Position actualPosition;
-    private Position targetPosition;
+    private Line actualPosition;
+    private Line targetPosition;
+
+    public GoalPosition getGoalPosition() {
+        return goalPosition;
+    }
+
+    public void setGoalPosition(GoalPosition goalPosition) {
+        this.goalPosition = goalPosition;
+    }
 
     public float getSpeed() {
         return speed;
@@ -34,19 +40,21 @@ public class GoalKeeper {
         this.score = score;
     }
 
-    public Position getActualPosition() {
+    public Line getActualPosition() {
         return actualPosition;
     }
 
-    public void setActualPosition(Position actualPosition) {
+    public void setActualPosition(Line actualPosition) {
         this.actualPosition = actualPosition;
     }
 
-    public Position getTargetPosition() {
+    public Line getTargetPosition() {
         return targetPosition;
     }
 
-    public void setTargetPosition(Position targetPosition) {
+    public void setTargetPosition(Line targetPosition) {
         this.targetPosition = targetPosition;
     }
+
+
 }
