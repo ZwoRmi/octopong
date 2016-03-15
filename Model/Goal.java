@@ -4,15 +4,24 @@ package Model;
  * Created by Lucas on 14/03/2016.
  */
 public class Goal {
-    private Line goalLine;
+    private Line goalStartLine;
+    private Line goalEndLine;
     private Line detectionLine;
 
-    public Line getGoalLine() {
-        return goalLine;
+    public Line getGoalStartLine() {
+        return goalStartLine;
     }
 
-    public void setGoalLine(Line goalLine) {
-        this.goalLine = goalLine;
+    public void setGoalStartLine(Line goalStartLine) {
+        this.goalStartLine = goalStartLine;
+    }
+
+    public Line getGoalEndLine() {
+        return goalEndLine;
+    }
+
+    public void setGoalEndLine(Line goalEndLine) {
+        this.goalEndLine = goalEndLine;
     }
 
     public Line getDetectionLine() {

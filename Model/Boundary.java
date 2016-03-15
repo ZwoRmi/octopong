@@ -3,11 +3,11 @@ package Model;
 public class Boundary {
     private Position points[];
 
-    public Boundary(Goal g) {
-        points[0] = g.getDetectionLine().getStartPosition();
-        points[1] = g.getDetectionLine().getEndPosition();
-        points[2] = g.getGoalLine().getStartPosition();
-        points[3] = g.getGoalLine().getEndPosition();
+    public Boundary(Line startLine, Line endLine) {
+        points[0] = startLine.getStartPosition();
+        points[1] = startLine.getEndPosition();
+        points[2] = endLine.getStartPosition();
+        points[3] = endLine.getEndPosition();
     }
 
     public boolean contains(Position test) {
