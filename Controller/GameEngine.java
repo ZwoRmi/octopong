@@ -25,7 +25,7 @@ public class GameEngine implements IGameEngine {
     }
 
     private void init(){
-        this.goalEngine = new GoalEngine();
+        this.goalEngine = new GoalEngine(this.map);
         this.ballEngine = new BallEngine(this.map);
         timer = createTimer();
     }
