@@ -5,7 +5,6 @@ package Model;
  */
 public class Ball {
     private Position actualPosition;
-    private float speed;
     private Position direction;
 
     public Position getActualPosition() {
@@ -14,14 +13,6 @@ public class Ball {
 
     public void setActualPosition(Position actualPosition) {
         this.actualPosition = actualPosition;
-    }
-
-    public float getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(float speed) {
-        this.speed = speed;
     }
 
     public Position getDirection() {

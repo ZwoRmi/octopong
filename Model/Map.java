@@ -9,8 +9,6 @@ public class Map {
     private ArrayList<Ball> balls;
     private ArrayList<GoalGoalKeeper> goalsGoalKeepers;
     private float diameter;
-
-
     private float ballSpawnInterval;
     private float ballSpeed;
 
