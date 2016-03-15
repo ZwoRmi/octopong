@@ -40,8 +40,8 @@ public class BallEngine implements IBallEngine {
     private void moveBall(Ball ball) {
         Position actualPosition = ball.getActualPosition();
         Position targetPosition = new Position();
-        targetPosition.setX(actualPosition.getX() * map.getBallSpeed());
-        targetPosition.setY(actualPosition.getY() * map.getBallSpeed());
+        targetPosition.setX(actualPosition.getX() + ball.getDirection().getX() * map.getBallSpeed());
+        targetPosition.setY(actualPosition.getY() + ball.getDirection().getY() * map.getBallSpeed());
         ball.setActualPosition(targetPosition);
     }
 
