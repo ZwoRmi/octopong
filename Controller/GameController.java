@@ -27,7 +27,7 @@ public class GameController implements IGameController {
     @Override
     public void startGame() {
         this.gameEngine.startGame();
-        this.applicationWindow.showParameters();
+        this.applicationWindow.showGame();
     }
 
     @Override
