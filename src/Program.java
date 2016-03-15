@@ -41,6 +41,7 @@ public class Program extends Application{
         Scene scene = new Scene(root, 1200, 800);
         primaryStage.setTitle("OctoPong");
         primaryStage.setScene(scene);
+        root.setStyle("-fx-background-color: #ffffff");
         primaryStage.show();
         ApplicationWindow appWin = getRootView();
         Map map = new MapFactory().create();
