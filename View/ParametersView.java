@@ -127,15 +127,18 @@ public class ParametersView implements IParametersView {
         Text t = new Text();
         t.setFont(new Font(20));
         t.setText(Integer.toString(this.speedBallValue));
-        t.setTranslateX(500);
-        t.setTranslateY(-20);
+        t.setTranslateX(0);
+        t.setTranslateY(-50);
         this.myPanel.getChildren().add(t);
     }
 
     @Override
     public void drawIntervalValue() {
-        Text t = new Text(-500, -20, Integer.toString(this.intervalBallValue));
+        Text t = new Text();
         t.setFont(new Font(20));
+        t.setText(Integer.toString(this.intervalBallValue));
+        t.setTranslateX(0);
+        t.setTranslateY(50);
         this.myPanel.getChildren().add(t);
     }
 }
