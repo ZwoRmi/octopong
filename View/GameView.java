@@ -15,14 +15,10 @@ public class GameView implements IGameView {
     }
 
     @Override
-    public void drawMap(StackPane root, IGameController gameController) {
+    public StackPane getPanel(IGameController gameController) {
         //utiliser les données se trouvant dans gameController.getMap(), add les elements a myPanel
 
-        root.getChildren().add(myPanel);
-    }
-    @Override
-    public void unDrawMap(StackPane root) {
-        root.getChildren().remove(myPanel);
+        return myPanel;
     }
 
     @Override

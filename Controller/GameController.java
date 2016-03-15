@@ -1,7 +1,6 @@
 package Controller;
 
 import View.ApplicationWindow;
-import View.IGameView;
 
 /**
  * Created by DanyPatient on 14/03/2016.
@@ -15,6 +14,7 @@ public class GameController implements IGameController {
         this.applicationWindow = applicationWindow;
     }
 
+    @Override
     public void setGameEngine(IGameEngine gameEngine) {
         this.gameEngine = gameEngine;
     }
@@ -53,7 +53,7 @@ public class GameController implements IGameController {
 
     @Override
     public void updateView() {
-        this.applicationWindow.updateGameMap();
+        this.applicationWindow.getCurrentPanel();
     }
 
     @Override

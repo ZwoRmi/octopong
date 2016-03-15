@@ -11,14 +11,13 @@ import javafx.scene.layout.StackPane;
 public class ApplicationWindow {
     private IGameController gameController;
     private IParametersController parametersController;
-    private StackPane root;
     private IGameView gameView;
     private IParametersView parametersView;
+    private Object currentView;
 
-    public ApplicationWindow(IGameView gameView, IParametersView parametersView, StackPane root) {
+    public ApplicationWindow(IGameView gameView, IParametersView parametersView) {
         this.gameView = gameView;
         this.parametersView = parametersView;
-        this.root = root;
     }
 
     public void setGameController(IGameController gameController) {
@@ -29,16 +28,22 @@ public class ApplicationWindow {
         this.parametersController = parametersController;
     }
 
-    public void showParameters(){
-        this.gameView.unDrawMap(root);
-        this.parametersView.drawParameters(root, parametersController);
-    }
-    public void showGame(){
-        this.parametersView.unDrawParameters(root);
-        this.gameView.drawMap(root, gameController);
+    public void showParameters() {
+        this.currentView = parametersView;
     }
 
-    public void updateGameMap() {
-        this.gameView.drawMap(root, gameController);
+    public void showGame() {
+        this.currentView = gameView;
+    }
+
+    public StackPane getCurrentPanel() {
+        StackPane panel;
+        if (this.currentView.equals(this.gameView)) {
+            panel = this.gameView.getPanel(gameController);
+        } else {
+            panel = this.parametersView.getPanel(parametersController);
+        }
+        panel.setStyle("-fx-background-color: white");
+        return panel;
     }
 }

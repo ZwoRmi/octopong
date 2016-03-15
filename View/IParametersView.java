@@ -8,10 +8,13 @@ import javafx.scene.layout.StackPane;
  */
 public interface IParametersView {
 
-    void drawParameters(StackPane root, IParametersController parametersController);
-    void unDrawParameters(StackPane root);
+    StackPane getPanel(IParametersController parametersController);
     void drawLogo();
     void drawButtonStart();
     void drawSetterSpeedBall();
     void drawSetterIntervalBall();
+    void changeSpeedBallValue();
+    void changeIntervalBallValue();
+    void drawSpeedBallValue();
+    void drawIntervalValue();
 }

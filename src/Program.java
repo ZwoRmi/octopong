@@ -6,21 +6,21 @@ package src;/*
 
 
 import Controller.*;
+import Model.Map;
 import Model.MapFactory;
 import View.*;
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-import Model.Map;
-
 /**
- *
  * @author maxime
  */
-public class Program extends Application{
-    private static StackPane root;
+public class Program extends Application {
+    private static AnimationTimer timer;
+
     /**
      * @param args the command line arguments
      */
@@ -32,16 +32,14 @@ public class Program extends Application{
     private static ApplicationWindow getRootView() {
         IGameView gameView = new GameView();
         IParametersView parametersView = new ParametersView();
-        return new ApplicationWindow(gameView, parametersView, root);
+        return new ApplicationWindow(gameView, parametersView);
     }
 
     @Override
     public void start(Stage primaryStage) {
-        root = new StackPane();
-        Scene scene = new Scene(root, 1200, 800);
+        Scene scene = new Scene(new StackPane(), 1200, 800);
         primaryStage.setTitle("OctoPong");
         primaryStage.setScene(scene);
-        root.setStyle("-fx-background-color: #ffffff");
         primaryStage.show();
         ApplicationWindow appWin = getRootView();
         Map map = new MapFactory().create();
@@ -52,5 +50,12 @@ public class Program extends Application{
         appWin.setGameController(gameController);
         appWin.setParametersController(parametersController);
         parametersController.startParameters();
+        timer = new AnimationTimer() {
+            @Override
+            public void handle(long l) {
+                scene.setRoot(appWin.getCurrentPanel());
+            }
+        };
+        timer.start();
     }
 }

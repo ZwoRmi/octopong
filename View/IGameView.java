@@ -8,8 +8,7 @@ import javafx.scene.layout.StackPane;
  * Created by DanyPatient on 14/03/2016.
  */
 public interface IGameView {
-    void drawMap(StackPane root, IGameController gameController); //appel toutes les methodes sauf drawLogo
-    void unDrawMap(StackPane root); //appel toutes les methodes sauf drawLogo
+    StackPane getPanel(IGameController gameController); //appel toutes les methodes sauf drawLogo
     void drawGoal();
     void drawGoalKeeper();
     void drawBall();
