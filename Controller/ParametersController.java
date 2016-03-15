@@ -3,7 +3,8 @@ package Controller;
 import Model.Map;
 
 import java.security.InvalidParameterException;
-
+import View.*;
+import javafx.event.ActionEvent;
 /**
  * Created by DanyPatient on 14/03/2016.
  */
@@ -15,6 +16,10 @@ public class ParametersController implements IParametersController {
         this.map = m;
     }
 
+    public void init() {
+        System.out.println("Hello World!");
+    }
+    
     @Override
     public void setBallSpeed(int value) {
         switch (value) {
@@ -37,7 +42,7 @@ public class ParametersController implements IParametersController {
                 throw new InvalidParameterException("value should be between 1-5 but the current value is : " + value);
         }
     }
-
+    
     @Override
     public void setBallSPawnInterval(int value) {
         switch (value) {
