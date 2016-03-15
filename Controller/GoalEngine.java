@@ -107,7 +107,7 @@ public class GoalEngine implements IGoalEngine {
 
     private ArrayList<Ball> getBallsInDetectionArea(Goal goal) {
         ArrayList<Ball> ballsInArea = new ArrayList<Ball>();
-        Boundary boundary = new Boundary(goal);
+        Boundary boundary = new Boundary(goal.getGoalStartLine(), goal.getDetectionLine());
         for (Ball ball : this.map.getBalls()) {
             if (boundary.contains(ball.getActualPosition())){
                 ballsInArea.add(ball);
@@ -119,8 +119,17 @@ public class GoalEngine implements IGoalEngine {
     @Override
     public void goalDetection() {
         for (Ball ball : this.map.getBalls()) {
-            //TODO
+            for (GoalGoalKeeper goalGoalKeeper : map.getGoalsGoalKeepers()) {
+                if (isGoal(ball, goalGoalKeeper.getGoal())){
+                    onGoal(goalGoalKeeper.getGoal(), ball);
+                }
+            }
         }
+    }
+
+    private boolean isGoal(Ball ball, Goal goal) {
+        Boundary boundary = new Boundary(goal.getGoalStartLine(),goal.getGoalEndLine());
+        return boundary.contains(ball.getActualPosition());
     }
 
     @Override
@@ -176,20 +185,18 @@ public class GoalEngine implements IGoalEngine {
         for (GoalGoalKeeper goalGoalKeeper: map.getGoalsGoalKeepers()) {
             if(goalGoalKeeper.getGoalKeeper().getActualPosition().equals(goalGoalKeeper.getGoalKeeper().getTargetPosition())){
                 Position targetPosition = new Position();
-                targetPosition.setX((goalGoalKeeper.getGoal().getGoalLine().getStartPosition().getX()+goalGoalKeeper.getGoal().getGoalLine().getEndPosition().getX())/2);
-                targetPosition.setY((goalGoalKeeper.getGoal().getGoalLine().getStartPosition().getY()+goalGoalKeeper.getGoal().getGoalLine().getEndPosition().getY())/2);
+                targetPosition.setX((goalGoalKeeper.getGoal().getGoalStartLine().getStartPosition().getX()+goalGoalKeeper.getGoal().getGoalStartLine().getEndPosition().getX())/2);
+                targetPosition.setY((goalGoalKeeper.getGoal().getGoalStartLine().getStartPosition().getY()+goalGoalKeeper.getGoal().getGoalStartLine().getEndPosition().getY())/2);
                 goalGoalKeeper.getGoalKeeper().setTargetPosition(targetPosition);
             }
         }
     }
 
     @Override
-    public void initMap() {
-
-    }
-
-    @Override
     public void update() {
-
+        this.goalDetection();
+        this.checkBallInDetectionArea();
+        this.centerGoalKeepers();
+        this.move();
     }
 }

@@ -15,6 +15,5 @@ public interface IGoalEngine {
     void updateScore(Goal goal); //score++
 
     void centerGoalKeepers(); // si pas de balle dans la zone et que targetPosition == actualPosition alors set la targetPosition
-    void initMap(); //initialiliser la map
     void update();
 }
