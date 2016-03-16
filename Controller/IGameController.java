@@ -10,7 +10,7 @@ public interface IGameController {
     Map getMap();
     long getGameTime();
     void setGameEngine(IGameEngine gameEngine);
-
+    void generateBallGame();
     void startGame();
     void pauseGame();
     void resumeGame();

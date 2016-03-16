@@ -93,4 +93,9 @@ public class GameEngine implements IGameEngine {
     public Map getMap() {
         return this.map;
     }
+
+    @Override
+    public void generateBall() {
+        this.ballEngine.generateBall();
+    }
 }

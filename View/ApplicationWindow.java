@@ -56,8 +56,6 @@ public class ApplicationWindow {
             panel = this.parametersView.getPanel(parametersController);
         }
         panel.setStyle("-fx-background-color: white");
-        panel.getChildren().add(this.copyrightText);
-        panel.getChildren().add(this.logo);
         return panel;
     }
 

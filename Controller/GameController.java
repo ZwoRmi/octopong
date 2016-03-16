@@ -57,6 +57,11 @@ public class GameController implements IGameController {
     }
 
     @Override
+    public void generateBallGame() {
+        this.gameEngine.generateBall();
+    }
+
+    @Override
     public void updateView() {
         this.applicationWindow.getCurrentPanel();
     }
