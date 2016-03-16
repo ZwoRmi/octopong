@@ -3,12 +3,11 @@ package View;
 
 import Controller.IGameController;
 import Controller.IParametersController;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-
-import java.awt.*;
 
 /**
  * Created by DanyPatient on 15/03/2016.
@@ -20,11 +19,14 @@ public class ApplicationWindow {
     private IParametersView parametersView;
     private Object currentView;
     private Text copyrightText;
+    private ImageView logo;
 
     public ApplicationWindow(IGameView gameView, IParametersView parametersView) {
+        this.logo = new ImageView();
         this.gameView = gameView;
         this.parametersView = parametersView;
         this.drawCopyright();
+        this.drawLogo();
     }
 
     public void setGameController(IGameController gameController) {
@@ -51,15 +53,23 @@ public class ApplicationWindow {
             panel = this.parametersView.getPanel(parametersController);
         }
         panel.setStyle("-fx-background-color: white");
-        panel.getChildren().add(copyrightText);
+        panel.getChildren().add(this.copyrightText);
+        panel.getChildren().add(this.logo);
         return panel;
     }
 
-    public void drawCopyright(){
-        copyrightText = new Text();
-        copyrightText.setFont(new Font(10));
-        copyrightText.setText("Copyright © 2016 ZwoD. All rights reserved.");
-        copyrightText.setTranslateX(0);
-        copyrightText.setTranslateY(350);
+    public void drawCopyright() {
+        this.copyrightText = new Text();
+        this.copyrightText.setFont(new Font(10));
+        this.copyrightText.setText("Copyright © 2016 ZwoD. All rights reserved.");
+        this.copyrightText.setTranslateX(0);
+        this.copyrightText.setTranslateY(350);
+    }
+
+    public void drawLogo() {
+        Image logoImage = new Image("Image/logoOctopong.png");
+        this.logo.setImage(logoImage);
+        this.logo.setTranslateX(-400);
+        this.logo.setTranslateY(-300);
     }
 }
