@@ -1,13 +1,16 @@
 package Controller;
 
+import Model.Map;
+
 /**
  * Created by Lucas on 14/03/2016.
  */
 public interface IGameController {
     void updateView();
-    void getMap();
+    Map getMap();
+    long getGameTime();
     void setGameEngine(IGameEngine gameEngine);
-    void goBackToParameters();
+
     void startGame();
     void pauseGame();
     void resumeGame();

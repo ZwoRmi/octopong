@@ -3,6 +3,7 @@ package Controller;
 import Model.Map;
 
 import java.security.InvalidParameterException;
+
 import View.*;
 /**
  * Created by DanyPatient on 14/03/2016.
@@ -11,10 +12,12 @@ public class ParametersController implements IParametersController {
 
     private ApplicationWindow rootWindow;
     private Map map;
+    private IGameController gameController;
 
-    public ParametersController(Map map, ApplicationWindow rootWindow) {
+    public ParametersController(Map map, ApplicationWindow rootWindow, IGameController gameController) {
         this.map = map;
         this.rootWindow = rootWindow;
+        this.gameController = gameController;
     }
 
     public void init() {
@@ -75,5 +78,6 @@ public class ParametersController implements IParametersController {
     @Override
     public void startGame() {
         this.rootWindow.showGame();
+        this.gameController.startGame();
     }
 }

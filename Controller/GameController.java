@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.Map;
+import Util.StopWatch;
 import View.ApplicationWindow;
 
 /**
@@ -7,11 +9,13 @@ import View.ApplicationWindow;
  */
 public class GameController implements IGameController {
 
+    private final StopWatch stopWatch;
     private IGameEngine gameEngine;
     private ApplicationWindow applicationWindow;
 
     public GameController(ApplicationWindow applicationWindow) {
         this.applicationWindow = applicationWindow;
+        this.stopWatch = new StopWatch();
     }
 
     @Override
@@ -20,33 +24,34 @@ public class GameController implements IGameController {
     }
 
     @Override
-    public void goBackToParameters() {
-        this.applicationWindow.showParameters();
-    }
-
-    @Override
     public void startGame() {
+        this.stopWatch.start();
         this.gameEngine.startGame();
-        this.applicationWindow.showGame();
     }
 
     @Override
     public void resumeGame() {
+        this.stopWatch.resume();
         this.gameEngine.resumeGame();
     }
 
     @Override
     public void pauseGame() {
+        this.stopWatch.suspend();
         this.gameEngine.pauseGame();
     }
 
     @Override
     public void restartGame() {
+        this.stopWatch.reset();
+        this.stopWatch.start();
         this.gameEngine.restartGame();
     }
 
     @Override
     public void stopGame() {
+        this.stopWatch.stop();
+        this.stopWatch.reset();
         this.gameEngine.stopGame();
         this.applicationWindow.showParameters();
     }
@@ -57,7 +62,14 @@ public class GameController implements IGameController {
     }
 
     @Override
-    public void getMap() {
-        this.gameEngine.getMap();
+    public Map getMap() {
+        return this.gameEngine.getMap();
     }
+
+    @Override
+    public long getGameTime() {
+        return stopWatch.getNanoTime();
+    }
+
+
 }

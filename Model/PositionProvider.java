@@ -6,67 +6,67 @@ public class PositionProvider {
         switch (goalPositions){
             case StartNorth:
                 position.setX(512);
-                position.setX(95);
+                position.setY(95);
                 break;
             case EndNorth:
                 position.setX(692);
-                position.setX(95);
+                position.setY(95);
                 break;
             case StartNorthEast:
                 position.setX(692);
-                position.setX(95);
+                position.setY(95);
                 break;
             case EndNorthEast:
                 position.setX(821);
-                position.setX(224);
+                position.setY(224);
                 break;
             case StartEast:
                 position.setX(821);
-                position.setX(224);
+                position.setY(224);
                 break;
             case EndEast:
                 position.setX(821);
-                position.setX(404);
+                position.setY(404);
                 break;
             case StartSouthEast:
                 position.setX(821);
-                position.setX(404);
+                position.setY(404);
                 break;
             case EndSouthEast:
                 position.setX(692);
-                position.setX(533);
+                position.setY(533);
                 break;
             case StartSouth:
                 position.setX(692);
-                position.setX(533);
+                position.setY(533);
                 break;
             case EndSouth:
                 position.setX(512);
-                position.setX(533);
+                position.setY(533);
                 break;
             case StartSouthWest:
                 position.setX(512);
-                position.setX(533);
+                position.setY(533);
                 break;
             case EndSouthWest:
                 position.setX(383);
-                position.setX(404);
+                position.setY(404);
                 break;
             case StartWest:
                 position.setX(383);
-                position.setX(404);
+                position.setY(404);
                 break;
             case EndWest:
                 position.setX(383);
-                position.setX(224);
+                position.setY(224);
                 break;
             case StartNorthWest:
                 position.setX(383);
-                position.setX(224);
+                position.setY(224);
                 break;
             case EndNorthWest:
                 position.setX(512);
-                position.setX(95);
+                position.setY(95);
                 break;
 
         }
@@ -85,67 +85,67 @@ public class PositionProvider {
         switch (goalPositions){
             case StartNorth:
                 position.setX(531);
-                position.setX(147);
+                position.setY(147);
                 break;
             case EndNorth:
                 position.setX(673);
-                position.setX(147);
+                position.setY(147);
                 break;
             case StartNorthEast:
                 position.setX(673);
-                position.setX(147);
+                position.setY(147);
                 break;
             case EndNorthEast:
                 position.setX(772);
-                position.setX(245);
+                position.setY(245);
                 break;
             case StartEast:
                 position.setX(772);
-                position.setX(245);
+                position.setY(245);
                 break;
             case EndEast:
                 position.setX(772);
-                position.setX(383);
+                position.setY(383);
                 break;
             case StartSouthEast:
                 position.setX(772);
-                position.setX(383);
+                position.setY(383);
                 break;
             case EndSouthEast:
                 position.setX(673);
-                position.setX(481);
+                position.setY(481);
                 break;
             case StartSouth:
                 position.setX(673);
-                position.setX(481);
+                position.setY(481);
                 break;
             case EndSouth:
                 position.setX(531);
-                position.setX(481);
+                position.setY(481);
                 break;
             case StartSouthWest:
                 position.setX(531);
-                position.setX(481);
+                position.setY(481);
                 break;
             case EndSouthWest:
                 position.setX(431);
-                position.setX(383);
+                position.setY(383);
                 break;
             case StartWest:
                 position.setX(431);
-                position.setX(383);
+                position.setY(383);
                 break;
             case EndWest:
                 position.setX(431);
-                position.setX(245);
+                position.setY(245);
                 break;
             case StartNorthWest:
                 position.setX(431);
-                position.setX(245);
+                position.setY(245);
                 break;
             case EndNorthWest:
                 position.setX(531);
-                position.setX(147);
+                position.setY(147);
                 break;
         }
         return position;

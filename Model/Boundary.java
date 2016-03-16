@@ -1,11 +1,10 @@
 package Model;
 
-import java.awt.*;
-
 public class Boundary {
     private Position points[];
 
     public Boundary(Line startLine, Line endLine) {
+        this.points = new Position[4];
         points[0] = startLine.getStartPosition();
         points[1] = startLine.getEndPosition();
         points[2] = endLine.getStartPosition();
@@ -13,6 +12,7 @@ public class Boundary {
     }
 
     public Boundary(Line line) {
+        this.points = new Position[4];
         points[0] = line.getStartPosition();
         points[1] = line.getEndPosition();
         points[2] = this.getFakePosition(line.getStartPosition());

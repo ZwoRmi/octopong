@@ -43,8 +43,8 @@ public class Program extends Application {
         primaryStage.show();
         ApplicationWindow appWin = getRootView();
         Map map = new MapFactory().create();
-        IParametersController parametersController = new ParametersController(map, appWin);
         IGameController gameController = new GameController(appWin);
+        IParametersController parametersController = new ParametersController(map, appWin, gameController);
         IGameEngine gameEngine = new GameEngine(map, gameController);
         gameController.setGameEngine(gameEngine);
         appWin.setGameController(gameController);

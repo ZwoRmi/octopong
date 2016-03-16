@@ -68,7 +68,7 @@ public class MapFactory {
         goalKeeper.setGoalPosition(goalPosition);
         goalKeeper.setSpeed(1);
         goalKeeper.setTargetPosition(goalKeeper.getActualPosition());
-        return null;
+        return goalKeeper;
     }
 
     private Goal getGoal(GoalPositions startPosition, GoalPositions endPosition) {
@@ -84,7 +84,7 @@ public class MapFactory {
         Line detectionLineGoal = new Line();
         detectionLineGoal.setStartPosition(this.positionProvider.getPositionDetectionLine(startPosition));
         detectionLineGoal.setEndPosition(this.positionProvider.getPositionDetectionLine(endPosition));
-        goal.setGoalEndLine(detectionLineGoal);
+        goal.setDetectionLine(detectionLineGoal);
         return goal;
     }
 }

@@ -9,6 +9,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+import java.util.Date;
+
 /**
  * Created by DanyPatient on 15/03/2016.
  */
@@ -20,6 +22,7 @@ public class ApplicationWindow {
     private Object currentView;
     private Text copyrightText;
     private ImageView logo;
+    private Date startDate;
 
     public ApplicationWindow(IGameView gameView, IParametersView parametersView) {
         this.logo = new ImageView();
