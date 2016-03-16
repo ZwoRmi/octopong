@@ -10,6 +10,7 @@ public interface IParametersView {
 
     StackPane getPanel(IParametersController parametersController);
     void drawLogo();
+    void drawCopyright();
     void drawButtonStart();
     void drawSetterSpeedBall();
     void drawSetterIntervalBall();
@@ -17,4 +18,5 @@ public interface IParametersView {
     void changeIntervalBallValue();
     void drawSpeedBallValue();
     void drawIntervalValue();
+
 }

@@ -13,4 +13,5 @@ public interface IGameView {
     void drawBalls();
     void drawScores();
     void drawTime();
+    void drawLogo();
 }

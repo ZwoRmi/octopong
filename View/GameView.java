@@ -6,6 +6,8 @@ import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
@@ -28,10 +30,28 @@ public class GameView implements IGameView {
     private Button stopButton;
     private Button pauseButton;
     private Button generateBallButton;
+    private ApplicationWindow appWin;
+    private ImageView logo;
+    private Text copyrightText;
 
     public GameView() {
         this.initButtons();
         this.initPaneButtons();
+        this.initLogo();
+        this.initCopyright();
+    }
+
+    public void initLogo(){
+        this.logo = new ImageView();
+        Image logoImage = new Image("Image/logoOctopong.png");
+        this.logo.setImage(logoImage);
+    }
+
+    public void initCopyright(){
+        this.copyrightText = new Text();
+        this.copyrightText.setTextAlignment(TextAlignment.CENTER);
+        this.copyrightText.setFont(new Font(10));
+        this.copyrightText.setText("Copyright © 2016 ZwoD. All rights reserved.");
     }
 
     @Override
@@ -40,7 +60,10 @@ public class GameView implements IGameView {
         this.initPane();
         this.drawButtons();
         //utiliser les données se trouvant dans gameController.getMap(), add les elements a myPanel
+        this.drawLogo();
+        this.drawCopyright();
         this.drawTime();
+
         return myPanel;
     }
 
@@ -149,6 +172,7 @@ public class GameView implements IGameView {
         myPanel.getRowConstraints().add(new RowConstraints(660));
         myPanel.getRowConstraints().add(new RowConstraints(80));
         myPanel.getRowConstraints().add(new RowConstraints(40));
+        myPanel.setGridLinesVisible(true);
     }
 
     @Override
@@ -180,7 +204,6 @@ public class GameView implements IGameView {
         t.setTextAlignment(TextAlignment.CENTER);
         vbox.getChildren().addAll(t);
         this.myPanel.add(vbox, 2, 2);
-
         GridPane.setHalignment(vbox, HPos.CENTER);
         GridPane.setValignment(vbox, VPos.CENTER);
     }
@@ -193,5 +216,13 @@ public class GameView implements IGameView {
         return (calendar.get(Calendar.HOUR) - 1) + "H " + calendar.get(Calendar.MINUTE) + "M " + calendar.get(Calendar.SECOND) + "S ";
     }
 
+    public void drawLogo(){
+        this.myPanel.add(this.logo,0,0);
+    }
 
+    public void drawCopyright(){
+        this.myPanel.add(this.copyrightText,1,3);
+        GridPane.setHalignment(this.copyrightText,HPos.CENTER);
+        myPanel.setAlignment(Pos.CENTER);
+    }
 }

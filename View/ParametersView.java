@@ -21,15 +21,24 @@ public class ParametersView implements IParametersView {
     private Button buttonSetSpeedBall;
     private Button buttonStart;
     private Button buttonSetIntervalBall;
+    private ImageView logo;
 
     public ParametersView() {
         this.initSetterSpeedBallButton();
+        this.initLogo();
         this.initStartButton();
         this.initSetterIntervalBallButton();
         this.speedBallValue = 1;
         this.intervalBallValue = 1;
     }
 
+    public void initLogo(){
+        this.logo = new ImageView();
+        Image logoImage = new Image("Image/logoOctopong.png");
+        this.logo.setImage(logoImage);
+        logo.setTranslateX(-400);
+        logo.setTranslateY(-300);
+    }
     private void initSetterIntervalBallButton() {
         buttonSetIntervalBall = new Button();
         buttonSetIntervalBall.setText("Fréquence d'apparition des billes");
@@ -61,6 +70,7 @@ public class ParametersView implements IParametersView {
         this.myPanel = new StackPane();
         this.parametersController = parametersController;
         this.drawLogo();
+        this.drawCopyright();
         this.drawButtonStart();
         this.drawSetterIntervalBall();
         this.drawSetterSpeedBall();
@@ -69,13 +79,12 @@ public class ParametersView implements IParametersView {
         return myPanel;
     }
 
-    public void drawLogo() {
-        ImageView logo = new ImageView();
-        Image logoImage = new Image("Image/logoOctopong.png");
-        logo.setImage(logoImage);
-        logo.setTranslateX(-400);
-        logo.setTranslateY(-300);
+    public void drawLogo(){
         this.myPanel.getChildren().add(logo);
+    }
+
+    @Override
+    public void drawCopyright() {
     }
 
     public void drawButtonStart() {
@@ -141,4 +150,6 @@ public class ParametersView implements IParametersView {
         t.setTranslateY(50);
         this.myPanel.getChildren().add(t);
     }
+
+
 }
