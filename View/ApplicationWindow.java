@@ -3,6 +3,7 @@ package View;
 
 import Controller.IGameController;
 import Controller.IParametersController;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 /**
@@ -36,8 +37,8 @@ public class ApplicationWindow {
         this.currentView = gameView;
     }
 
-    public StackPane getCurrentPanel() {
-        StackPane panel;
+    public Pane getCurrentPanel() {
+        Pane panel;
         if (this.currentView.equals(this.gameView)) {
             panel = this.gameView.getPanel(gameController);
         } else {
