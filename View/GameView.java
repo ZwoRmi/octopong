@@ -2,13 +2,11 @@ package View;
 
 import Controller.IGameController;
 import Model.Ball;
-import Model.Goal;
 import Model.GoalGoalKeeper;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -76,13 +74,36 @@ public class GameView implements IGameView {
         this.gamePanel = new Pane();
         this.drawGoals();
         this.drawBalls();
-        try{
-            this.drawGoalsKeeper();
-        }catch (Exception e){
-            //TODO resolve bug
-        }
+        this.drawGoalsKeeper();
+        //TODO remove after debug
+        this.drawGoalEnd();
+        this.drawGoalDetectionLine();
 
         this.myPanel.add(gamePanel,1,1);
+    }
+
+    private void drawGoalDetectionLine() {
+        for (GoalGoalKeeper goalGoalKeeper : this.gameController.getMap().getGoalsGoalKeepers()) {
+            Line line = new Line();
+            line.setStrokeWidth(1);
+            line.setStartX(goalGoalKeeper.getGoal().getDetectionLine().getStartPosition().getX()-125);
+            line.setStartY(goalGoalKeeper.getGoal().getDetectionLine().getStartPosition().getY());
+            line.setEndX(goalGoalKeeper.getGoal().getDetectionLine().getEndPosition().getX()-125);
+            line.setEndY(goalGoalKeeper.getGoal().getDetectionLine().getEndPosition().getY());
+            this.gamePanel.getChildren().add(line);
+        }
+    }
+
+    private void drawGoalEnd() {
+        for (GoalGoalKeeper goalGoalKeeper : this.gameController.getMap().getGoalsGoalKeepers()) {
+            Line line = new Line();
+            line.setStrokeWidth(1);
+            line.setStartX(goalGoalKeeper.getGoal().getGoalEndLine().getStartPosition().getX()-125);
+            line.setStartY(goalGoalKeeper.getGoal().getGoalEndLine().getStartPosition().getY());
+            line.setEndX(goalGoalKeeper.getGoal().getGoalEndLine().getEndPosition().getX()-125);
+            line.setEndY(goalGoalKeeper.getGoal().getGoalEndLine().getEndPosition().getY());
+            this.gamePanel.getChildren().add(line);
+        }
     }
 
     private void drawButtons() {
@@ -214,10 +235,10 @@ public class GameView implements IGameView {
             Line line = new Line();
             line.setStrokeWidth(3);
             line.setStyle("-fx-stroke: rgba(71, 72, 70, 0.72)");
-            line.setStartX(goalGoalKeeper.getGoalKeeper().getActualPosition().getStartPosition().getX()-125);
-            line.setStartY(goalGoalKeeper.getGoalKeeper().getActualPosition().getStartPosition().getY());
-            line.setEndX(goalGoalKeeper.getGoalKeeper().getActualPosition().getEndPosition().getX()-125);
-            line.setEndY(goalGoalKeeper.getGoalKeeper().getActualPosition().getEndPosition().getY());
+            line.setStartX(goalGoalKeeper.getGoalKeeper().getActualPositionStart().getStartPosition().getX()-125);
+            line.setStartY(goalGoalKeeper.getGoalKeeper().getActualPositionStart().getStartPosition().getY());
+            line.setEndX(goalGoalKeeper.getGoalKeeper().getActualPositionStart().getEndPosition().getX()-125);
+            line.setEndY(goalGoalKeeper.getGoalKeeper().getActualPositionStart().getEndPosition().getY());
             this.gamePanel.getChildren().add(line);
         }
     }
@@ -226,9 +247,10 @@ public class GameView implements IGameView {
     public void drawBalls() {
         for (Ball ball : this.gameController.getMap().getBalls()) {
             Circle circle = new Circle();
+            circle.setStyle("-fx-stroke: rgba(72, 0, 4, 0.72)");
             circle.setRadius(3);
-            circle.setCenterX(ball.getActualPosition().getX()+480);
-            circle.setCenterY(ball.getActualPosition().getY()+320);
+            circle.setCenterX(ball.getActualPosition().getX()-125);
+            circle.setCenterY(ball.getActualPosition().getY());
             this.gamePanel.getChildren().add(circle);
         }
     }

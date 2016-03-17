@@ -34,7 +34,7 @@ public class ReboundCalculator {
                 break;
             case SouthEast:
                 position.setX(actualDirection.getY()*-1);
-                position.setY(actualDirection.getX()*-7);
+                position.setY(actualDirection.getX()*-1);
                 break;
             case SouthWest:
                 position.setX(actualDirection.getY()*-1);

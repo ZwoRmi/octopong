@@ -3,7 +3,6 @@ package Controller;
 
 import Model.Map;
 import Model.MapFactory;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -70,6 +69,7 @@ public class GameEngine implements IGameEngine {
 
     @Override
     public void stopGame() {
+        this.restartGame();
         this.timer.stop();
     }
 

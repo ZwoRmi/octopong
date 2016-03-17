@@ -11,7 +11,7 @@ public class MapFactory {
     public Map create(){
         Map map = new Map();
         map.setBallSpeed(1);
-        map.setBallSpawnInterval(1);
+        map.setBallSpawnInterval(10000000);
         map.setBalls(this.getBalls());
         map.setGoalsGoalKeepers(this.getGoalsGoalKeepers());
         return map;
@@ -25,8 +25,8 @@ public class MapFactory {
 
     private Ball getFirstBall() {
         Position ballPosition = new Position();
-        ballPosition.setX(0);
-        ballPosition.setY(0);
+        ballPosition.setX(602);
+        ballPosition.setY(315);
         Ball ball = new Ball();
         ball.setActualPosition(ballPosition);
         ball.setDirection(new RandomPositionGenerator().generatePosition());
@@ -62,12 +62,15 @@ public class MapFactory {
         score.setScore(0);
         score.setPosition(this.positionProvider.getScorePosition(goalPosition));
         goalKeeper.setScore(score);
-        goalKeeper.setActualPosition(new Line(
-                this.positionProvider.getGoalKeeperPosition(this.positionProvider.getStartGoalPosition(goalPosition)),
-                this.positionProvider.getGoalKeeperPosition(this.positionProvider.getEndGoalPosition(goalPosition))));
+        goalKeeper.setActualPositionStart(new Line(
+                this.positionProvider.getGoalKeeperPositionStart(this.positionProvider.getStartGoalPosition(goalPosition)),
+                this.positionProvider.getGoalKeeperPositionStart(this.positionProvider.getEndGoalPosition(goalPosition))));
+        goalKeeper.setActualPositionEnd(new Line(
+                this.positionProvider.getGoalKeeperPositionEnd(this.positionProvider.getStartGoalPosition(goalPosition)),
+                this.positionProvider.getGoalKeeperPositionEnd(this.positionProvider.getEndGoalPosition(goalPosition))));
         goalKeeper.setGoalPosition(goalPosition);
-        goalKeeper.setSpeed(1);
-        goalKeeper.setTargetPosition(goalKeeper.getActualPosition());
+        goalKeeper.setSpeed(10);
+        goalKeeper.setTargetPosition(goalKeeper.getActualPositionStart());
         return goalKeeper;
     }
 

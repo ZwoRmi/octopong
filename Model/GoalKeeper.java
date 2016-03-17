@@ -2,10 +2,10 @@ package Model;
 
 public class GoalKeeper {
     private float speed;
-    private float size;
     private GoalPosition goalPosition;
     private Score score;
-    private Line actualPosition;
+    private Line actualPositionStart;
+    private Line actualPositionEnd;
     private Line targetPosition;
 
     public GoalPosition getGoalPosition() {
@@ -24,14 +24,6 @@ public class GoalKeeper {
         this.speed = speed;
     }
 
-    public float getSize() {
-        return this.size;
-    }
-
-    public void setSize(float size) {
-        this.size = size;
-    }
-
     public Score getScore() {
         return this.score;
     }
@@ -40,12 +32,20 @@ public class GoalKeeper {
         this.score = score;
     }
 
-    public Line getActualPosition() {
-        return this.actualPosition;
+    public Line getActualPositionStart() {
+        return this.actualPositionStart;
     }
 
-    public void setActualPosition(Line actualPosition) {
-        this.actualPosition = actualPosition;
+    public void setActualPositionStart(Line actualPositionStart) {
+        this.actualPositionStart = actualPositionStart;
+    }
+
+    public Line getActualPositionEnd() {
+        return this.actualPositionEnd;
+    }
+
+    public void setActualPositionEnd(Line actualPositionEnd) {
+        this.actualPositionEnd = actualPositionEnd;
     }
 
     public Line getTargetPosition() {

@@ -20,27 +20,23 @@ public class ParametersController implements IParametersController {
         this.gameController = gameController;
     }
 
-    public void init() {
-        System.out.println("Hello World!");
-    }
-
     @Override
     public void setBallSpeed(int value) {
         switch (value) {
             case 1:
-                this.map.setBallSpeed(1);
+                this.map.setBallSpeed(5);
                 break;
             case 2:
-                this.map.setBallSpeed(2);
+                this.map.setBallSpeed(4);
                 break;
             case 3:
                 this.map.setBallSpeed(3);
                 break;
             case 4:
-                this.map.setBallSpeed(4);
+                this.map.setBallSpeed(2);
                 break;
             case 5:
-                this.map.setBallSpeed(5);
+                this.map.setBallSpeed(1);
                 break;
             default:
                 throw new InvalidParameterException("value should be between 1-5 but the current value is : " + value);
@@ -54,16 +50,16 @@ public class ParametersController implements IParametersController {
                 this.map.setBallSpawnInterval(1);
                 break;
             case 2:
-                this.map.setBallSpawnInterval(2);
+                this.map.setBallSpawnInterval(500);
                 break;
             case 3:
-                this.map.setBallSpawnInterval(3);
+                this.map.setBallSpawnInterval(1000);
                 break;
             case 4:
-                this.map.setBallSpawnInterval(4);
+                this.map.setBallSpawnInterval(3000);
                 break;
             case 5:
-                this.map.setBallSpawnInterval(5);
+                this.map.setBallSpawnInterval(5000);
                 break;
             default:
                 throw new InvalidParameterException("value should be between 1-5 but the current value is : " + value);

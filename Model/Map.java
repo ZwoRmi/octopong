@@ -9,7 +9,7 @@ public class Map {
     private ArrayList<Ball> balls;
     private ArrayList<GoalGoalKeeper> goalsGoalKeepers;
     private float diameter;
-    private float ballSpawnInterval;
+    private long ballSpawnInterval;
     private float ballSpeed;
 
     public float getBallSpeed() {
@@ -20,16 +20,19 @@ public class Map {
         this.ballSpeed = speed;
     }
 
-    public float getBallSpawnInterval() {
+    public long getBallSpawnInterval() {
         return this.ballSpawnInterval;
     }
 
-    public void setBallSpawnInterval(float ballSpawnInterval) {
+    public void setBallSpawnInterval(long ballSpawnInterval) {
         this.ballSpawnInterval = ballSpawnInterval;
     }
 
     public ArrayList<Ball> getBalls() {
-        return this.balls;
+        Object syncObject = new Object();
+        synchronized (syncObject){
+            return this.balls;
+        }
     }
 
     public void setBalls(ArrayList<Ball> balls) {

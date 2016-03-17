@@ -74,10 +74,14 @@ public class PositionProvider {
     }
 
     public Position getPositionGoalEnd(GoalPositions goalPositions){
-        Position position = this.getPositionGoalStart(goalPositions);
-        position.setX(position.getX()+2);
-        position.setY(position.getY()+2);
-        return position;
+        Position resultPosition = new Position();
+        Position positionGoalStart = this.getPositionGoalStart(goalPositions);
+        Position positionDetectionLine = this.getPositionDetectionLine(goalPositions);
+        float xDifference = positionGoalStart.getX()-positionDetectionLine.getX();
+        float yDifference = positionGoalStart.getY()-positionDetectionLine.getY();
+        resultPosition.setX(positionGoalStart.getX()+xDifference/2);
+        resultPosition.setY(positionGoalStart.getY()+yDifference/2);
+        return resultPosition;
     }
 
     public Position getPositionDetectionLine(GoalPositions goalPositions){
@@ -228,8 +232,12 @@ public class PositionProvider {
         return position;
     }
 
-    public Position getGoalKeeperPosition(GoalPositions goalPositions) {
+    public Position getGoalKeeperPositionStart(GoalPositions goalPositions) {
         return this.getTranslatedGoalStartPosition(70,5,46,52.9999996847f, goalPositions);
+    }
+
+    public Position getGoalKeeperPositionEnd(GoalPositions goalPositions) {
+        return this.getTranslatedGoalStartPosition(70,5.5f,46,53.0495051815f, goalPositions);
     }
 
     private Position getTranslatedGoalStartPosition(float step1, float step2, float step3, float step4, GoalPositions goalPositions) {

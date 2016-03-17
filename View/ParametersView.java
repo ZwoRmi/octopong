@@ -122,6 +122,7 @@ public class ParametersView implements IParametersView {
         } else {
             this.speedBallValue++;
         }
+        this.parametersController.setBallSpeed(this.speedBallValue);
     }
 
     @Override
@@ -131,6 +132,7 @@ public class ParametersView implements IParametersView {
         } else {
             this.intervalBallValue++;
         }
+        this.parametersController.setBallSPawnInterval(this.intervalBallValue);
     }
 
     @Override

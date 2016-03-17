@@ -1,16 +1,18 @@
 package Controller;
 
 import Model.*;
+import Util.StopWatch;
 
 /**
  * Created by Lucas on 14/03/2016.
  */
 public class BallEngine implements IBallEngine {
     private final Map map;
-    private float timeForGenerateBall;
+    private StopWatch stopWatch;
 
 
     public BallEngine(Map aMap) {
+        this.stopWatch = new StopWatch();
         this.map = aMap;
         this.initTimeForGenerateBall();
     }
@@ -18,14 +20,16 @@ public class BallEngine implements IBallEngine {
     @Override
     public void update() {
         this.move();
-        if (System.nanoTime()> this.timeForGenerateBall){
+        if (this.stopWatch.getTime()> this.map.getBallSpawnInterval()){
             this.generateBall();
+            this.stopWatch.stop();
+            this.stopWatch.reset();
             this.initTimeForGenerateBall();
         }
     }
 
     private void initTimeForGenerateBall(){
-        this.timeForGenerateBall = System.nanoTime() + this.map.getBallSpawnInterval();
+        this.stopWatch.start();
     }
 
     @Override
@@ -50,7 +54,7 @@ public class BallEngine implements IBallEngine {
 
     private GoalKeeper getGoalBallRebound(Ball ball) {
         for (GoalGoalKeeper goalGoalKeeper : this.map.getGoalsGoalKeepers()) {
-            Boundary boundary = new Boundary(goalGoalKeeper.getGoalKeeper().getActualPosition());
+            PolygonBoundary boundary = new PolygonBoundary(goalGoalKeeper.getGoalKeeper().getActualPositionStart(), goalGoalKeeper.getGoalKeeper().getActualPositionEnd());
             if (boundary.contains(ball.getActualPosition())){
                 return goalGoalKeeper.getGoalKeeper();
             }
@@ -62,8 +66,8 @@ public class BallEngine implements IBallEngine {
     public void generateBall() {
         Ball b = new Ball();
         Position startPosition = new Position();
-        startPosition.setX(0);
-        startPosition.setY(0);
+        startPosition.setX(602);
+        startPosition.setY(315);
         b.setActualPosition(startPosition);
         b.setDirection(new RandomPositionGenerator().generatePosition());
         this.map.getBalls().add(b);

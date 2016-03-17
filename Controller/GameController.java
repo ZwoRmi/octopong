@@ -25,24 +25,33 @@ public class GameController implements IGameController {
 
     @Override
     public void startGame() {
-        this.stopWatch.start();
-        this.gameEngine.startGame();
+        if (stopWatch.isStopped()){
+            this.stopWatch.start();
+            this.gameEngine.startGame();
+        }
     }
 
     @Override
     public void resumeGame() {
-        this.stopWatch.resume();
-        this.gameEngine.resumeGame();
+        if (this.stopWatch.isSuspended()){
+            this.stopWatch.resume();
+            this.gameEngine.resumeGame();
+        }
     }
 
     @Override
     public void pauseGame() {
-        this.stopWatch.suspend();
-        this.gameEngine.pauseGame();
+        if (this.stopWatch.isStarted()){
+            this.stopWatch.suspend();
+            this.gameEngine.pauseGame();
+        }
     }
 
     @Override
     public void restartGame() {
+        if (stopWatch.isStarted()){
+            this.stopWatch.stop();
+        }
         this.stopWatch.reset();
         this.stopWatch.start();
         this.gameEngine.restartGame();
