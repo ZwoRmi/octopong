@@ -1,15 +1,21 @@
 package View;
 
 import Controller.IGameController;
+import Model.Ball;
+import Model.Goal;
+import Model.GoalGoalKeeper;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -32,6 +38,7 @@ public class GameView implements IGameView {
     private Button generateBallButton;
     private ImageView logo;
     private Text copyrightText;
+    private Pane gamePanel;
 
     public GameView() {
         this.initButtons();
@@ -61,14 +68,26 @@ public class GameView implements IGameView {
         this.drawLogo();
         this.drawCopyright();
         this.drawTime();
-
+        this.drawGame();
         return this.myPanel;
+    }
+
+    private void drawGame() {
+        this.gamePanel = new Pane();
+        this.drawGoals();
+        this.drawBalls();
+        try{
+            this.drawGoalsKeeper();
+        }catch (Exception e){
+            //TODO resolve bug
+        }
+
+        this.myPanel.add(gamePanel,1,1);
     }
 
     private void drawButtons() {
         VBox vBox = new VBox();
         vBox.getChildren().addAll(this.myButtonsPanel);
-        //vBox.setAlignment(Pos.CENTER);
         this.myPanel.add(vBox, 1, 2);
         GridPane.setHalignment(vBox, HPos.CENTER);
         GridPane.setValignment(vBox, VPos.CENTER);
@@ -162,8 +181,6 @@ public class GameView implements IGameView {
         this.myButtonsPanel.add(this.generateBallButton, 4, 0);
         GridPane.setHalignment(this.generateBallButton, HPos.CENTER);
         GridPane.setValignment(this.generateBallButton, VPos.CENTER);
-
-
     }
 
     private void initPane() {
@@ -180,17 +197,40 @@ public class GameView implements IGameView {
 
     @Override
     public void drawGoals() {
-
+        for (GoalGoalKeeper goalGoalKeeper : this.gameController.getMap().getGoalsGoalKeepers()) {
+            Line line = new Line();
+            line.setStrokeWidth(3);
+            line.setStartX(goalGoalKeeper.getGoal().getGoalStartLine().getStartPosition().getX()-125);
+            line.setStartY(goalGoalKeeper.getGoal().getGoalStartLine().getStartPosition().getY());
+            line.setEndX(goalGoalKeeper.getGoal().getGoalStartLine().getEndPosition().getX()-125);
+            line.setEndY(goalGoalKeeper.getGoal().getGoalStartLine().getEndPosition().getY());
+            this.gamePanel.getChildren().add(line);
+        }
     }
 
     @Override
     public void drawGoalsKeeper() {
-
+        for (GoalGoalKeeper goalGoalKeeper : this.gameController.getMap().getGoalsGoalKeepers()) {
+            Line line = new Line();
+            line.setStrokeWidth(3);
+            line.setStyle("-fx-stroke: rgba(71, 72, 70, 0.72)");
+            line.setStartX(goalGoalKeeper.getGoalKeeper().getActualPosition().getStartPosition().getX()-125);
+            line.setStartY(goalGoalKeeper.getGoalKeeper().getActualPosition().getStartPosition().getY());
+            line.setEndX(goalGoalKeeper.getGoalKeeper().getActualPosition().getEndPosition().getX()-125);
+            line.setEndY(goalGoalKeeper.getGoalKeeper().getActualPosition().getEndPosition().getY());
+            this.gamePanel.getChildren().add(line);
+        }
     }
 
     @Override
     public void drawBalls() {
-
+        for (Ball ball : this.gameController.getMap().getBalls()) {
+            Circle circle = new Circle();
+            circle.setRadius(3);
+            circle.setCenterX(ball.getActualPosition().getX()+480);
+            circle.setCenterY(ball.getActualPosition().getY()+320);
+            this.gamePanel.getChildren().add(circle);
+        }
     }
 
     @Override

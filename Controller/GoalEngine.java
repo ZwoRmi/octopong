@@ -73,8 +73,10 @@ public class GoalEngine implements IGoalEngine {
     }
 
     private Line getPositionToStopBall(ArrayList<BallWithTargetPosition> ballWithTargetPositions, GoalKeeper goalKeeper) {
-        int minCount = 1000000;
+        long minCount = 1000000000;
         BallWithTargetPosition ballWithTargetPosition = null;
+        if (ballWithTargetPositions.size()==0)
+            return goalKeeper.getActualPosition();
         for (BallWithTargetPosition currentBallWithTargetPosition:ballWithTargetPositions) {
             if (currentBallWithTargetPosition.getCountToGoToTargetPosition()<minCount){
                 minCount = currentBallWithTargetPosition.getCountToGoToTargetPosition();

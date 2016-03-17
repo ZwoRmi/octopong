@@ -61,14 +61,11 @@ public class BallEngine implements IBallEngine {
     @Override
     public void generateBall() {
         Ball b = new Ball();
-        Position randomPosition = new Position();
-        randomPosition.setX(this.randRange(2, 2));
-        randomPosition.setY(this.randRange(-2, 2));
-        b.setActualPosition(randomPosition);
+        Position startPosition = new Position();
+        startPosition.setX(0);
+        startPosition.setY(0);
+        b.setActualPosition(startPosition);
+        b.setDirection(new RandomPositionGenerator().generatePosition());
         this.map.getBalls().add(b);
-    }
-
-    private float randRange(float min, float max) {
-        return min + (float)Math.random() * (max - min);
     }
 }

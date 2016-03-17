@@ -63,7 +63,7 @@ public class GameController implements IGameController {
 
     @Override
     public void updateView() {
-        this.applicationWindow.getCurrentPanel();
+
     }
 
     @Override

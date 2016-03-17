@@ -229,12 +229,80 @@ public class PositionProvider {
     }
 
     public Position getGoalKeeperPosition(GoalPositions goalPositions) {
-        Position position = this.getPositionGoalStart(goalPositions);
-        position.setX(position.getX()+4);
-        position.setY(position.getY()+4);
-        return position;
+        return this.getTranslatedGoalStartPosition(70,5,46,52.9999996847f, goalPositions);
     }
 
+    private Position getTranslatedGoalStartPosition(float step1, float step2, float step3, float step4, GoalPositions goalPositions) {
+        Position pos = new Position();
+        Position goalPosition = this.getPositionGoalStart(goalPositions);
+        switch (goalPositions){
+            case StartNorth:
+                pos.setX(goalPosition.getX()+step1);
+                pos.setY(goalPosition.getY()+step2);
+                break;
+            case EndNorth:
+                pos.setX(goalPosition.getX()-step1);
+                pos.setY(goalPosition.getY()+step2);
+                break;
+            case StartNorthEast:
+                pos.setX(goalPosition.getX()+step3);
+                pos.setY(goalPosition.getY()+step4);
+                break;
+            case EndNorthEast:
+                pos.setX(goalPosition.getX()-step4);
+                pos.setY(goalPosition.getY()-step3);
+                break;
+            case StartEast:
+                pos.setX(goalPosition.getX()-step2);
+                pos.setY(goalPosition.getY()+step1);
+                break;
+            case EndEast:
+                pos.setX(goalPosition.getX()-step2);
+                pos.setY(goalPosition.getY()-step1);
+                break;
+            case StartSouthEast:
+                pos.setX(goalPosition.getX()-step4);
+                pos.setY(goalPosition.getY()+step3);
+                break;
+            case EndSouthEast:
+                pos.setX(goalPosition.getX()+step3);
+                pos.setY(goalPosition.getY()-step4);
+                break;
+            case StartSouth:
+                pos.setX(goalPosition.getX()-step1);
+                pos.setY(goalPosition.getY()-step2);
+                break;
+            case EndSouth:
+                pos.setX(goalPosition.getX()+step1);
+                pos.setY(goalPosition.getY()-step2);
+                break;
+            case StartSouthWest:
+                pos.setX(goalPosition.getX()-step3);
+                pos.setY(goalPosition.getY()-step4);
+                break;
+            case EndSouthWest:
+                pos.setX(goalPosition.getX()+step4);
+                pos.setY(goalPosition.getY()+step3);
+                break;
+            case StartWest:
+                pos.setX(goalPosition.getX()+step2);
+                pos.setY(goalPosition.getY()-step1);
+                break;
+            case EndWest:
+                pos.setX(goalPosition.getX()+step2);
+                pos.setY(goalPosition.getY()+step1);
+                break;
+            case StartNorthWest:
+                pos.setX(goalPosition.getX()+step4);
+                pos.setY(goalPosition.getY()-step3);
+                break;
+            case EndNorthWest:
+                pos.setX(goalPosition.getX()-step3);
+                pos.setY(goalPosition.getY()+step4);
+                break;
+        }
+        return pos;
+    }
 
 
     public GoalPositions getStartGoalPosition(GoalPosition goalPosition){

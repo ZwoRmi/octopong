@@ -13,7 +13,6 @@ public interface IGameEngine {
     void stopGame();
     void updateBallEngine();
     void updateGoalEngine();
-    void updateView();
     Map getMap();
     void generateBall();
 }

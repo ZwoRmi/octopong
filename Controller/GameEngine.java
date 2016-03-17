@@ -76,18 +76,11 @@ public class GameEngine implements IGameEngine {
     @Override
     public void updateBallEngine() {
         this.ballEngine.update();
-        this.updateView();
     }
 
     @Override
     public void updateGoalEngine() {
         this.goalEngine.update();
-        this.updateView();
-    }
-
-    @Override
-    public void updateView() {
-        this.gameController.updateView();
     }
 
     @Override
