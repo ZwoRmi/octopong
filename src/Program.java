@@ -19,7 +19,6 @@ import javafx.stage.Stage;
  * @author maxime
  */
 public class Program extends Application {
-    private static AnimationTimer timer;
 
     /**
      * @param args the command line arguments
@@ -50,7 +49,7 @@ public class Program extends Application {
         appWin.setGameController(gameController);
         appWin.setParametersController(parametersController);
         parametersController.startParameters();
-        timer = new AnimationTimer() {
+        AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
                 scene.setRoot(appWin.getCurrentPanel());

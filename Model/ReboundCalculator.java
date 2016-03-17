@@ -16,7 +16,7 @@ public class ReboundCalculator {
 
     public Position getNewDirection(){
         Position position = new Position();
-        Position actualDirection = ball.getDirection();
+        Position actualDirection = this.ball.getDirection();
         switch (this.goalKeeper.getGoalPosition()){
             case North:
             case South:

@@ -9,7 +9,7 @@ public class Goal {
     private Line detectionLine;
 
     public Line getGoalStartLine() {
-        return goalStartLine;
+        return this.goalStartLine;
     }
 
     public void setGoalStartLine(Line goalStartLine) {
@@ -17,7 +17,7 @@ public class Goal {
     }
 
     public Line getGoalEndLine() {
-        return goalEndLine;
+        return this.goalEndLine;
     }
 
     public void setGoalEndLine(Line goalEndLine) {
@@ -25,7 +25,7 @@ public class Goal {
     }
 
     public Line getDetectionLine() {
-        return detectionLine;
+        return this.detectionLine;
     }
 
     public void setDetectionLine(Line detectionLine) {

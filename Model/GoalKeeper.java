@@ -9,7 +9,7 @@ public class GoalKeeper {
     private Line targetPosition;
 
     public GoalPosition getGoalPosition() {
-        return goalPosition;
+        return this.goalPosition;
     }
 
     public void setGoalPosition(GoalPosition goalPosition) {
@@ -17,7 +17,7 @@ public class GoalKeeper {
     }
 
     public float getSpeed() {
-        return speed;
+        return this.speed;
     }
 
     public void setSpeed(float speed) {
@@ -25,7 +25,7 @@ public class GoalKeeper {
     }
 
     public float getSize() {
-        return size;
+        return this.size;
     }
 
     public void setSize(float size) {
@@ -33,7 +33,7 @@ public class GoalKeeper {
     }
 
     public Score getScore() {
-        return score;
+        return this.score;
     }
 
     public void setScore(Score score) {
@@ -41,7 +41,7 @@ public class GoalKeeper {
     }
 
     public Line getActualPosition() {
-        return actualPosition;
+        return this.actualPosition;
     }
 
     public void setActualPosition(Line actualPosition) {
@@ -49,7 +49,7 @@ public class GoalKeeper {
     }
 
     public Line getTargetPosition() {
-        return targetPosition;
+        return this.targetPosition;
     }
 
     public void setTargetPosition(Line targetPosition) {

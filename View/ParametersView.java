@@ -32,35 +32,35 @@ public class ParametersView implements IParametersView {
         this.intervalBallValue = 1;
     }
 
-    public void initLogo(){
+    private void initLogo(){
         this.logo = new ImageView();
         Image logoImage = new Image("Image/logoOctopong.png");
         this.logo.setImage(logoImage);
-        logo.setTranslateX(-400);
-        logo.setTranslateY(-300);
+        this.logo.setTranslateX(-400);
+        this.logo.setTranslateY(-300);
     }
     private void initSetterIntervalBallButton() {
-        buttonSetIntervalBall = new Button();
-        buttonSetIntervalBall.setText("Fréquence d'apparition des billes");
-        buttonSetIntervalBall.setTranslateX(0);
-        buttonSetIntervalBall.setTranslateY(0);
-        buttonSetIntervalBall.setOnMousePressed(new EventHandler<MouseEvent>() {
+        this.buttonSetIntervalBall = new Button();
+        this.buttonSetIntervalBall.setText("Fréquence d'apparition des billes");
+        this.buttonSetIntervalBall.setTranslateX(0);
+        this.buttonSetIntervalBall.setTranslateY(0);
+        this.buttonSetIntervalBall.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                changeIntervalBallValue();
+                ParametersView.this.changeIntervalBallValue();
             }
         });
     }
 
     private void initStartButton() {
-        buttonStart = new Button();
-        buttonStart.setText("Start");
-        buttonStart.setTranslateX(0);
-        buttonStart.setTranslateY(100);
-        buttonStart.setOnMousePressed(new EventHandler<MouseEvent>() {
+        this.buttonStart = new Button();
+        this.buttonStart.setText("Start");
+        this.buttonStart.setTranslateX(0);
+        this.buttonStart.setTranslateY(100);
+        this.buttonStart.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                parametersController.startGame();
+                ParametersView.this.parametersController.startGame();
             }
         });
     }
@@ -76,40 +76,42 @@ public class ParametersView implements IParametersView {
         this.drawSetterSpeedBall();
         this.drawIntervalValue();
         this.drawSpeedBallValue();
-        return myPanel;
+        return this.myPanel;
     }
 
+    @Override
     public void drawLogo(){
-        this.myPanel.getChildren().add(logo);
+        this.myPanel.getChildren().add(this.logo);
     }
 
     @Override
     public void drawCopyright() {
     }
 
+    @Override
     public void drawButtonStart() {
-        this.myPanel.getChildren().add(buttonStart);
+        this.myPanel.getChildren().add(this.buttonStart);
     }
 
+    @Override
     public void drawSetterSpeedBall() {
-        this.myPanel.getChildren().add(buttonSetSpeedBall);
+        this.myPanel.getChildren().add(this.buttonSetSpeedBall);
     }
 
     private void initSetterSpeedBallButton() {
-        buttonSetSpeedBall = new Button();
-        buttonSetSpeedBall.setText("Vitesse de deplacement des billes");
-        buttonSetSpeedBall.setTranslateX(0);
-        buttonSetSpeedBall.setTranslateY(-100);
-        buttonSetSpeedBall.setOnMousePressed(new EventHandler<MouseEvent>() {
-
+        this.buttonSetSpeedBall = new Button();
+        this.buttonSetSpeedBall.setText("Vitesse de déplacement des billes");
+        this.buttonSetSpeedBall.setTranslateX(0);
+        this.buttonSetSpeedBall.setTranslateY(-100);
+        this.buttonSetSpeedBall.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
             public void handle(MouseEvent event) {
-                changeSpeedBallValue();
+                ParametersView.this.changeSpeedBallValue();
             }
         });
     }
-
+    @Override
     public void drawSetterIntervalBall() {
-
         this.myPanel.getChildren().add(this.buttonSetIntervalBall);
     }
 
@@ -150,6 +152,4 @@ public class ParametersView implements IParametersView {
         t.setTranslateY(50);
         this.myPanel.getChildren().add(t);
     }
-
-
 }

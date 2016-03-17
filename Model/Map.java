@@ -13,7 +13,7 @@ public class Map {
     private float ballSpeed;
 
     public float getBallSpeed() {
-        return ballSpeed;
+        return this.ballSpeed;
     }
 
     public void setBallSpeed(float speed) {
@@ -21,7 +21,7 @@ public class Map {
     }
 
     public float getBallSpawnInterval() {
-        return ballSpawnInterval;
+        return this.ballSpawnInterval;
     }
 
     public void setBallSpawnInterval(float ballSpawnInterval) {
@@ -29,7 +29,7 @@ public class Map {
     }
 
     public ArrayList<Ball> getBalls() {
-        return balls;
+        return this.balls;
     }
 
     public void setBalls(ArrayList<Ball> balls) {
@@ -37,7 +37,7 @@ public class Map {
     }
 
     public ArrayList<GoalGoalKeeper> getGoalsGoalKeepers() {
-        return goalsGoalKeepers;
+        return this.goalsGoalKeepers;
     }
 
     public void setGoalsGoalKeepers(ArrayList<GoalGoalKeeper> goalsGoalKeepers) {
@@ -45,7 +45,7 @@ public class Map {
     }
 
     public float getDiameter() {
-        return diameter;
+        return this.diameter;
     }
 
     public void setDiameter(float diameter) {

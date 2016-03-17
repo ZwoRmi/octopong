@@ -8,7 +8,7 @@ public class Score {
     private int score;
 
     public Position getPosition() {
-        return position;
+        return this.position;
     }
 
     public void setPosition(Position position) {
@@ -16,7 +16,7 @@ public class Score {
     }
 
     public int getScore() {
-        return score;
+        return this.score;
     }
 
     public void setScore(int score) {

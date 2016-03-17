@@ -27,17 +27,18 @@ public class GameEngine implements IGameEngine {
     private void init(){
         this.goalEngine = new GoalEngine(this.map);
         this.ballEngine = new BallEngine(this.map);
-        timer = createTimer();
+        this.timer = this.createTimer();
     }
 
     private Timer createTimer ()
     {
         ActionListener action = new ActionListener()
         {
+            @Override
             public void actionPerformed (ActionEvent event)
             {
-                updateBallEngine();
-                updateGoalEngine();
+                GameEngine.this.updateBallEngine();
+                GameEngine.this.updateGoalEngine();
             }
         };
         return new Timer (100, action);
@@ -45,17 +46,17 @@ public class GameEngine implements IGameEngine {
 
     @Override
     public void startGame() {
-        timer.start();
+        this.timer.start();
     }
 
     @Override
     public void pauseGame() {
-        timer.stop();
+        this.timer.stop();
     }
 
     @Override
     public void resumeGame() {
-        timer.start();
+        this.timer.start();
     }
 
     @Override
@@ -64,12 +65,12 @@ public class GameEngine implements IGameEngine {
         this.map = new MapFactory().create();
         this.map.setBallSpawnInterval(oldMap.getBallSpawnInterval());
         this.map.setBallSpeed(oldMap.getBallSpeed());
-        timer.restart();
+        this.timer.restart();
     }
 
     @Override
     public void stopGame() {
-        timer.stop();
+        this.timer.stop();
     }
 
     @Override

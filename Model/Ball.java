@@ -8,7 +8,7 @@ public class Ball {
     private Position direction;
 
     public Position getActualPosition() {
-        return actualPosition;
+        return this.actualPosition;
     }
 
     public void setActualPosition(Position actualPosition) {
@@ -16,7 +16,7 @@ public class Ball {
     }
 
     public Position getDirection() {
-        return direction;
+        return this.direction;
     }
 
     public void setDirection(Position direction) {

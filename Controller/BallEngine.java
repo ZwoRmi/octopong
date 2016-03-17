@@ -18,7 +18,7 @@ public class BallEngine implements IBallEngine {
     @Override
     public void update() {
         this.move();
-        if (System.nanoTime()>this.timeForGenerateBall){
+        if (System.nanoTime()> this.timeForGenerateBall){
             this.generateBall();
             this.initTimeForGenerateBall();
         }
@@ -36,15 +36,15 @@ public class BallEngine implements IBallEngine {
     }
 
     private void moveBall(Ball ball) {
-        GoalKeeper goalKeeper = getGoalBallRebound(ball);
+        GoalKeeper goalKeeper = this.getGoalBallRebound(ball);
         if(goalKeeper!=null){
             ReboundCalculator reboundCalculator = new ReboundCalculator(ball,goalKeeper);
             ball.setDirection(reboundCalculator.getNewDirection());
         }
         Position actualPosition = ball.getActualPosition();
         Position targetPosition = new Position();
-        targetPosition.setX(actualPosition.getX() + ball.getDirection().getX() * map.getBallSpeed());
-        targetPosition.setY(actualPosition.getY() + ball.getDirection().getY() * map.getBallSpeed());
+        targetPosition.setX(actualPosition.getX() + ball.getDirection().getX() * this.map.getBallSpeed());
+        targetPosition.setY(actualPosition.getY() + ball.getDirection().getY() * this.map.getBallSpeed());
         ball.setActualPosition(targetPosition);
     }
 
@@ -62,8 +62,8 @@ public class BallEngine implements IBallEngine {
     public void generateBall() {
         Ball b = new Ball();
         Position randomPosition = new Position();
-        randomPosition.setX(randRange(2, 2));
-        randomPosition.setY(randRange(-2, 2));
+        randomPosition.setX(this.randRange(2, 2));
+        randomPosition.setY(this.randRange(-2, 2));
         b.setActualPosition(randomPosition);
         this.map.getBalls().add(b);
     }

@@ -8,7 +8,7 @@ public class GoalGoalKeeper {
     private GoalKeeper goalKeeper;
 
     public Goal getGoal() {
-        return goal;
+        return this.goal;
     }
 
     public void setGoal(Goal goal) {
@@ -16,7 +16,7 @@ public class GoalGoalKeeper {
     }
 
     public GoalKeeper getGoalKeeper() {
-        return goalKeeper;
+        return this.goalKeeper;
     }
 
     public void setGoalKeeper(GoalKeeper goalKeeper) {

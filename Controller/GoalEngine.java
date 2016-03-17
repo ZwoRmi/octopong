@@ -11,13 +11,14 @@ import java.util.ArrayList;
 public class GoalEngine implements IGoalEngine {
     private Map map;
 
+
     public GoalEngine(Map aMap) {
         this.map = aMap;
     }
 
     @Override
     public void move() {
-        for (GoalGoalKeeper goalGoalKeeper: map.getGoalsGoalKeepers()) {
+        for (GoalGoalKeeper goalGoalKeeper: this.map.getGoalsGoalKeepers()) {
             GoalKeeper goalKeeper = goalGoalKeeper.getGoalKeeper();
             this.moveGoalKeeper(goalKeeper);
         }
@@ -25,14 +26,14 @@ public class GoalEngine implements IGoalEngine {
 
     private void moveGoalKeeper(GoalKeeper goalKeeper) {
         Line actualPosition = goalKeeper.getActualPosition();
-        Position targetDirection=this.getGoalDirection(goalKeeper);
+        Position targetDirection= this.getGoalDirection(goalKeeper);
         Line targetPosition = new Line();
         Position startPosition = new Position();
         Position endPosition = new Position();
-        startPosition.setX(actualPosition.getStartPosition().getX() + targetDirection.getX() * map.getBallSpeed());
-        startPosition.setY(actualPosition.getStartPosition().getY() + targetDirection.getY() * map.getBallSpeed());
-        endPosition.setX(actualPosition.getEndPosition().getX() + targetDirection.getX() * map.getBallSpeed());
-        endPosition.setY(actualPosition.getEndPosition().getY() + targetDirection.getY() * map.getBallSpeed());
+        startPosition.setX(actualPosition.getStartPosition().getX() + targetDirection.getX() * this.map.getBallSpeed());
+        startPosition.setY(actualPosition.getStartPosition().getY() + targetDirection.getY() * this.map.getBallSpeed());
+        endPosition.setX(actualPosition.getEndPosition().getX() + targetDirection.getX() * this.map.getBallSpeed());
+        endPosition.setY(actualPosition.getEndPosition().getY() + targetDirection.getY() * this.map.getBallSpeed());
         goalKeeper.setActualPosition(targetPosition);
     }
 
@@ -57,8 +58,9 @@ public class GoalEngine implements IGoalEngine {
         return direction;
     }
 
+    @Override
     public void checkBallInDetectionArea() {
-        for (GoalGoalKeeper goalGoalKeeper: map.getGoalsGoalKeepers()) {
+        for (GoalGoalKeeper goalGoalKeeper: this.map.getGoalsGoalKeepers()) {
             Goal goal = goalGoalKeeper.getGoal();
             this.UpdateGoalTargetPosition(goalGoalKeeper, this.getBallsInDetectionArea(goal));
         }
@@ -79,8 +81,7 @@ public class GoalEngine implements IGoalEngine {
                 ballWithTargetPosition = currentBallWithTargetPosition;
             }
         }
-        Line positionToStopBall = this.getTargetLine(ballWithTargetPosition.getTargetPosition(), goalKeeper);
-        return positionToStopBall;
+        return this.getTargetLine(ballWithTargetPosition.getTargetPosition(), goalKeeper);
     }
 
     private Line getTargetLine(Position positionToGo, GoalKeeper goalKeeper) {
@@ -105,7 +106,7 @@ public class GoalEngine implements IGoalEngine {
         for (Ball ball : ballsInDetectionArea) {
             Position fakePosition = ball.getActualPosition();
             int count = 0;
-            while(!isGoal(ball, goalGoalKeeper.getGoal())){
+            while(!this.isGoal(ball, goalGoalKeeper.getGoal())){
                 fakePosition = this.getNextPosition(ball, fakePosition);
                 count++;
             }
@@ -120,10 +121,9 @@ public class GoalEngine implements IGoalEngine {
 
 
     private Position getNextPosition(Ball ball, Position fakePosition){
-        Position actualPosition = fakePosition;
         Position targetPosition = new Position();
-        targetPosition.setX(actualPosition.getX() + ball.getDirection().getX() * map.getBallSpeed());
-        targetPosition.setY(actualPosition.getY() + ball.getDirection().getY() * map.getBallSpeed());
+        targetPosition.setX(fakePosition.getX() + ball.getDirection().getX() * this.map.getBallSpeed());
+        targetPosition.setY(fakePosition.getY() + ball.getDirection().getY() * this.map.getBallSpeed());
         return targetPosition;
     }
 
@@ -141,9 +141,9 @@ public class GoalEngine implements IGoalEngine {
     @Override
     public void goalDetection() {
         for (Ball ball : this.map.getBalls()) {
-            for (GoalGoalKeeper goalGoalKeeper : map.getGoalsGoalKeepers()) {
-                if (isGoal(ball, goalGoalKeeper.getGoal())){
-                    onGoal(goalGoalKeeper.getGoal(), ball);
+            for (GoalGoalKeeper goalGoalKeeper : this.map.getGoalsGoalKeepers()) {
+                if (this.isGoal(ball, goalGoalKeeper.getGoal())){
+                    this.onGoal(goalGoalKeeper.getGoal(), ball);
                 }
             }
         }
@@ -166,31 +166,13 @@ public class GoalEngine implements IGoalEngine {
         goalKeeper.getScore().setScore(goalKeeper.getScore().getScore()+1);
     }
 
-    private Goal getGoal(GoalKeeper goalKeeper){
-        boolean found = false;
-        int i = 0;
-        Goal result = null;
-        while (i<map.getGoalsGoalKeepers().size() && !found){
-            if (map.getGoalsGoalKeepers().get(i).getGoalKeeper().equals(goalKeeper)){
-                result = map.getGoalsGoalKeepers().get(i).getGoal();
-                found = true;
-            }
-        }
-        if(!found){
-            throw new InvalidParameterException("Cannot find the goalKeeper in the list");
-        }
-        else {
-            return result;
-        }
-    }
-
     private GoalKeeper getGoalKeeper(Goal goal){
         boolean found = false;
         int i = 0;
         GoalKeeper result = null;
-        while (i<map.getGoalsGoalKeepers().size() && !found){
-            if (map.getGoalsGoalKeepers().get(i).getGoal().equals(goal)){
-                result = map.getGoalsGoalKeepers().get(i).getGoalKeeper();
+        while (i< this.map.getGoalsGoalKeepers().size() && !found){
+            if (this.map.getGoalsGoalKeepers().get(i).getGoal().equals(goal)){
+                result = this.map.getGoalsGoalKeepers().get(i).getGoalKeeper();
                 found = true;
             }
         }
@@ -204,7 +186,7 @@ public class GoalEngine implements IGoalEngine {
 
     @Override
     public void centerGoalKeepers() {
-        for (GoalGoalKeeper goalGoalKeeper: map.getGoalsGoalKeepers()) {
+        for (GoalGoalKeeper goalGoalKeeper: this.map.getGoalsGoalKeepers()) {
             if(goalGoalKeeper.getGoalKeeper().getActualPosition().equals(goalGoalKeeper.getGoalKeeper().getTargetPosition())){
                 Position targetPosition = new Position();
                 targetPosition.setX((goalGoalKeeper.getGoal().getGoalStartLine().getStartPosition().getX()+goalGoalKeeper.getGoal().getGoalStartLine().getEndPosition().getX())/2);

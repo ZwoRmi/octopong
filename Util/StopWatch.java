@@ -158,7 +158,6 @@ public class StopWatch {
      * </p>
      */
     public StopWatch() {
-        super();
     }
 
     /**
@@ -318,7 +317,7 @@ public class StopWatch {
      * @return the time in milliseconds
      */
     public long getTime() {
-        return getNanoTime() / NANO_2_MILLIS;
+        return this.getNanoTime() / NANO_2_MILLIS;
     }
     /**
      * <p>
@@ -360,7 +359,7 @@ public class StopWatch {
      * @since 2.1
      */
     public long getSplitTime() {
-        return getSplitNanoTime() / NANO_2_MILLIS;
+        return this.getSplitNanoTime() / NANO_2_MILLIS;
     }
     /**
      * <p>
@@ -412,7 +411,7 @@ public class StopWatch {
      * @since 3.2
      */
     public boolean isStarted() {
-        return runningState.isStarted();
+        return this.runningState.isStarted();
     }
 
     /**
@@ -425,7 +424,7 @@ public class StopWatch {
      * @since 3.2
      */
     public boolean isSuspended() {
-        return runningState.isSuspended();
+        return this.runningState.isSuspended();
     }
 
     /**
@@ -440,7 +439,7 @@ public class StopWatch {
      * @since 3.2
      */
     public boolean isStopped() {
-        return runningState.isStopped();
+        return this.runningState.isStopped();
     }
 
 }

@@ -30,7 +30,6 @@ public class GameView implements IGameView {
     private Button stopButton;
     private Button pauseButton;
     private Button generateBallButton;
-    private ApplicationWindow appWin;
     private ImageView logo;
     private Text copyrightText;
 
@@ -41,13 +40,13 @@ public class GameView implements IGameView {
         this.initCopyright();
     }
 
-    public void initLogo(){
+    private void initLogo(){
         this.logo = new ImageView();
         Image logoImage = new Image("Image/logoOctopong.png");
         this.logo.setImage(logoImage);
     }
 
-    public void initCopyright(){
+    private void initCopyright(){
         this.copyrightText = new Text();
         this.copyrightText.setTextAlignment(TextAlignment.CENTER);
         this.copyrightText.setFont(new Font(10));
@@ -59,17 +58,16 @@ public class GameView implements IGameView {
         this.gameController = gameController;
         this.initPane();
         this.drawButtons();
-        //utiliser les données se trouvant dans gameController.getMap(), add les elements a myPanel
         this.drawLogo();
         this.drawCopyright();
         this.drawTime();
 
-        return myPanel;
+        return this.myPanel;
     }
 
     private void drawButtons() {
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(myButtonsPanel);
+        vBox.getChildren().addAll(this.myButtonsPanel);
         //vBox.setAlignment(Pos.CENTER);
         this.myPanel.add(vBox, 1, 2);
         GridPane.setHalignment(vBox, HPos.CENTER);
@@ -77,73 +75,78 @@ public class GameView implements IGameView {
 
     }
 
-    public void initButtons() {
-        initPlayButton();
-        initPauseButton();
-        initStopButton();
-        initRestartButton();
-        initGenerateBallButton();
+    private void initButtons() {
+        this.initPlayButton();
+        this.initPauseButton();
+        this.initStopButton();
+        this.initRestartButton();
+        this.initGenerateBallButton();
     }
 
     private void initGenerateBallButton() {
-        generateBallButton = new Button();
-        generateBallButton.setText("ajouter balle");
-        generateBallButton.setOnMousePressed(new EventHandler<MouseEvent>() {
+        this.generateBallButton = new Button();
+        this.generateBallButton.setText("Ajouter balle");
+        this.generateBallButton.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
             public void handle(MouseEvent event) {
-                gameController.generateBallGame();
+                GameView.this.gameController.generateBallGame();
             }
         });
     }
 
     private void initRestartButton() {
-        restartButton = new Button();
-        restartButton.setText("Redémarrer");
-        restartButton.setOnMousePressed(new EventHandler<MouseEvent>() {
+        this.restartButton = new Button();
+        this.restartButton.setText("Redémarrer");
+        this.restartButton.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
             public void handle(MouseEvent event) {
-                gameController.restartGame();
+                GameView.this.gameController.restartGame();
             }
         });
     }
 
     private void initStopButton() {
-        stopButton = new Button();
-        stopButton.setText("Stop");
-        stopButton.setOnMousePressed(new EventHandler<MouseEvent>() {
+        this.stopButton = new Button();
+        this.stopButton.setText("Stop");
+        this.stopButton.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
             public void handle(MouseEvent event) {
-                gameController.stopGame();
+                GameView.this.gameController.stopGame();
             }
         });
     }
 
     private void initPauseButton() {
-        pauseButton = new Button();
-        pauseButton.setText("Pause");
-        pauseButton.setOnMousePressed(new EventHandler<MouseEvent>() {
+        this.pauseButton = new Button();
+        this.pauseButton.setText("Pause");
+        this.pauseButton.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
             public void handle(MouseEvent event) {
-                gameController.pauseGame();
+                GameView.this.gameController.pauseGame();
             }
         });
     }
 
     private void initPlayButton() {
-        playButton = new Button();
-        playButton.setText("Reprendre");
-        playButton.setOnMousePressed(new EventHandler<MouseEvent>() {
+        this.playButton = new Button();
+        this.playButton.setText("Reprendre");
+        this.playButton.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
             public void handle(MouseEvent event) {
-                gameController.resumeGame();
+                GameView.this.gameController.resumeGame();
             }
         });
-        playButton.setAlignment(Pos.CENTER);
-        playButton.setTextAlignment(TextAlignment.CENTER);
+        this.playButton.setAlignment(Pos.CENTER);
+        this.playButton.setTextAlignment(TextAlignment.CENTER);
     }
 
     private void initPaneButtons() {
-        myButtonsPanel = new GridPane();
-        myButtonsPanel.getColumnConstraints().add(new ColumnConstraints(192));
-        myButtonsPanel.getColumnConstraints().add(new ColumnConstraints(192));
-        myButtonsPanel.getColumnConstraints().add(new ColumnConstraints(192));
-        myButtonsPanel.getColumnConstraints().add(new ColumnConstraints(192));
-        myButtonsPanel.getColumnConstraints().add(new ColumnConstraints(192));
+        this.myButtonsPanel = new GridPane();
+        this.myButtonsPanel.getColumnConstraints().add(new ColumnConstraints(192));
+        this.myButtonsPanel.getColumnConstraints().add(new ColumnConstraints(192));
+        this.myButtonsPanel.getColumnConstraints().add(new ColumnConstraints(192));
+        this.myButtonsPanel.getColumnConstraints().add(new ColumnConstraints(192));
+        this.myButtonsPanel.getColumnConstraints().add(new ColumnConstraints(192));
         this.myButtonsPanel.add(this.playButton, 0, 0);
         GridPane.setHalignment(this.playButton, HPos.CENTER);
         GridPane.setValignment(this.playButton, VPos.CENTER);
@@ -164,15 +167,15 @@ public class GameView implements IGameView {
     }
 
     private void initPane() {
-        myPanel = new GridPane();
-        myPanel.getColumnConstraints().add(new ColumnConstraints(120));
-        myPanel.getColumnConstraints().add(new ColumnConstraints(960));
-        myPanel.getColumnConstraints().add(new ColumnConstraints(120));
-        myPanel.getRowConstraints().add(new RowConstraints(120));
-        myPanel.getRowConstraints().add(new RowConstraints(660));
-        myPanel.getRowConstraints().add(new RowConstraints(80));
-        myPanel.getRowConstraints().add(new RowConstraints(40));
-        myPanel.setGridLinesVisible(true);
+        this.myPanel = new GridPane();
+        this.myPanel.getColumnConstraints().add(new ColumnConstraints(120));
+        this.myPanel.getColumnConstraints().add(new ColumnConstraints(960));
+        this.myPanel.getColumnConstraints().add(new ColumnConstraints(120));
+        this.myPanel.getRowConstraints().add(new RowConstraints(120));
+        this.myPanel.getRowConstraints().add(new RowConstraints(660));
+        this.myPanel.getRowConstraints().add(new RowConstraints(80));
+        this.myPanel.getRowConstraints().add(new RowConstraints(40));
+        this.myPanel.setGridLinesVisible(true);
     }
 
     @Override
@@ -216,13 +219,14 @@ public class GameView implements IGameView {
         return (calendar.get(Calendar.HOUR) - 1) + "H " + calendar.get(Calendar.MINUTE) + "M " + calendar.get(Calendar.SECOND) + "S ";
     }
 
+    @Override
     public void drawLogo(){
         this.myPanel.add(this.logo,0,0);
     }
 
-    public void drawCopyright(){
+    private void drawCopyright(){
         this.myPanel.add(this.copyrightText,1,3);
         GridPane.setHalignment(this.copyrightText,HPos.CENTER);
-        myPanel.setAlignment(Pos.CENTER);
+        this.myPanel.setAlignment(Pos.CENTER);
     }
 }

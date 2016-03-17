@@ -12,7 +12,7 @@ public class BallWithTargetPosition {
     private int countToGoToTargetPosition;
 
     public Ball getBall() {
-        return ball;
+        return this.ball;
     }
 
     public void setBall(Ball ball) {
@@ -20,7 +20,7 @@ public class BallWithTargetPosition {
     }
 
     public Position getTargetPosition() {
-        return targetPosition;
+        return this.targetPosition;
     }
 
     public void setTargetPosition(Position targetPosition) {
@@ -28,7 +28,7 @@ public class BallWithTargetPosition {
     }
 
     public int getCountToGoToTargetPosition() {
-        return countToGoToTargetPosition;
+        return this.countToGoToTargetPosition;
     }
 
     public void setCountToGoToTargetPosition(int countToGoToTargetPosition) {

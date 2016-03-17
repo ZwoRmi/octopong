@@ -159,69 +159,69 @@ public class PositionProvider {
             case North:
                 position.setX(((
                         this.getPositionGoalStart(this.getStartGoalPosition(goalPosition)).getX()+
-                        this.getPositionGoalEnd(this.getEndGoalPosition(goalPosition)).getX())/2)
+                                this.getPositionGoalEnd(this.getEndGoalPosition(goalPosition)).getX())/2)
                 );
                 position.setY(this.getPositionGoalStart(this.getStartGoalPosition(goalPosition)).getY()-addToPos);
                 break;
             case NorthEast:
                 position.setX(((
                         this.getPositionGoalStart(this.getStartGoalPosition(goalPosition)).getX()+
-                        this.getPositionGoalEnd(this.getEndGoalPosition(goalPosition)).getX())/2)+addToPosAngle
+                                this.getPositionGoalEnd(this.getEndGoalPosition(goalPosition)).getX())/2)+addToPosAngle
                 );
                 position.setY(((
                         this.getPositionGoalStart(this.getStartGoalPosition(goalPosition)).getY()+
-                        this.getPositionGoalEnd(this.getEndGoalPosition(goalPosition)).getY())/2)-addToPosAngle
+                                this.getPositionGoalEnd(this.getEndGoalPosition(goalPosition)).getY())/2)-addToPosAngle
                 );
                 break;
             case East:
                 position.setX(this.getPositionGoalStart(this.getStartGoalPosition(goalPosition)).getX()+addToPos);
                 position.setY(((
-                    this.getPositionGoalStart(this.getStartGoalPosition(goalPosition)).getY()+
-                    this.getPositionGoalEnd(this.getEndGoalPosition(goalPosition)).getY())/2)
+                        this.getPositionGoalStart(this.getStartGoalPosition(goalPosition)).getY()+
+                                this.getPositionGoalEnd(this.getEndGoalPosition(goalPosition)).getY())/2)
                 );
                 break;
             case SouthEast:
                 position.setX(((
                         this.getPositionGoalStart(this.getStartGoalPosition(goalPosition)).getX()+
-                        this.getPositionGoalEnd(this.getEndGoalPosition(goalPosition)).getX())/2)+addToPosAngle
+                                this.getPositionGoalEnd(this.getEndGoalPosition(goalPosition)).getX())/2)+addToPosAngle
                 );
                 position.setY(((
                         this.getPositionGoalStart(this.getStartGoalPosition(goalPosition)).getY()+
-                        this.getPositionGoalEnd(this.getEndGoalPosition(goalPosition)).getY())/2)+addToPosAngle
+                                this.getPositionGoalEnd(this.getEndGoalPosition(goalPosition)).getY())/2)+addToPosAngle
                 );
                 break;
             case South:
                 position.setX(((
                         this.getPositionGoalStart(this.getStartGoalPosition(goalPosition)).getX()+
-                        this.getPositionGoalEnd(this.getEndGoalPosition(goalPosition)).getX())/2)
+                                this.getPositionGoalEnd(this.getEndGoalPosition(goalPosition)).getX())/2)
                 );
                 position.setY(this.getPositionGoalStart(this.getStartGoalPosition(goalPosition)).getY()+addToPos);
                 break;
             case SouthWest:
                 position.setX(((
                         this.getPositionGoalStart(this.getStartGoalPosition(goalPosition)).getX()+
-                        this.getPositionGoalEnd(this.getEndGoalPosition(goalPosition)).getX())/2)-addToPosAngle
+                                this.getPositionGoalEnd(this.getEndGoalPosition(goalPosition)).getX())/2)-addToPosAngle
                 );
                 position.setY(((
                         this.getPositionGoalStart(this.getStartGoalPosition(goalPosition)).getY()+
-                        this.getPositionGoalEnd(this.getEndGoalPosition(goalPosition)).getY())/2)+addToPosAngle
+                                this.getPositionGoalEnd(this.getEndGoalPosition(goalPosition)).getY())/2)+addToPosAngle
                 );
                 break;
             case West:
                 position.setX(this.getPositionGoalStart(this.getStartGoalPosition(goalPosition)).getX()-addToPos);
                 position.setY(((
                         this.getPositionGoalStart(this.getStartGoalPosition(goalPosition)).getY()+
-                        this.getPositionGoalEnd(this.getEndGoalPosition(goalPosition)).getY())/2)
+                                this.getPositionGoalEnd(this.getEndGoalPosition(goalPosition)).getY())/2)
                 );
                 break;
             case NorthWest:
                 position.setX(((
                         this.getPositionGoalStart(this.getStartGoalPosition(goalPosition)).getX()+
-                        this.getPositionGoalEnd(this.getEndGoalPosition(goalPosition)).getX())/2)-addToPosAngle
+                                this.getPositionGoalEnd(this.getEndGoalPosition(goalPosition)).getX())/2)-addToPosAngle
                 );
                 position.setY(((
                         this.getPositionGoalStart(this.getStartGoalPosition(goalPosition)).getY()+
-                        this.getPositionGoalEnd(this.getEndGoalPosition(goalPosition)).getY())/2)-addToPosAngle
+                                this.getPositionGoalEnd(this.getEndGoalPosition(goalPosition)).getY())/2)-addToPosAngle
                 );
                 break;
         }

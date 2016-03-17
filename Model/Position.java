@@ -30,15 +30,15 @@ public class Position {
 
         Position position = (Position) o;
 
-        if (Float.compare(position.getX(), getX())    < 0.00001) return false;
-        return Float.compare(position.getY(), getY()) < 0.00001;
+        if (Float.compare(position.getX(), this.getX())    < 0.00001) return false;
+        return Float.compare(position.getY(), this.getY()) < 0.00001;
 
     }
 
     @Override
     public int hashCode() {
-        int result = (getX() != +0.0f ? Float.floatToIntBits(getX()) : 0);
-        result = 31 * result + (getY() != +0.0f ? Float.floatToIntBits(getY()) : 0);
+        int result = (this.getX() != +0.0f ? Float.floatToIntBits(this.getX()) : 0);
+        result = 31 * result + (this.getY() != +0.0f ? Float.floatToIntBits(this.getY()) : 0);
         return result;
     }
 }

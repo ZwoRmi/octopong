@@ -73,7 +73,7 @@ public class GameController implements IGameController {
 
     @Override
     public long getGameTime() {
-        return stopWatch.getNanoTime();
+        return this.stopWatch.getNanoTime();
     }
 
 

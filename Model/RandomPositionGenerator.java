@@ -6,8 +6,8 @@ package Model;
 public class RandomPositionGenerator {
     public Position generatePosition(){
         Position randomPosition = new Position();
-        randomPosition.setX(randRange(2, 2));
-        randomPosition.setY(randRange(-2, 2));
+        randomPosition.setX(this.randRange(2, 2));
+        randomPosition.setY(this.randRange(-2, 2));
         return randomPosition;
     }
 

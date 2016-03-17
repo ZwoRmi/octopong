@@ -14,7 +14,7 @@ public class Line {
     }
 
     public Position getStartPosition() {
-        return startPosition;
+        return this.startPosition;
     }
 
     public void setStartPosition(Position startPosition) {
@@ -22,7 +22,7 @@ public class Line {
     }
 
     public Position getEndPosition() {
-        return endPosition;
+        return this.endPosition;
     }
 
     public void setEndPosition(Position endPosition) {
