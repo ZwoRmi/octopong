@@ -29,8 +29,71 @@ public class GoalEngine implements IGoalEngine {
     private void moveGoalKeeper(GoalKeeper goalKeeper) {
         float speed = goalKeeper.getSpeed();
         Position targetDirection= this.getGoalDirection(goalKeeper);
-        goalKeeper.setActualPositionStart(this.getTargetPosition(goalKeeper.getActualPositionStart(), targetDirection, speed));
-        goalKeeper.setActualPositionEnd(this.getTargetPosition(goalKeeper.getActualPositionEnd(), targetDirection, speed));
+        Line targetPositionStart = this.getTargetPosition(goalKeeper.getActualPositionStart(), targetDirection, speed);
+        if (this.isInLimitedArea(goalKeeper, targetPositionStart)){
+            goalKeeper.setActualPositionStart(targetPositionStart);
+            goalKeeper.setActualPositionEnd(this.getTargetPosition(goalKeeper.getActualPositionEnd(), targetDirection, speed));
+        }
+
+    }
+
+    private boolean isInLimitedArea(GoalKeeper goalKeeper, Line targetPositionStart) {
+        Line goalLine = this.getGoal(goalKeeper).getGoalStartLine();
+        switch (goalKeeper.getGoalPosition()){
+            case North:
+                return goalLine.getStartPosition().getX()<targetPositionStart.getStartPosition().getX() &&
+                        goalLine.getEndPosition().getX()>targetPositionStart.getEndPosition().getX() ;
+            case South:
+                return goalLine.getStartPosition().getX()>targetPositionStart.getStartPosition().getX() &&
+                       goalLine.getEndPosition().getX()<targetPositionStart.getEndPosition().getX() ;
+            case East:
+                return goalLine.getStartPosition().getY()<targetPositionStart.getStartPosition().getY() &&
+                        goalLine.getEndPosition().getY()>targetPositionStart.getEndPosition().getY() ;
+            case West:
+                return goalLine.getStartPosition().getY()>targetPositionStart.getStartPosition().getY() &&
+                        goalLine.getEndPosition().getY()<targetPositionStart.getEndPosition().getY() ;
+            case NorthEast:
+                return goalLine.getStartPosition().getX()<targetPositionStart.getStartPosition().getX() &&
+                        goalLine.getEndPosition().getX()>targetPositionStart.getEndPosition().getX() &&
+                        goalLine.getStartPosition().getY()<targetPositionStart.getStartPosition().getY() &&
+                        goalLine.getEndPosition().getY()>targetPositionStart.getEndPosition().getY() ;
+            case NorthWest:
+                return goalLine.getStartPosition().getX()<targetPositionStart.getStartPosition().getX() &&
+                        goalLine.getEndPosition().getX()>targetPositionStart.getEndPosition().getX() &&
+                        goalLine.getStartPosition().getY()>targetPositionStart.getStartPosition().getY() &&
+                        goalLine.getEndPosition().getY()<targetPositionStart.getEndPosition().getY() ;
+            case SouthEast:
+                return goalLine.getStartPosition().getX()>targetPositionStart.getStartPosition().getX() &&
+                        goalLine.getEndPosition().getX()<targetPositionStart.getEndPosition().getX() &&
+                        goalLine.getStartPosition().getY()<targetPositionStart.getStartPosition().getY() &&
+                        goalLine.getEndPosition().getY()>targetPositionStart.getEndPosition().getY() ;
+            case SouthWest:
+                return goalLine.getStartPosition().getX()>targetPositionStart.getStartPosition().getX() &&
+                        goalLine.getEndPosition().getX()<targetPositionStart.getEndPosition().getX() &&
+                        goalLine.getStartPosition().getY()>targetPositionStart.getStartPosition().getY() &&
+                        goalLine.getEndPosition().getY()<targetPositionStart.getEndPosition().getY() ;
+
+        }
+        return false;
+    }
+
+    private Goal getGoal(GoalKeeper goalKeeper) {
+        boolean found = false;
+        int i = 0;
+        Goal result = null;
+        while (i< this.map.getGoalsGoalKeepers().size() && !found){
+            if (this.map.getGoalsGoalKeepers().get(i).getGoalKeeper().equals(goalKeeper)){
+                result = this.map.getGoalsGoalKeepers().get(i).getGoal();
+                found = true;
+            }
+            i++;
+        }
+        if(!found){
+            throw new InvalidParameterException("Cannot find the goal in the list");
+        }
+        else {
+            return result;
+        }
     }
 
     private Position getGoalDirection(GoalKeeper goalKeeper) {
