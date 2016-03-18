@@ -22,23 +22,38 @@ public class ParametersView implements IParametersView {
     private Button buttonStart;
     private Button buttonSetIntervalBall;
     private ImageView logo;
+    private Text copyrightText;
 
     public ParametersView() {
-        this.initSetterSpeedBallButton();
-        this.initLogo();
-        this.initStartButton();
-        this.initSetterIntervalBallButton();
         this.speedBallValue = 1;
         this.intervalBallValue = 1;
+        this.initSetterSpeedBallButton();
+        this.initLogo();
+        this.initCopyright();
+        this.initStartButton();
+        this.initSetterIntervalBallButton();
     }
 
-    private void initLogo(){
+    private void setSpeedAndIntervalValue() {
+        this.parametersController.setBallSpeed(this.speedBallValue);
+        this.parametersController.setBallSPawnInterval(this.intervalBallValue);
+    }
+
+    private void initLogo() {
         this.logo = new ImageView();
         Image logoImage = new Image("Image/logoOctopong.png");
         this.logo.setImage(logoImage);
         this.logo.setTranslateX(-400);
         this.logo.setTranslateY(-300);
     }
+
+    private void initCopyright() {
+        this.copyrightText = new Text();
+        this.copyrightText.setFont(new Font(10));
+        this.copyrightText.setText("Copyright © 2016 ZwoD. All rights reserved.");
+        this.copyrightText.setTranslateY(350);
+    }
+
     private void initSetterIntervalBallButton() {
         this.buttonSetIntervalBall = new Button();
         this.buttonSetIntervalBall.setText("Fréquence d'apparition des billes");
@@ -60,6 +75,7 @@ public class ParametersView implements IParametersView {
         this.buttonStart.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                ParametersView.this.setSpeedAndIntervalValue();
                 ParametersView.this.parametersController.startGame();
             }
         });
@@ -80,12 +96,13 @@ public class ParametersView implements IParametersView {
     }
 
     @Override
-    public void drawLogo(){
+    public void drawLogo() {
         this.myPanel.getChildren().add(this.logo);
     }
 
     @Override
     public void drawCopyright() {
+        this.myPanel.getChildren().add(this.copyrightText);
     }
 
     @Override
@@ -110,6 +127,7 @@ public class ParametersView implements IParametersView {
             }
         });
     }
+
     @Override
     public void drawSetterIntervalBall() {
         this.myPanel.getChildren().add(this.buttonSetIntervalBall);
@@ -122,7 +140,6 @@ public class ParametersView implements IParametersView {
         } else {
             this.speedBallValue++;
         }
-        this.parametersController.setBallSpeed(this.speedBallValue);
     }
 
     @Override
@@ -132,7 +149,6 @@ public class ParametersView implements IParametersView {
         } else {
             this.intervalBallValue++;
         }
-        this.parametersController.setBallSPawnInterval(this.intervalBallValue);
     }
 
     @Override
