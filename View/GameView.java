@@ -75,9 +75,9 @@ public class GameView implements IGameView {
         this.drawGoals();
         this.drawBalls();
         this.drawGoalsKeeper();
+        this.drawScores();
         //TODO remove after debug
-        this.drawGoalEnd();
-        this.drawGoalDetectionLine();
+
 
         this.myPanel.add(gamePanel,1,1);
     }
@@ -257,7 +257,15 @@ public class GameView implements IGameView {
 
     @Override
     public void drawScores() {
-
+        for (GoalGoalKeeper goalGoalKeeper : this.gameController.getMap().getGoalsGoalKeepers()) {
+            Text score = new Text();
+            score.setFont(new Font(20));
+            score.setText(goalGoalKeeper.getGoalKeeper().getScore().getScore() + "");
+            score.setX(goalGoalKeeper.getGoalKeeper().getScore().getPosition().getX());
+            score.setY(goalGoalKeeper.getGoalKeeper().getScore().getPosition().getY());
+            score.setTranslateX(-125);
+            this.gamePanel.getChildren().add(score);
+        }
     }
 
     @Override
