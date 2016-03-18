@@ -44,6 +44,20 @@ public class GoalEngine implements IGoalEngine {
             case East:
                 generalPosition.setX(0);
                 break;
+            case NorthWest:
+            case SouthEast:
+                if (generalPosition.getX()!=(generalPosition.getY()*-1)){
+                    generalPosition.setX(0);
+                    generalPosition.setY(0);
+                }
+                break;
+            case NorthEast:
+            case SouthWest:
+                if (generalPosition.getX()!=generalPosition.getY()){
+                    generalPosition.setX(0);
+                    generalPosition.setY(0);
+                }
+                break;
         }
         return generalPosition;
     }
@@ -180,11 +194,12 @@ public class GoalEngine implements IGoalEngine {
         ArrayList<Ball> ballsInArea = new ArrayList<Ball>();
         PolygonBoundary boundary = new PolygonBoundary(goal.getGoalStartLine(), goal.getDetectionLine());
         synchronized (this.map.getBalls()){
-        for (Ball ball : this.map.getBalls()) {
-            if (boundary.contains(ball.getActualPosition())){
-                ballsInArea.add(ball);
+            for (Ball ball : this.map.getBalls()) {
+                if (boundary.contains(ball.getActualPosition())){
+                    ballsInArea.add(ball);
+                }
             }
-        }}
+        }
         return ballsInArea;
     }
 
@@ -263,7 +278,7 @@ public class GoalEngine implements IGoalEngine {
         int width = gd.getDisplayMode().getWidth();
         int height = gd.getDisplayMode().getHeight();
         synchronized (this.map.getBalls()){
-        for (Ball ball : this.map.getBalls()) {
+            for (Ball ball : this.map.getBalls()) {
                 if(!ball.getNeedToRemove()){
                     ball.setNeedToRemove(ball.getActualPosition().getX() > width ||
                             ball.getActualPosition().getY() > height ||
