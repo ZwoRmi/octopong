@@ -24,19 +24,19 @@ public class ParametersController implements IParametersController {
     public void setBallSpeed(int value) {
         switch (value) {
             case 1:
-                this.map.setBallSpeed(1);
+                this.map.setBallSpeed(0.25f);
                 break;
             case 2:
-                this.map.setBallSpeed(2);
+                this.map.setBallSpeed(0.5f);
                 break;
             case 3:
-                this.map.setBallSpeed(3);
+                this.map.setBallSpeed(0.75f);
                 break;
             case 4:
-                this.map.setBallSpeed(4);
+                this.map.setBallSpeed(1);
                 break;
             case 5:
-                this.map.setBallSpeed(5);
+                this.map.setBallSpeed(1.25f);
                 break;
             default:
                 throw new InvalidParameterException("value should be between 1-5 but the current value is : " + value);

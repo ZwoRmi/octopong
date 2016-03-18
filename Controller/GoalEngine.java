@@ -180,7 +180,7 @@ public class GoalEngine implements IGoalEngine {
     }
 
     private Line getPositionToStopBall(ArrayList<BallWithTargetPosition> ballWithTargetPositions, GoalKeeper goalKeeper) {
-        long minCount = 1000000000;
+        long minCount = 1000;
         BallWithTargetPosition ballWithTargetPosition = null;
         if (ballWithTargetPositions.size()==0)
             return goalKeeper.getActualPositionStart();
@@ -189,6 +189,9 @@ public class GoalEngine implements IGoalEngine {
                 minCount = currentBallWithTargetPosition.getCountToGoToTargetPosition();
                 ballWithTargetPosition = currentBallWithTargetPosition;
             }
+        }
+        if (minCount>=1000){
+            return goalKeeper.getActualPositionStart();
         }
         return this.getTargetLine(ballWithTargetPosition.getTargetPosition(), goalKeeper);
     }
@@ -319,6 +322,12 @@ public class GoalEngine implements IGoalEngine {
     public void centerGoalKeepers() {
         for (GoalGoalKeeper goalGoalKeeper: this.map.getGoalsGoalKeepers()) {
             if(goalGoalKeeper.getGoalKeeper().getActualPositionStart().equals(goalGoalKeeper.getGoalKeeper().getTargetPosition())){
+                PositionProvider positionProvider = new PositionProvider();
+                goalGoalKeeper.getGoalKeeper().setTargetPosition(new Line(
+                        positionProvider.getGoalKeeperPositionStart(positionProvider.getStartGoalPosition(
+                                goalGoalKeeper.getGoalKeeper().getGoalPosition())),
+                        positionProvider.getGoalKeeperPositionEnd(positionProvider.getStartGoalPosition(
+                                goalGoalKeeper.getGoalKeeper().getGoalPosition()))));
                 //Position targetPosition = new Position();
                 //targetPosition.setX((goalGoalKeeper.getGoal().getGoalStartLine().getStartPosition().getX()+goalGoalKeeper.getGoal().getGoalStartLine().getEndPosition().getX())/2);
                 //targetPosition.setY((goalGoalKeeper.getGoal().getGoalStartLine().getStartPosition().getY()+goalGoalKeeper.getGoal().getGoalStartLine().getEndPosition().getY())/2);
@@ -329,10 +338,11 @@ public class GoalEngine implements IGoalEngine {
 
     @Override
     public void update() {
+        this.centerGoalKeepers();
         this.goalDetection();
         this.checkBallInDetectionArea();
         this.removeBallsInGoal();
-        this.centerGoalKeepers();
+
         this.move();
     }
 
