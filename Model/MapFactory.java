@@ -1,6 +1,8 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by Lucas on 14/03/2016.
@@ -17,17 +19,19 @@ public class MapFactory {
         return map;
     }
 
-    private ArrayList<Ball> getBalls() {
-        ArrayList<Ball> balls = new ArrayList<Ball>();
+    private List<Ball> getBalls() {
+        List<Ball> balls = Collections.synchronizedList(new ArrayList<Ball>());
         balls.add(this.getFirstBall());
         return balls;
     }
 
     private Ball getFirstBall() {
         Position ballPosition = new Position();
+
         ballPosition.setX(602);
         ballPosition.setY(315);
         Ball ball = new Ball();
+        ball.setNeedToRemove(false);
         ball.setActualPosition(ballPosition);
         ball.setDirection(new RandomPositionGenerator().generatePosition());
         return ball;

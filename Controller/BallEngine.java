@@ -34,8 +34,10 @@ public class BallEngine implements IBallEngine {
 
     @Override
     public void move() {
-        for (Ball ball: this.map.getBalls()) {
-            this.moveBall(ball);
+        synchronized (this.map.getBalls()){
+            for (Ball ball: this.map.getBalls()) {
+                this.moveBall(ball);
+            }
         }
     }
 
@@ -65,11 +67,14 @@ public class BallEngine implements IBallEngine {
     @Override
     public void generateBall() {
         Ball b = new Ball();
+        b.setNeedToRemove(false);
         Position startPosition = new Position();
         startPosition.setX(602);
         startPosition.setY(315);
         b.setActualPosition(startPosition);
         b.setDirection(new RandomPositionGenerator().generatePosition());
-        this.map.getBalls().add(b);
+        synchronized (this.map.getBalls()){
+            this.map.getBalls().add(b);
+        }
     }
 }

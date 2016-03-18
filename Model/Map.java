@@ -1,14 +1,14 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Lucas on 14/03/2016.
  */
 public class Map {
-    private ArrayList<Ball> balls;
+    private List<Ball> balls;
     private ArrayList<GoalGoalKeeper> goalsGoalKeepers;
-    private float diameter;
     private long ballSpawnInterval;
     private float ballSpeed;
 
@@ -28,14 +28,14 @@ public class Map {
         this.ballSpawnInterval = ballSpawnInterval;
     }
 
-    public ArrayList<Ball> getBalls() {
-        Object syncObject = new Object();
-        synchronized (syncObject){
+    public List<Ball> getBalls() {
+        synchronized (this.balls){
             return this.balls;
         }
+
     }
 
-    public void setBalls(ArrayList<Ball> balls) {
+    public void setBalls(List<Ball> balls) {
         this.balls = balls;
     }
 
@@ -45,14 +45,6 @@ public class Map {
 
     public void setGoalsGoalKeepers(ArrayList<GoalGoalKeeper> goalsGoalKeepers) {
         this.goalsGoalKeepers = goalsGoalKeepers;
-    }
-
-    public float getDiameter() {
-        return this.diameter;
-    }
-
-    public void setDiameter(float diameter) {
-        this.diameter = diameter;
     }
 
 }

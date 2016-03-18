@@ -41,7 +41,7 @@ public class GameController implements IGameController {
 
     @Override
     public void pauseGame() {
-        if (this.stopWatch.isStarted()){
+        if (!this.stopWatch.isSuspended()){
             this.stopWatch.suspend();
             this.gameEngine.pauseGame();
         }
@@ -49,9 +49,6 @@ public class GameController implements IGameController {
 
     @Override
     public void restartGame() {
-        if (stopWatch.isStarted()){
-            this.stopWatch.stop();
-        }
         this.stopWatch.reset();
         this.stopWatch.start();
         this.gameEngine.restartGame();
@@ -59,7 +56,6 @@ public class GameController implements IGameController {
 
     @Override
     public void stopGame() {
-        this.stopWatch.stop();
         this.stopWatch.reset();
         this.gameEngine.stopGame();
         this.applicationWindow.showParameters();

@@ -6,6 +6,15 @@ package Model;
 public class Ball {
     private Position actualPosition;
     private Position direction;
+    private boolean needToRemove;
+
+    public boolean getNeedToRemove() {
+        return this.needToRemove;
+    }
+
+    public void setNeedToRemove(boolean needToRemove) {
+        this.needToRemove = needToRemove;
+    }
 
     public Position getActualPosition() {
         return this.actualPosition;
