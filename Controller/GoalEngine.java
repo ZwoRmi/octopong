@@ -2,6 +2,7 @@ package Controller;
 
 import Model.*;
 
+import java.awt.*;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
@@ -258,6 +259,19 @@ public class GoalEngine implements IGoalEngine {
     }
 
     private void removeBallsInGoal() {
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        int width = gd.getDisplayMode().getWidth();
+        int height = gd.getDisplayMode().getHeight();
+        synchronized (this.map.getBalls()){
+        for (Ball ball : this.map.getBalls()) {
+                if(!ball.getNeedToRemove()){
+                    ball.setNeedToRemove(ball.getActualPosition().getX() > width ||
+                            ball.getActualPosition().getY() > height ||
+                            ball.getActualPosition().getX() <0||
+                            ball.getActualPosition().getY()<0);
+                }
+            }
+        }
         for (Ball ball : this.ballsToRemove) {
             ball.setNeedToRemove(true);
         }

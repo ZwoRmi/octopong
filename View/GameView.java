@@ -18,6 +18,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
+import java.awt.*;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -245,10 +246,11 @@ public class GameView implements IGameView {
 
     @Override
     public void drawBalls() {
+
+
         this.gameController.getMap().getBalls().removeIf(ball->ball.getNeedToRemove());
         synchronized (this.gameController.getMap().getBalls()) {
             for (Ball ball : this.gameController.getMap().getBalls()) {
-
                 Circle circle = new Circle();
                 circle.setStyle("-fx-stroke: rgba(72, 0, 4, 0.72)");
                 circle.setRadius(3);
