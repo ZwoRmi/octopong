@@ -357,5 +357,8 @@ public class GoalEngine implements IGoalEngine {
             ball.setNeedToRemove(true);
         }
         this.ballsToRemove.clear();
+        synchronized (this.map.getBalls()){
+            this.map.getBalls().removeIf(ball->ball.getNeedToRemove());
+        }
     }
 }
