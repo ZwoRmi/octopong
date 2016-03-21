@@ -45,7 +45,10 @@ public class BallEngine implements IBallEngine {
         GoalKeeper goalKeeper = this.getGoalBallRebound(ball);
         if(goalKeeper!=null){
             ReboundCalculator reboundCalculator = new ReboundCalculator(ball,goalKeeper);
-            ball.setDirection(reboundCalculator.getNewDirection());
+            if (reboundCalculator.isMovingToGoalKeeper()){
+                ball.setDirection(reboundCalculator.getNewDirection());
+            }
+
         }
         Position actualPosition = ball.getActualPosition();
         Position targetPosition = new Position();

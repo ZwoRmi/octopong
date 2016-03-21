@@ -168,8 +168,7 @@ public class GoalEngine implements IGoalEngine {
     @Override
     public void checkBallInDetectionArea() {
         for (GoalGoalKeeper goalGoalKeeper: this.map.getGoalsGoalKeepers()) {
-            Goal goal = goalGoalKeeper.getGoal();
-            this.UpdateGoalTargetPosition(goalGoalKeeper, this.getBallsInDetectionArea(goal));
+            this.UpdateGoalTargetPosition(goalGoalKeeper, this.getBallsInDetectionArea(goalGoalKeeper));
         }
     }
 
@@ -256,12 +255,12 @@ public class GoalEngine implements IGoalEngine {
         return targetPosition;
     }
 
-    private ArrayList<Ball> getBallsInDetectionArea(Goal goal) {
+    private ArrayList<Ball> getBallsInDetectionArea(GoalGoalKeeper goalGoalKeeper) {
         ArrayList<Ball> ballsInArea = new ArrayList<Ball>();
-        PolygonBoundary boundary = new PolygonBoundary(goal.getGoalStartLine(), goal.getDetectionLine());
+        PolygonBoundary boundary = new PolygonBoundary(goalGoalKeeper.getGoal().getGoalStartLine(), goalGoalKeeper.getGoal().getDetectionLine());
         synchronized (this.map.getBalls()){
             for (Ball ball : this.map.getBalls()) {
-                if (boundary.contains(ball.getActualPosition())){
+                if (boundary.contains(ball.getActualPosition()) && new ReboundCalculator(ball,goalGoalKeeper.getGoalKeeper()).isMovingToGoalKeeper()){
                     ballsInArea.add(ball);
                 }
             }
@@ -321,7 +320,7 @@ public class GoalEngine implements IGoalEngine {
     @Override
     public void centerGoalKeepers() {
         for (GoalGoalKeeper goalGoalKeeper: this.map.getGoalsGoalKeepers()) {
-            if(goalGoalKeeper.getGoalKeeper().getActualPositionStart().equals(goalGoalKeeper.getGoalKeeper().getTargetPosition())){
+            if(this.getBallsInDetectionArea(goalGoalKeeper).isEmpty()){
                 PositionProvider positionProvider = new PositionProvider();
                 goalGoalKeeper.getGoalKeeper().setTargetPosition(new Line(
                         positionProvider.getGoalKeeperPositionStart(positionProvider.getStartGoalPosition(
@@ -338,11 +337,10 @@ public class GoalEngine implements IGoalEngine {
 
     @Override
     public void update() {
-        this.centerGoalKeepers();
         this.goalDetection();
-        this.checkBallInDetectionArea();
         this.removeBallsInGoal();
-
+        this.checkBallInDetectionArea();
+        this.centerGoalKeepers();
         this.move();
     }
 
