@@ -12,7 +12,6 @@ import java.awt.event.ActionListener;
  */
 public class GameEngine implements IGameEngine {
     private final IGameController gameController;
-    private IParametersController parametersController;
     private Timer timer;
     private Map map;
     private IGoalEngine goalEngine;
@@ -98,13 +97,5 @@ public class GameEngine implements IGameEngine {
     @Override
     public void generateBall() {
         this.ballEngine.generateBall();
-    }
-
-    public IParametersController getParametersController() {
-        return parametersController;
-    }
-
-    public void setParametersController(IParametersController parametersController) {
-        this.parametersController = parametersController;
     }
 }

@@ -263,9 +263,6 @@ public class GameView implements IGameView {
 
     @Override
     public void drawBalls() {
-
-
-        this.gameController.getMap().getBalls().removeIf(ball->ball.getNeedToRemove());
         synchronized (this.gameController.getMap().getBalls()) {
             for (Ball ball : this.gameController.getMap().getBalls()) {
                 Circle circle = new Circle();
