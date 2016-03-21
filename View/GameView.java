@@ -78,26 +78,24 @@ public class GameView implements IGameView {
     private void drawGame() {
         this.gamePanel = new Pane();
 
+
         this.drawGoals();
         this.drawBalls();
         this.drawGoalsKeeper();
         this.drawScores();
 
-
         this.myPanel.add(gamePanel,1,1);
     }
 
-    private void drawPolygonBoundary() {
+    private void drawGoalsKeepersArea() {
         for (GoalGoalKeeper goalGoalKeeper : this.gameController.getMap().getGoalsGoalKeepers()) {
-            javafx.scene.shape.Polygon polygon = new Polygon(
-
-
-            );
-            polygon.setStyle("-fx-stroke: rgba(188, 0, 6, 0.72)");
+            PolygonBoundary polygonBoundary = new PolygonBoundary(
+                    goalGoalKeeper.getGoalKeeper().getActualPositionStart(),
+                    goalGoalKeeper.getGoalKeeper().getActualPositionEnd());
+            Polygon polygon = polygonBoundary.getPolygon();
             polygon.setFill(Color.BLUE);
             this.gamePanel.getChildren().add(polygon);
         }
-
     }
 
     private void drawGoalDetectionLine() {

@@ -73,7 +73,7 @@ public class MapFactory {
                 this.positionProvider.getGoalKeeperPositionEnd(this.positionProvider.getStartGoalPosition(goalPosition)),
                 this.positionProvider.getGoalKeeperPositionEnd(this.positionProvider.getEndGoalPosition(goalPosition))));
         goalKeeper.setGoalPosition(goalPosition);
-        goalKeeper.setSpeed(10);
+        goalKeeper.setSpeed(1);
         goalKeeper.setTargetPosition(goalKeeper.getActualPositionStart());
         return goalKeeper;
     }
