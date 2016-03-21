@@ -1,17 +1,32 @@
 package Model;
 
-import java.awt.*;
+
+import javafx.scene.effect.Light;
+import javafx.scene.shape.Polygon;
 
 /**
  * Created by Lucas on 17/03/2016.
  */
 public class PolygonBoundary {
     private Polygon polygon;
+    public Polygon getPolygon() {
+        return this.polygon;
+    }
+
+    public void setPolygon(Polygon polygon) {
+        this.polygon = polygon;
+    }
 
     public PolygonBoundary(Line startLine, Line endLine) {
-        int[] xPoints = new int[]{(int) startLine.getStartPosition().getX(),(int)startLine.getEndPosition().getX(), (int)endLine.getStartPosition().getX(), (int)endLine.getEndPosition().getX()};
-        int[] yPoints = new int[]{(int) startLine.getStartPosition().getY(),(int)startLine.getEndPosition().getY(), (int)endLine.getStartPosition().getY(), (int)endLine.getEndPosition().getY()};
-        polygon = new Polygon(xPoints, yPoints,4);
+        double[] points = new double[]{ startLine.getEndPosition().getX(),
+        startLine.getEndPosition().getY(),
+        endLine.getEndPosition().getX(),
+        endLine.getEndPosition().getY(),
+        endLine.getStartPosition().getX(),
+        endLine.getStartPosition().getY(),
+        startLine.getStartPosition().getX(),
+        startLine.getStartPosition().getY()};
+        polygon = new Polygon(points);
     }
 
     public boolean contains(Position pos){

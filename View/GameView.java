@@ -3,6 +3,7 @@ package View;
 import Controller.IGameController;
 import Model.Ball;
 import Model.GoalGoalKeeper;
+import Model.PolygonBoundary;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
@@ -12,8 +13,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
+import javafx.scene.paint.*;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.*;
+import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -73,14 +77,28 @@ public class GameView implements IGameView {
 
     private void drawGame() {
         this.gamePanel = new Pane();
+        //TODO remove after debug
+        this.drawPolygonBoundary();
         this.drawGoals();
         this.drawBalls();
         this.drawGoalsKeeper();
         this.drawScores();
-        //TODO remove after debug
 
 
         this.myPanel.add(gamePanel,1,1);
+    }
+
+    private void drawPolygonBoundary() {
+        for (GoalGoalKeeper goalGoalKeeper : this.gameController.getMap().getGoalsGoalKeepers()) {
+            javafx.scene.shape.Polygon polygon = new Polygon(
+
+
+            );
+            polygon.setStyle("-fx-stroke: rgba(188, 0, 6, 0.72)");
+            polygon.setFill(Color.BLUE);
+            this.gamePanel.getChildren().add(polygon);
+        }
+
     }
 
     private void drawGoalDetectionLine() {

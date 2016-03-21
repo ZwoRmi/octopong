@@ -143,21 +143,21 @@ public class GoalEngine implements IGoalEngine {
         Position actualPosition = g.getActualPositionStart().getStartPosition();
         Position targetPosition = g.getTargetPosition().getStartPosition();
         if(actualPosition.getX()<targetPosition.getX()){
-            direction.setX(-1);
+            direction.setX(1);
         }
         else if (actualPosition.getX()>targetPosition.getX())
         {
-            direction.setX(1);
+            direction.setX(-1);
         }
         else {
             direction.setX(0);
         }
         if(actualPosition.getY()<targetPosition.getY()){
-            direction.setY(-1);
+            direction.setY(1);
         }
         else if (actualPosition.getY()>targetPosition.getY())
         {
-            direction.setY(1);
+            direction.setY(-1);
         }
         else {
             direction.setY(0);
@@ -175,24 +175,26 @@ public class GoalEngine implements IGoalEngine {
     private void UpdateGoalTargetPosition(GoalGoalKeeper goalGoalKeeper, ArrayList<Ball> ballsInDetectionArea) {
         ArrayList<BallWithTargetPosition> ballWithTargetPositions = this.getBallsWithTargetPosition(goalGoalKeeper, ballsInDetectionArea);
         Line targetPosition = this.getPositionToStopBall(ballWithTargetPositions, goalGoalKeeper.getGoalKeeper());
-        goalGoalKeeper.getGoalKeeper().setTargetPosition(targetPosition);
+        if (targetPosition!=null)
+            goalGoalKeeper.getGoalKeeper().setTargetPosition(targetPosition);
     }
 
     private Line getPositionToStopBall(ArrayList<BallWithTargetPosition> ballWithTargetPositions, GoalKeeper goalKeeper) {
         long minCount = 1000;
         BallWithTargetPosition ballWithTargetPosition = null;
-        if (ballWithTargetPositions.size()==0)
-            return goalKeeper.getActualPositionStart();
-        for (BallWithTargetPosition currentBallWithTargetPosition:ballWithTargetPositions) {
-            if (currentBallWithTargetPosition.getCountToGoToTargetPosition()<minCount){
-                minCount = currentBallWithTargetPosition.getCountToGoToTargetPosition();
-                ballWithTargetPosition = currentBallWithTargetPosition;
+        if (ballWithTargetPositions.size()>0){
+            for (BallWithTargetPosition currentBallWithTargetPosition:ballWithTargetPositions) {
+                if (currentBallWithTargetPosition.getCountToGoToTargetPosition()<minCount){
+                    minCount = currentBallWithTargetPosition.getCountToGoToTargetPosition();
+                    ballWithTargetPosition = currentBallWithTargetPosition;
+                }
             }
+            if (minCount>=1000){
+                return goalKeeper.getActualPositionStart();
+            }
+            return this.getTargetLine(ballWithTargetPosition.getTargetPosition(), goalKeeper);
         }
-        if (minCount>=1000){
-            return goalKeeper.getActualPositionStart();
-        }
-        return this.getTargetLine(ballWithTargetPosition.getTargetPosition(), goalKeeper);
+        return null;
     }
 
     private Line getTargetLine(Position positionToGo, GoalKeeper goalKeeper) {
@@ -216,15 +218,13 @@ public class GoalEngine implements IGoalEngine {
         float differenceYStart = middleGoalKeeperStart.getY()-positionToGo.getY();
         float differenceXEnd = middleGoalKeeperEnd.getX()-positionToGo.getX();
         float differenceYEnd = middleGoalKeeperEnd.getY()-positionToGo.getY();
-
-
         Position startPosition = new Position();
-        startPosition.setX(goalKeeper.getActualPositionStart().getStartPosition().getX()+differenceXStart);
-        startPosition.setY(goalKeeper.getActualPositionStart().getStartPosition().getY()+differenceYStart);
+        startPosition.setX(goalKeeper.getActualPositionStart().getStartPosition().getX()-differenceXStart);
+        startPosition.setY(goalKeeper.getActualPositionStart().getStartPosition().getY()-differenceYStart);
         targetLinePosition.setStartPosition(startPosition);
         Position endPosition = new Position();
-        endPosition.setX(goalKeeper.getActualPositionStart().getEndPosition().getX()+differenceXEnd);
-        endPosition.setY(goalKeeper.getActualPositionStart().getEndPosition().getY()+differenceYEnd);
+        endPosition.setX(goalKeeper.getActualPositionStart().getEndPosition().getX()-differenceXEnd);
+        endPosition.setY(goalKeeper.getActualPositionStart().getEndPosition().getY()-differenceYEnd);
         targetLinePosition.setEndPosition(startPosition);
         return targetLinePosition;
     }
@@ -260,7 +260,8 @@ public class GoalEngine implements IGoalEngine {
         PolygonBoundary boundary = new PolygonBoundary(goalGoalKeeper.getGoal().getGoalStartLine(), goalGoalKeeper.getGoal().getDetectionLine());
         synchronized (this.map.getBalls()){
             for (Ball ball : this.map.getBalls()) {
-                if (boundary.contains(ball.getActualPosition()) && new ReboundCalculator(ball,goalGoalKeeper.getGoalKeeper()).isMovingToGoalKeeper()){
+                if (boundary.contains(ball.getActualPosition())
+                        && new ReboundCalculator(ball,goalGoalKeeper.getGoalKeeper()).isMovingToGoalKeeper()){
                     ballsInArea.add(ball);
                 }
             }
@@ -323,24 +324,18 @@ public class GoalEngine implements IGoalEngine {
             if(this.getBallsInDetectionArea(goalGoalKeeper).isEmpty()){
                 PositionProvider positionProvider = new PositionProvider();
                 goalGoalKeeper.getGoalKeeper().setTargetPosition(new Line(
-                        positionProvider.getGoalKeeperPositionStart(positionProvider.getStartGoalPosition(
-                                goalGoalKeeper.getGoalKeeper().getGoalPosition())),
-                        positionProvider.getGoalKeeperPositionEnd(positionProvider.getStartGoalPosition(
-                                goalGoalKeeper.getGoalKeeper().getGoalPosition()))));
-                //Position targetPosition = new Position();
-                //targetPosition.setX((goalGoalKeeper.getGoal().getGoalStartLine().getStartPosition().getX()+goalGoalKeeper.getGoal().getGoalStartLine().getEndPosition().getX())/2);
-                //targetPosition.setY((goalGoalKeeper.getGoal().getGoalStartLine().getStartPosition().getY()+goalGoalKeeper.getGoal().getGoalStartLine().getEndPosition().getY())/2);
-                //goalGoalKeeper.getGoalKeeper().setTargetPosition(this.getTargetLine(targetPosition, goalGoalKeeper.getGoalKeeper()));
+                        positionProvider.getGoalKeeperPositionStart(positionProvider.getStartGoalPosition(goalGoalKeeper.getGoalKeeper().getGoalPosition())),
+                        positionProvider.getGoalKeeperPositionStart(positionProvider.getEndGoalPosition(goalGoalKeeper.getGoalKeeper().getGoalPosition()))));
             }
         }
     }
 
     @Override
     public void update() {
+        this.centerGoalKeepers();
         this.goalDetection();
         this.removeBallsInGoal();
         this.checkBallInDetectionArea();
-        this.centerGoalKeepers();
         this.move();
     }
 
