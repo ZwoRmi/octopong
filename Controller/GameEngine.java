@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
  */
 public class GameEngine implements IGameEngine {
     private final IGameController gameController;
+    private IParametersController parametersController;
     private Timer timer;
     private Map map;
     private IGoalEngine goalEngine;
@@ -64,14 +65,13 @@ public class GameEngine implements IGameEngine {
         this.map = new MapFactory().create();
         this.map.setBallSpawnInterval(oldMap.getBallSpawnInterval());
         this.map.setBallSpeed(oldMap.getBallSpeed());
-        this.ballEngine = new BallEngine(this.map);
-        this.goalEngine = new GoalEngine(this.map);
         this.timer.restart();
     }
 
     @Override
     public void stopGame() {
-        this.restartGame();
+        this.ballEngine = new BallEngine(this.map);
+        this.goalEngine = new GoalEngine(this.map);
         this.timer.stop();
     }
 
@@ -91,7 +91,20 @@ public class GameEngine implements IGameEngine {
     }
 
     @Override
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
+    @Override
     public void generateBall() {
         this.ballEngine.generateBall();
+    }
+
+    public IParametersController getParametersController() {
+        return parametersController;
+    }
+
+    public void setParametersController(IParametersController parametersController) {
+        this.parametersController = parametersController;
     }
 }

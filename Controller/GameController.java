@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Map;
+import Model.MapFactory;
 import Util.StopWatch;
 import View.ApplicationWindow;
 
@@ -12,6 +13,7 @@ public class GameController implements IGameController {
     private final StopWatch stopWatch;
     private IGameEngine gameEngine;
     private ApplicationWindow applicationWindow;
+    private IParametersController parametersController;
 
     public GameController(ApplicationWindow applicationWindow) {
         this.applicationWindow = applicationWindow;
@@ -56,6 +58,9 @@ public class GameController implements IGameController {
 
     @Override
     public void stopGame() {
+        this.setMap(new MapFactory().create());
+        this.gameEngine.setMap(this.getMap());
+        this.parametersController.setMap(this.getMap());
         this.stopWatch.reset();
         this.gameEngine.stopGame();
         this.applicationWindow.showParameters();
@@ -67,13 +72,17 @@ public class GameController implements IGameController {
     }
 
     @Override
-    public void updateView() {
-
+    public Map getMap() {
+        return this.gameEngine.getMap();
+    }
+    @Override
+    public void setMap(Map map) {
+        this.gameEngine.setMap(map);
     }
 
     @Override
-    public Map getMap() {
-        return this.gameEngine.getMap();
+    public void setParametersController(IParametersController parametersController) {
+        this.parametersController = parametersController;
     }
 
     @Override

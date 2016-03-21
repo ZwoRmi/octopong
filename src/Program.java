@@ -44,6 +44,7 @@ public class Program extends Application {
         Map map = new MapFactory().create();
         IGameController gameController = new GameController(appWin);
         IParametersController parametersController = new ParametersController(map, appWin, gameController);
+        gameController.setParametersController(parametersController);
         IGameEngine gameEngine = new GameEngine(map, gameController);
         gameController.setGameEngine(gameEngine);
         appWin.setGameController(gameController);

@@ -76,4 +76,9 @@ public class ParametersController implements IParametersController {
         this.rootWindow.showGame();
         this.gameController.startGame();
     }
+
+    @Override
+    public void setMap(Map map) {
+        this.map = map;
+    }
 }
