@@ -77,8 +77,7 @@ public class GameView implements IGameView {
 
     private void drawGame() {
         this.gamePanel = new Pane();
-        //TODO remove after debug
-        this.drawPolygonBoundary();
+
         this.drawGoals();
         this.drawBalls();
         this.drawGoalsKeeper();
@@ -232,7 +231,7 @@ public class GameView implements IGameView {
         this.myPanel.getRowConstraints().add(new RowConstraints(660));
         this.myPanel.getRowConstraints().add(new RowConstraints(80));
         this.myPanel.getRowConstraints().add(new RowConstraints(40));
-        this.myPanel.setGridLinesVisible(true);
+        this.myPanel.setGridLinesVisible(false);
     }
 
     @Override
