@@ -156,10 +156,11 @@ public class PositionProvider {
     }
 
     public Position getScorePosition(GoalPosition goalPosition) {
-        int addToPos = 10;
+        int addToPos = 30;
         int downY = 9;
         int leftX = 9;
-        int addToPosAngle = 7;
+        int addToPosAngle = 25;
+
         Position position = new Position();
         switch (goalPosition){
             case North:
