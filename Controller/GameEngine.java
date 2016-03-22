@@ -40,7 +40,7 @@ public class GameEngine implements IGameEngine {
                 GameEngine.this.updateGoalEngine();
             }
         };
-        return new Timer (10, action);
+        return new Timer (3, action);
     }
 
     @Override
