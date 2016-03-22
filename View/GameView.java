@@ -260,7 +260,7 @@ public class GameView implements IGameView {
             for (Ball ball : this.gameController.getMap().getBalls()) {
                 Circle circle = new Circle();
                 circle.setFill(ball.getColor());
-                circle.setRadius(3);
+                circle.setRadius(ball.getRadius());
                 circle.setCenterX(ball.getActualPosition().getX() - 125);
                 circle.setCenterY(ball.getActualPosition().getY());
                 this.gamePanel.getChildren().add(circle);

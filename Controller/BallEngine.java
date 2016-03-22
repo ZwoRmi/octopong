@@ -49,13 +49,42 @@ public class BallEngine implements IBallEngine {
                 this.setColorToGoalkeeper(ball,goalKeeper);
                 ball.setDirection(reboundCalculator.getNewDirection());
             }
-
+        }
+        Ball reboundBall = this.getBallBallRebound(ball);
+        if(reboundBall!=null){
+            BallToBallReboundCalculator ballToBallReboundCalculator= new BallToBallReboundCalculator(ball, reboundBall);
+            ballToBallReboundCalculator.updateDirections();
         }
         Position actualPosition = ball.getActualPosition();
         Position targetPosition = new Position();
         targetPosition.setX(actualPosition.getX() + ball.getDirection().getX() * this.map.getBallSpeed());
         targetPosition.setY(actualPosition.getY() + ball.getDirection().getY() * this.map.getBallSpeed());
         ball.setActualPosition(targetPosition);
+    }
+
+    private Ball getBallBallRebound(Ball ball) {
+        Ball result = null;
+        for (Ball otherBall: this.map.getBalls()) {
+            if(!ball.equals(otherBall)){
+                if (this.colliding(ball, otherBall)){
+
+                }
+            }
+        }
+        return result;
+    }
+
+    private boolean colliding(Ball ball, Ball otherBall) {
+        float xd = ball.getActualPosition().getX() - otherBall.getActualPosition().getX();
+        float yd = ball.getActualPosition().getY() - otherBall.getActualPosition().getY();
+        float sumRadius = ball.getRadius() + otherBall.getRadius();
+        float sqrRadius = sumRadius * sumRadius;
+        float distSqr = (xd * xd) + (yd * yd);
+        if (distSqr <= sqrRadius)
+        {
+            return true;
+        }
+        return false;
     }
 
     private GoalKeeper getGoalBallRebound(Ball ball) {
