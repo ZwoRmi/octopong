@@ -1,7 +1,5 @@
 package Model;
 
-
-import javafx.scene.effect.Light;
 import javafx.scene.shape.Polygon;
 
 /**
@@ -9,6 +7,7 @@ import javafx.scene.shape.Polygon;
  */
 public class PolygonBoundary {
     private Polygon polygon;
+
     public Polygon getPolygon() {
         return this.polygon;
     }
@@ -18,15 +17,17 @@ public class PolygonBoundary {
     }
 
     public PolygonBoundary(Line startLine, Line endLine) {
-        double[] points = new double[]{ startLine.getEndPosition().getX(),
-        startLine.getEndPosition().getY(),
-        endLine.getEndPosition().getX(),
-        endLine.getEndPosition().getY(),
-        endLine.getStartPosition().getX(),
-        endLine.getStartPosition().getY(),
-        startLine.getStartPosition().getX(),
-        startLine.getStartPosition().getY()};
-        polygon = new Polygon(points);
+        double[] points = new double[]{
+                startLine.getEndPosition().getX(),
+                startLine.getEndPosition().getY(),
+                endLine.getEndPosition().getX(),
+                endLine.getEndPosition().getY(),
+                endLine.getStartPosition().getX(),
+                endLine.getStartPosition().getY(),
+                startLine.getStartPosition().getX(),
+                startLine.getStartPosition().getY()
+        };
+        this.setPolygon (new Polygon(points));
     }
 
     public boolean contains(Position pos){

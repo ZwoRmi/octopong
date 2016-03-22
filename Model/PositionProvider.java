@@ -239,7 +239,7 @@ public class PositionProvider {
     }
 
     public Position getGoalKeeperPositionEnd(GoalPositions goalPositions) {
-        return this.getTranslatedGoalStartPosition(70,12f,46,53.366656257f, goalPositions);
+        return this.getTranslatedGoalStartPosition(70,12f,42,58.366656257f, goalPositions);
     }
 
     private Position getTranslatedGoalStartPosition(float step1, float step2, float step3, float step4, GoalPositions goalPositions) {

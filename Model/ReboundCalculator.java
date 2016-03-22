@@ -2,9 +2,6 @@ package Model;
 
 import java.security.InvalidParameterException;
 
-/**
- * Created by Lucas on 15/03/2016.
- */
 public class ReboundCalculator {
     private Ball ball;
     private GoalKeeper goalKeeper;
@@ -30,19 +27,19 @@ public class ReboundCalculator {
                 break;
             case NorthEast:
                 position.setX(actualDirection.getY());
-                position.setY(actualDirection.getX()*-1);
+                position.setY(actualDirection.getX());
                 break;
             case SouthEast:
                 position.setX(actualDirection.getY()*-1);
                 position.setY(actualDirection.getX()*-1);
                 break;
             case SouthWest:
-                position.setX(actualDirection.getY()*-1);
+                position.setX(actualDirection.getY());
                 position.setY(actualDirection.getX());
                 break;
             case NorthWest:
-                position.setX(actualDirection.getY());
-                position.setY(actualDirection.getX());
+                position.setX(actualDirection.getY()*-1);
+                position.setY(actualDirection.getX()*-1);
                 break;
             default:
                 throw new InvalidParameterException("Unknown enum member");
@@ -57,25 +54,25 @@ public class ReboundCalculator {
                 result = ball.getDirection().getY()<0;
                 break;
             case NorthEast:
-                result = ball.getDirection().getX()>0 && ball.getDirection().getY()<0 ;
+                result = ball.getDirection().getX()>0 || ball.getDirection().getY()<0 ;
                 break;
             case East:
                 result = ball.getDirection().getX()>0;
                 break;
             case SouthEast:
-                result = ball.getDirection().getX()>0 && ball.getDirection().getY()>0;
+                result = ball.getDirection().getX()>0 || ball.getDirection().getY()>0;
                 break;
             case South:
                 result = ball.getDirection().getY()>0;
                 break;
             case SouthWest:
-                result = ball.getDirection().getX()<0 && ball.getDirection().getY()>0;
+                result = ball.getDirection().getX()<0 || ball.getDirection().getY()>0;
                 break;
             case West:
                 result = ball.getDirection().getX()<0;
                 break;
             case NorthWest:
-                result = ball.getDirection().getX()<0 && ball.getDirection().getY()<0;
+                result = ball.getDirection().getX()<0 || ball.getDirection().getY()<0;
                 break;
         }
         return result;
