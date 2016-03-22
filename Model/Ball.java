@@ -3,6 +3,8 @@ package Model;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
+import java.util.Random;
+
 /**
  * Created by Lucas on 14/03/2016.
  */
@@ -12,10 +14,13 @@ public class Ball {
     private boolean needToRemove;
     private Color color;
     private float radius;
+    private float mass;
 
     public Ball() {
+        Random rn = new Random();
         this.color = new RandomColorGenerator().getColor();
-        this.setRadius(3);
+        this.setRadius(rn.nextInt(3)+3);
+        this.mass = this.getRadius();
     }
 
     public boolean getNeedToRemove() {
@@ -52,5 +57,9 @@ public class Ball {
 
     public void setRadius(float radius) {
         this.radius = radius;
+    }
+
+    public float getMass() {
+        return mass;
     }
 }

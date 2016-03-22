@@ -63,15 +63,14 @@ public class BallEngine implements IBallEngine {
     }
 
     private Ball getBallBallRebound(Ball ball) {
-        Ball result = null;
         for (Ball otherBall: this.map.getBalls()) {
             if(!ball.equals(otherBall)){
                 if (this.colliding(ball, otherBall)){
-
+                    return otherBall;
                 }
             }
         }
-        return result;
+        return null;
     }
 
     private boolean colliding(Ball ball, Ball otherBall) {
@@ -80,11 +79,7 @@ public class BallEngine implements IBallEngine {
         float sumRadius = ball.getRadius() + otherBall.getRadius();
         float sqrRadius = sumRadius * sumRadius;
         float distSqr = (xd * xd) + (yd * yd);
-        if (distSqr <= sqrRadius)
-        {
-            return true;
-        }
-        return false;
+        return  (distSqr <= sqrRadius);
     }
 
     private GoalKeeper getGoalBallRebound(Ball ball) {
