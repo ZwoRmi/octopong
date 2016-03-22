@@ -62,9 +62,12 @@ public class GameEngine implements IGameEngine {
     public void restartGame() {
         Map oldMap = this.map;
         this.map = new MapFactory().create();
+        this.ballEngine = new BallEngine(this.map);
+        this.goalEngine = new GoalEngine(this.map);
         this.map.setBallSpawnInterval(oldMap.getBallSpawnInterval());
         this.map.setBallSpeed(oldMap.getBallSpeed());
         this.timer.restart();
+        this.timer.start();
     }
 
     @Override
