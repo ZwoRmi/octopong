@@ -1,5 +1,8 @@
 package Model;
 
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+
 /**
  * Created by Lucas on 14/03/2016.
  */
@@ -7,6 +10,11 @@ public class Ball {
     private Position actualPosition;
     private Position direction;
     private boolean needToRemove;
+    private Color color;
+
+    public Ball() {
+        this.color = new RandomColorGenerator().getColor();
+    }
 
     public boolean getNeedToRemove() {
         return this.needToRemove;
@@ -30,5 +38,9 @@ public class Ball {
 
     public void setDirection(Position direction) {
         this.direction = direction;
+    }
+
+    public Paint getColor() {
+        return this.color;
     }
 }
