@@ -1,5 +1,7 @@
 package Model;
 
+import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -65,6 +67,7 @@ public class MapFactory {
         Score score = new Score();
         score.setScore(0);
         score.setPosition(this.positionProvider.getScorePosition(goalPosition));
+        goalKeeper.setColor(Color.rgb(120,120,120));
         goalKeeper.setScore(score);
         goalKeeper.setActualPositionStart(new Line(
                 this.positionProvider.getGoalKeeperPositionStart(this.positionProvider.getStartGoalPosition(goalPosition)),

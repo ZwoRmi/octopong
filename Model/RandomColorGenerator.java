@@ -14,8 +14,13 @@ public class RandomColorGenerator {
 
     public RandomColorGenerator() {
         this.colors = new ArrayList<>();
-        this.colors.add(Color.rgb(102,0,0));
-        this.colors.add(Color.rgb(102,51,0));
+        this.colors.add(Color.rgb(153,0,0));
+        this.colors.add(Color.rgb(153,76,0));
+        this.colors.add(Color.rgb(153,153,0));
+        this.colors.add(Color.rgb(0,76,153));
+        this.colors.add(Color.rgb(76,0,153));
+        this.colors.add(Color.rgb(153,0,153));
+        this.colors.add(Color.rgb(153,0,76));
     }
 
     public Color getColor(){

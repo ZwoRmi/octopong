@@ -1,5 +1,7 @@
 package Model;
 
+import javafx.scene.paint.Paint;
+
 public class GoalKeeper {
     private float speed;
     private GoalPosition goalPosition;
@@ -7,6 +9,7 @@ public class GoalKeeper {
     private Line actualPositionStart;
     private Line actualPositionEnd;
     private Line targetPosition;
+    private Paint color;
 
     public GoalPosition getGoalPosition() {
         return this.goalPosition;
@@ -57,4 +60,11 @@ public class GoalKeeper {
     }
 
 
+    public void setColor(Paint color) {
+        this.color = color;
+    }
+
+    public Paint getColor() {
+        return color;
+    }
 }

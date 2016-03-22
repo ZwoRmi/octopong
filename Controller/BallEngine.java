@@ -46,6 +46,7 @@ public class BallEngine implements IBallEngine {
         if(goalKeeper!=null){
             ReboundCalculator reboundCalculator = new ReboundCalculator(ball,goalKeeper);
             if (reboundCalculator.isMovingToGoalKeeper()){
+                this.setColorToGoalkeeper(ball,goalKeeper);
                 ball.setDirection(reboundCalculator.getNewDirection());
             }
 
@@ -67,6 +68,9 @@ public class BallEngine implements IBallEngine {
         return null;
     }
 
+    private void setColorToGoalkeeper(Ball ball,GoalKeeper goalKeeper){
+        goalKeeper.setColor(ball.getColor());
+    }
     @Override
     public void generateBall() {
         Ball b = new Ball();
