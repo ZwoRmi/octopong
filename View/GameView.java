@@ -77,14 +77,11 @@ public class GameView implements IGameView {
 
     private void drawGame() {
         this.gamePanel = new Pane();
-
-
         this.drawGoals();
         this.drawBalls();
         this.drawGoalsKeeper();
         this.drawScores();
-
-        this.myPanel.add(gamePanel,1,1);
+        this.myPanel.add(this.gamePanel,1,1);
     }
 
     private void drawGoalsKeepersArea() {
@@ -93,6 +90,7 @@ public class GameView implements IGameView {
                     goalGoalKeeper.getGoalKeeper().getActualPositionStart(),
                     goalGoalKeeper.getGoalKeeper().getActualPositionEnd());
             Polygon polygon = polygonBoundary.getPolygon();
+
             polygon.setFill(Color.BLUE);
             this.gamePanel.getChildren().add(polygon);
         }
@@ -264,7 +262,7 @@ public class GameView implements IGameView {
         synchronized (this.gameController.getMap().getBalls()) {
             for (Ball ball : this.gameController.getMap().getBalls()) {
                 Circle circle = new Circle();
-                circle.setStyle("-fx-stroke: rgba(72, 0, 4, 0.72)");
+                circle.setFill(ball.getColor());
                 circle.setRadius(3);
                 circle.setCenterX(ball.getActualPosition().getX() - 125);
                 circle.setCenterY(ball.getActualPosition().getY());

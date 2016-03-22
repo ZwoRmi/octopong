@@ -8,15 +8,16 @@ public class RandomPositionGenerator {
         Position randomPosition = new Position();
         randomPosition.setX(this.randRange(-2, 2));
         randomPosition.setY(this.randRange(-2, 2));
-        if (randomPosition.getX()==0 && randomPosition.getY()==0 && !this.isDirectionOk(randomPosition)) {
+        //(randomPosition.getX()==0 && randomPosition.getY()==0 &&
+        if (!this.isDirectionOk(randomPosition)) {
             return this.generatePosition();
         }
         return randomPosition;
     }
 
     private boolean isDirectionOk(Position randomPosition) {
-        float maxValue = 1.0000000000001f;
-        float minValue = 0.9999999999999f;
+        float maxValue = 1.2f;
+        float minValue = 0.8f;
         double value = Math.sqrt(Math.pow(randomPosition.getX(),2)+Math.pow(randomPosition.getY(),2));
         return value>minValue && value<maxValue;
     }

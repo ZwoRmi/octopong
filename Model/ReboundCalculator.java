@@ -49,30 +49,30 @@ public class ReboundCalculator {
 
     public boolean isMovingToGoalKeeper(){
         boolean result = false;
-        switch (goalKeeper.getGoalPosition()){
+        switch (this.goalKeeper.getGoalPosition()){
             case North:
-                result = ball.getDirection().getY()<0;
+                result = this.ball.getDirection().getY()<0;
                 break;
             case NorthEast:
-                result = ball.getDirection().getX()>0 || ball.getDirection().getY()<0 ;
+                result = this.ball.getDirection().getX()>0 || this.ball.getDirection().getY()<0 ;
                 break;
             case East:
-                result = ball.getDirection().getX()>0;
+                result = this.ball.getDirection().getX()>0;
                 break;
             case SouthEast:
-                result = ball.getDirection().getX()>0 || ball.getDirection().getY()>0;
+                result = this.ball.getDirection().getX()>0 || this.ball.getDirection().getY()>0;
                 break;
             case South:
-                result = ball.getDirection().getY()>0;
+                result = this.ball.getDirection().getY()>0;
                 break;
             case SouthWest:
-                result = ball.getDirection().getX()<0 || ball.getDirection().getY()>0;
+                result = this.ball.getDirection().getX()<0 || this.ball.getDirection().getY()>0;
                 break;
             case West:
-                result = ball.getDirection().getX()<0;
+                result = this.ball.getDirection().getX()<0;
                 break;
             case NorthWest:
-                result = ball.getDirection().getX()<0 || ball.getDirection().getY()<0;
+                result = this.ball.getDirection().getX()<0 || this.ball.getDirection().getY()<0;
                 break;
         }
         return result;
