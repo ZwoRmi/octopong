@@ -15,7 +15,7 @@ public class GoalEngine implements IGoalEngine {
 
     public GoalEngine(Map aMap) {
         this.map = aMap;
-        ballsToRemove = new ArrayList<>();
+        this.ballsToRemove = new ArrayList<>();
     }
 
     @Override

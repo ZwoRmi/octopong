@@ -17,7 +17,7 @@ public class PolygonBoundary {
     }
 
     public PolygonBoundary(Line startLine, Line endLine) {
-        double[] points = new double[]{
+        double[] points = {
                 startLine.getEndPosition().getX(),
                 startLine.getEndPosition().getY(),
                 endLine.getEndPosition().getX(),

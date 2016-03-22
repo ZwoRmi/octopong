@@ -27,7 +27,7 @@ public class GameController implements IGameController {
 
     @Override
     public void startGame() {
-        if (stopWatch.isStopped()){
+        if (this.stopWatch.isStopped()){
             this.stopWatch.start();
             this.gameEngine.startGame();
         }
