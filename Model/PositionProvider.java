@@ -160,7 +160,6 @@ public class PositionProvider {
         int downY = 9;
         int leftX = 9;
         int addToPosAngle = 25;
-
         Position position = new Position();
         switch (goalPosition){
             case North:
