@@ -34,7 +34,7 @@ public class BallTest {
 
     @org.junit.Test
     public void testGetDirection() throws Exception {
-        Position pos = new Position(432,345);
+        Position pos = new Position(432,3345);
         this.ball.setDirection(pos);
         Assert.assertEquals(pos, this.ball.getDirection());
     }
