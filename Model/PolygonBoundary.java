@@ -12,7 +12,7 @@ public class PolygonBoundary {
         return this.polygon;
     }
 
-    public void setPolygon(Polygon polygon) {
+    private void setPolygon(Polygon polygon) {
         this.polygon = polygon;
     }
 

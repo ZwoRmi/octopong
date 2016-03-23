@@ -7,6 +7,13 @@ public class Position {
     private float x;
     private float y;
 
+    public Position(float x, float y) {
+        this.setX(x);
+        this.setY(y);
+    }
+
+    public Position() {}
+
     public float getX() {
         return this.x;
     }
@@ -30,8 +37,8 @@ public class Position {
 
         Position position = (Position) o;
 
-        if (Float.compare(position.getX(), this.getX())    < 0.00001) return false;
-        return Float.compare(position.getY(), this.getY()) < 0.00001;
+        return Float.compare(position.getX(), this.getX()) == 0 &&
+                Float.compare(position.getY(), this.getY()) == 0;
 
     }
 

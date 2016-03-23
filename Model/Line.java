@@ -36,9 +36,11 @@ public class Line {
 
         Line line = (Line) o;
 
-        if (this.getStartPosition() != null ? !this.getStartPosition().equals(line.getStartPosition()) : line.getStartPosition() != null)
-            return false;
-        return this.getEndPosition() != null ? this.getEndPosition().equals(line.getEndPosition()) : line.getEndPosition() == null;
+        return this.getStartPosition() != null ?
+                this.getStartPosition().equals(line.getStartPosition()) :
+                line.getStartPosition() == null && (this.getEndPosition() != null
+                        ? this.getEndPosition().equals(line.getEndPosition()) :
+                        line.getEndPosition() == null);
 
     }
 

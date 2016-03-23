@@ -3,6 +3,8 @@ package Controller;
 import Model.*;
 import Util.StopWatch;
 
+import java.util.Random;
+
 /**
  * Created by Lucas on 14/03/2016.
  */
@@ -97,15 +99,21 @@ public class BallEngine implements IBallEngine {
     }
     @Override
     public void generateBall() {
-        Ball b = new Ball();
-        b.setNeedToRemove(false);
-        Position startPosition = new Position();
-        startPosition.setX(602);
-        startPosition.setY(315);
-        b.setActualPosition(startPosition);
-        b.setDirection(new RandomPositionGenerator().generatePosition());
-        synchronized (this.map.getBalls()){
-            this.map.getBalls().add(b);
-        }
+        this.map.getBalls().add(this.getGeneratedBall());
+    }
+
+    private Ball getGeneratedBall() {
+        float x = 602;
+        float y = 315;
+        Ball ball = new Ball();
+        ball.setDirection(new RandomPositionGenerator().generatePosition());
+        ball.setNeedToRemove(false);
+        Random rn = new Random();
+        do {
+            ball.setActualPosition(new Position(x,y));
+            x=rn.nextInt(80)+562;
+            y=rn.nextInt(80)+275;
+        }while (this.getBallBallRebound(ball)!=null);
+        return ball;
     }
 }

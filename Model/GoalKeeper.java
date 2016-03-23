@@ -65,6 +65,6 @@ public class GoalKeeper {
     }
 
     public Paint getColor() {
-        return color;
+        return this.color;
     }
 }
