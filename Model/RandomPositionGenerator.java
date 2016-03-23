@@ -8,7 +8,6 @@ public class RandomPositionGenerator {
         Position randomPosition = new Position();
         randomPosition.setX(this.randRange(-2, 2));
         randomPosition.setY(this.randRange(-2, 2));
-        //(randomPosition.getX()==0 && randomPosition.getY()==0 &&
         if (!this.isDirectionOk(randomPosition)) {
             return this.generatePosition();
         }
