@@ -185,7 +185,6 @@ public class GameView implements IGameView {
         this.playButton.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                GameView.this.gameController.playGame();
             }
         });
         this.playButton.setAlignment(Pos.CENTER);
