@@ -2,7 +2,7 @@
 <project name="octopong" default="all">
 
 
-    <property file="octopong.properties"/>
+    <property file="build.properties"/>
     <!-- Uncomment the following property if no tests compilation is needed -->
     <!--
     <property name="skip.tests" value="true"/>

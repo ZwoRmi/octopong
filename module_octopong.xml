@@ -1,104 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="module_octopong" default="compile.module.octopong">
-    <dirname property="module.octopong.basedir" file="${ant.file.module_octopong}"/>
+  <dirname property="module.octopong.basedir" file="${ant.file.module_octopong}"/>
 
-    <property name="module.jdk.home.octopong" value="${project.jdk.home}"/>
-    <property name="module.jdk.bin.octopong" value="${project.jdk.bin}"/>
-    <property name="module.jdk.classpath.octopong" value="${project.jdk.classpath}"/>
+  <property name="module.jdk.home.octopong" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.octopong" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.octopong" value="${project.jdk.classpath}"/>
 
-    <property name="compiler.args.octopong" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  <property name="compiler.args.octopong" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
 
-    <property name="octopong.output.dir" value="${module.octopong.basedir}/out/production/octopong"/>
-    <property name="octopong.testoutput.dir" value="${module.octopong.basedir}/out/test/octopong"/>
+  <property name="octopong.output.dir" value="${module.octopong.basedir}/out/production/octopong"/>
+  <property name="octopong.testoutput.dir" value="${module.octopong.basedir}/out/test/octopong"/>
 
-    <path id="octopong.module.bootclasspath">
-        <!-- Paths to be included in compilation bootclasspath -->
-    </path>
+  <path id="octopong.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
 
-    <path id="octopong.module.production.classpath">
-        <path refid="${module.jdk.classpath.octopong}"/>
-        <pathelement location="${idea.home}/lib/hamcrest-core-1.3.jar"/>
-        <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
-    </path>
+  <path id="octopong.module.production.classpath">
+    <path refid="${module.jdk.classpath.octopong}"/>
+    <pathelement location="${idea.home}/lib/hamcrest-core-1.3.jar"/>
+    <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
+  </path>
 
-    <path id="octopong.runtime.production.module.classpath">
-        <pathelement location="${octopong.output.dir}"/>
-        <pathelement location="${idea.home}/lib/hamcrest-core-1.3.jar"/>
-        <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
-    </path>
+  <path id="octopong.runtime.production.module.classpath">
+    <pathelement location="${octopong.output.dir}"/>
+    <pathelement location="${idea.home}/lib/hamcrest-core-1.3.jar"/>
+    <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
+  </path>
 
-    <path id="octopong.module.classpath">
-        <path refid="${module.jdk.classpath.octopong}"/>
-        <pathelement location="${octopong.output.dir}"/>
-        <pathelement location="${idea.home}/lib/hamcrest-core-1.3.jar"/>
-        <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
-    </path>
+  <path id="octopong.module.classpath">
+    <path refid="${module.jdk.classpath.octopong}"/>
+    <pathelement location="${octopong.output.dir}"/>
+    <pathelement location="${idea.home}/lib/hamcrest-core-1.3.jar"/>
+    <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
+  </path>
 
-    <path id="octopong.runtime.module.classpath">
-        <pathelement location="${octopong.testoutput.dir}"/>
-        <pathelement location="${octopong.output.dir}"/>
-        <pathelement location="${idea.home}/lib/hamcrest-core-1.3.jar"/>
-        <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
-    </path>
-
-
-    <patternset id="excluded.from.module.octopong">
-        <patternset refid="ignored.files"/>
-        <exclude name="out/**"/>
-        <exclude name="out/production/**"/>
-        <exclude name="out/production/octopong/**"/>
-        <exclude name="out/production/octopong/src/**"/>
-        <exclude name="out/production/octopong/Util/**"/>
-        <exclude name="out/production/octopong/View/**"/>
-        <exclude name="out/production/octopong/.idea/**"/>
-        <exclude name="out/production/octopong/.idea/copyright/**"/>
-        <exclude name="out/production/octopong/.idea/dictionaries/**"/>
-        <exclude name="out/production/octopong/.idea/inspectionProfiles/**"/>
-        <exclude name="out/production/octopong/Image/**"/>
-        <exclude name="out/production/octopong/Model/**"/>
-        <exclude name="out/production/octopong/Tests/**"/>
-        <exclude name="out/production/octopong/Controller/**"/>
-    </patternset>
-
-    <patternset id="excluded.from.compilation.octopong">
-        <patternset refid="excluded.from.module.octopong"/>
-    </patternset>
-
-    <path id="octopong.module.sourcepath">
-        <dirset dir="${module.octopong.basedir}/../../workspace">
-            <include name="octopong"/>
-        </dirset>
-    </path>
+  <path id="octopong.runtime.module.classpath">
+    <pathelement location="${octopong.testoutput.dir}"/>
+    <pathelement location="${octopong.output.dir}"/>
+    <pathelement location="${idea.home}/lib/hamcrest-core-1.3.jar"/>
+    <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
+  </path>
 
 
-    <target name="compile.module.octopong" depends="compile.module.octopong.production,compile.module.octopong.tests"
-            description="Compile module octopong"/>
+  <patternset id="excluded.from.module.octopong">
+    <patternset refid="ignored.files"/>
+    <exclude name="out/**"/>
+    <exclude name="out/production/**"/>
+    <exclude name="out/production/octopong/**"/>
+    <exclude name="out/production/octopong/src/**"/>
+    <exclude name="out/production/octopong/Util/**"/>
+    <exclude name="out/production/octopong/View/**"/>
+    <exclude name="out/production/octopong/.idea/**"/>
+    <exclude name="out/production/octopong/.idea/copyright/**"/>
+    <exclude name="out/production/octopong/.idea/dictionaries/**"/>
+    <exclude name="out/production/octopong/.idea/inspectionProfiles/**"/>
+    <exclude name="out/production/octopong/Image/**"/>
+    <exclude name="out/production/octopong/Model/**"/>
+    <exclude name="out/production/octopong/Tests/**"/>
+    <exclude name="out/production/octopong/Controller/**"/>
+  </patternset>
 
-    <target name="compile.module.octopong.production" depends="register.custom.compilers"
-            description="Compile module octopong; production classes">
-        <mkdir dir="${octopong.output.dir}"/>
-        <javac2 destdir="${octopong.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}"
-                memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.octopong}/javac">
-            <compilerarg line="${compiler.args.octopong}"/>
-            <bootclasspath refid="octopong.module.bootclasspath"/>
-            <classpath refid="octopong.module.production.classpath"/>
-            <src refid="octopong.module.sourcepath"/>
-            <patternset refid="excluded.from.compilation.octopong"/>
-        </javac2>
+  <patternset id="excluded.from.compilation.octopong">
+    <patternset refid="excluded.from.module.octopong"/>
+  </patternset>
 
-        <copy todir="${octopong.output.dir}">
-            <fileset dir="${module.octopong.basedir}">
-                <patternset refid="compiler.resources"/>
-                <type type="file"/>
-            </fileset>
-        </copy>
-    </target>
+  <path id="octopong.module.sourcepath">
+    <dirset dir="${module.octopong.basedir}/../../workspace">
+      <include name="octopong"/>
+    </dirset>
+  </path>
 
-    <target name="compile.module.octopong.tests" depends="register.custom.compilers,compile.module.octopong.production"
-            description="compile module octopong; test classes" unless="skip.tests"/>
 
-    <target name="clean.module.octopong" description="cleanup module">
-        <delete dir="${octopong.output.dir}"/>
-        <delete dir="${octopong.testoutput.dir}"/>
-    </target>
+  <target name="compile.module.octopong" depends="compile.module.octopong.production,compile.module.octopong.tests"
+          description="Compile module octopong"/>
+
+  <target name="compile.module.octopong.production" depends="register.custom.compilers"
+          description="Compile module octopong; production classes">
+    <mkdir dir="${octopong.output.dir}"/>
+    <javac2 destdir="${octopong.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}"
+            memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.octopong}/javac">
+      <compilerarg line="${compiler.args.octopong}"/>
+      <bootclasspath refid="octopong.module.bootclasspath"/>
+      <classpath refid="octopong.module.production.classpath"/>
+      <src refid="octopong.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.octopong"/>
+    </javac2>
+
+    <copy todir="${octopong.output.dir}">
+      <fileset dir="${module.octopong.basedir}">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="compile.module.octopong.tests" depends="register.custom.compilers,compile.module.octopong.production"
+          description="compile module octopong; test classes" unless="skip.tests"/>
+
+  <target name="clean.module.octopong" description="cleanup module">
+    <delete dir="${octopong.output.dir}"/>
+    <delete dir="${octopong.testoutput.dir}"/>
+  </target>
 </project>
