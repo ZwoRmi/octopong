@@ -4,16 +4,14 @@ import Controller.IGameController;
 import Model.Ball;
 import Model.GoalGoalKeeper;
 import Model.PolygonBoundary;
+import Util.StopWatch;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -42,12 +40,19 @@ public class GameView implements IGameView {
     private ImageView logo;
     private Text copyrightText;
     private Pane gamePanel;
+    private ImageView commandToControlGoalKeeper;
+    private Text timerToControlGoalKeeper;
+    private boolean showGameInstructions;
+    private StopWatch stopWatch;
 
     public GameView() {
+        this.showGameInstructions = false;
         this.initButtons();
         this.initPaneButtons();
         this.initLogo();
         this.initCopyright();
+        this.initCommandToControlGoalKeeper();
+        this.initTimerToControlGoalKeeper();
     }
 
     private void initLogo(){
@@ -81,6 +86,10 @@ public class GameView implements IGameView {
         this.drawBalls();
         this.drawGoalsKeeper();
         this.drawScores();
+        if(this.showGameInstructions){
+            this.drawCommandToControlGoalKeeper();
+            this.drawTimerToControlGoalKeeper();
+        }
         this.myPanel.add(this.gamePanel,1,1);
     }
 
@@ -187,6 +196,7 @@ public class GameView implements IGameView {
         this.playButton.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                GameView.this.gameController.resumeGame();
             }
         });
         this.playButton.setAlignment(Pos.CENTER);
@@ -194,16 +204,84 @@ public class GameView implements IGameView {
     }
 
     private void initStartGameButton() {
-        this.startGameButton= new Button();
+        this.startGameButton = new Button();
         this.startGameButton.setText("Jouer");
         this.startGameButton.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                GameView.this.gameController.resumeGame();
+                if(gameController.getSouthGoalKeeper().getPlayedByHuman()){
+                    startGameButton.setText("Jouer");
+                    GameView.this.gameController.UnControlSouthGoalKeeper();
+                    stopWatch.reset();
+                    stopWatch.stop();
+                } else {
+                    startGameButton.setText("Animer");
+                    showGameInstructions = true;
+                    GameView.this.gameController.pauseGame();
+                    GameView.this.gameController.ControlSouthGoalKeeper();
+                    stopWatch.start();
+                }
             }
         });
         this.startGameButton.setAlignment(Pos.CENTER);
         this.startGameButton.setTextAlignment(TextAlignment.CENTER);
+    }
+
+    public void initTimerToControlGoalKeeper() {
+        this.timerToControlGoalKeeper = new Text();
+        this.timerToControlGoalKeeper.setTextAlignment(TextAlignment.CENTER);
+        this.timerToControlGoalKeeper.setFont(new Font(60));
+        this.stopWatch = new StopWatch();
+    }
+
+    public void drawTimerToControlGoalKeeper(){
+        this.myPanel.add(this.timerToControlGoalKeeper,1,1);
+        GridPane.setValignment(this.timerToControlGoalKeeper,VPos.CENTER);
+        GridPane.setHalignment(this.timerToControlGoalKeeper,HPos.CENTER);
+        if(this.stopWatch.getTime() > 5000){
+            this.setColorToSouthGoalKeeper(true);
+            this.showGameInstructions = false;
+            GameView.this.gameController.ControlSouthGoalKeeper();
+            GameView.this.gameController.resumeGame();
+        }
+        else if (this.stopWatch.getTime()>4000){
+            this.setColorToSouthGoalKeeper(false);
+            this.timerToControlGoalKeeper.setText("1");
+        }
+        else if (this.stopWatch.getTime()>3000){
+            this.setColorToSouthGoalKeeper(true);
+            this.timerToControlGoalKeeper.setText("2");
+        }
+        else if (this.stopWatch.getTime()>2000){
+            this.setColorToSouthGoalKeeper(false);
+            this.timerToControlGoalKeeper.setText("3");
+        }else if (this.stopWatch.getTime()>1000){
+            this.setColorToSouthGoalKeeper(true);
+            this.timerToControlGoalKeeper.setText("4");
+        }else {
+            this.setColorToSouthGoalKeeper(false);
+            this.timerToControlGoalKeeper.setText("5");
+        }
+    }
+
+    public void setColorToSouthGoalKeeper(boolean isBlack){
+        if(isBlack) {
+            gameController.getSouthGoalKeeper().setColor(Color.BLACK);
+        }
+        else{
+            gameController.getSouthGoalKeeper().setColor(Color.TRANSPARENT);
+        }
+    }
+    public void initCommandToControlGoalKeeper() {
+        this.commandToControlGoalKeeper = new ImageView();
+        Image commandImage = new Image("Image/command.png");
+        this.commandToControlGoalKeeper.setImage(commandImage);
+    }
+
+    public void drawCommandToControlGoalKeeper(){
+        this.myPanel.add(this.commandToControlGoalKeeper,1,1);
+        GridPane.setValignment(this.commandToControlGoalKeeper,VPos.BOTTOM);
+        GridPane.setHalignment(this.commandToControlGoalKeeper,HPos.CENTER);
     }
 
     private void initPaneButtons() {
@@ -243,7 +321,7 @@ public class GameView implements IGameView {
         this.myPanel.getRowConstraints().add(new RowConstraints(660));
         this.myPanel.getRowConstraints().add(new RowConstraints(80));
         this.myPanel.getRowConstraints().add(new RowConstraints(40));
-        this.myPanel.setGridLinesVisible(true);
+        this.myPanel.setGridLinesVisible(false);
     }
 
     @Override
@@ -328,4 +406,5 @@ public class GameView implements IGameView {
         GridPane.setHalignment(this.copyrightText,HPos.CENTER);
         this.myPanel.setAlignment(Pos.CENTER);
     }
+
 }
