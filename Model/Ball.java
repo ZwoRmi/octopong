@@ -10,14 +10,14 @@ public class Ball {
     private Position actualPosition;
     private Position direction;
     private boolean needToRemove;
-    private Color color;
+    private Paint color;
     private float radius;
     private float mass;
 
     public Ball() {
         this.color = new RandomColorGenerator().getColor();
         this.setRadius(4);
-        this.mass = this.getRadius();
+        this.setMass(this.getRadius());
     }
 
     public boolean getNeedToRemove() {
@@ -58,5 +58,13 @@ public class Ball {
 
     public float getMass() {
         return this.mass;
+    }
+
+    public void setColor(Paint color) {
+        this.color = color;
+    }
+
+    public void setMass(float mass) {
+        this.mass = mass;
     }
 }
