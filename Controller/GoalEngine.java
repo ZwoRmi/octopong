@@ -22,7 +22,8 @@ public class GoalEngine implements IGoalEngine {
     public void move() {
         for (GoalGoalKeeper goalGoalKeeper: this.map.getGoalsGoalKeepers()) {
             GoalKeeper goalKeeper = goalGoalKeeper.getGoalKeeper();
-            this.moveGoalKeeper(goalKeeper);
+            if(!goalGoalKeeper.getGoalKeeper().getPlayedByHuman())
+                this.moveGoalKeeper(goalKeeper);
         }
     }
 

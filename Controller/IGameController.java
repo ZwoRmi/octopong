@@ -17,4 +17,8 @@ public interface IGameController {
     void stopGame();
     void setMap(Map map);
     void setParametersController(IParametersController parametersController);
+
+    void ControlSouthGoalKeeper();
+
+    void MoveSouthGoalKeeper(int x);
 }

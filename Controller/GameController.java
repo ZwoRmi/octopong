@@ -1,7 +1,6 @@
 package Controller;
 
-import Model.Map;
-import Model.MapFactory;
+import Model.*;
 import Util.StopWatch;
 import View.ApplicationWindow;
 
@@ -90,5 +89,28 @@ public class GameController implements IGameController {
         return this.stopWatch.getNanoTime();
     }
 
+    @Override
+    public void ControlSouthGoalKeeper(){
+        this.getSouthGoalKeeper().setPlayedByHuman(true);
+    }
 
+    @Override
+    public void MoveSouthGoalKeeper(int x){
+        GoalKeeper southGoalKeeper = this.getSouthGoalKeeper();
+        if (!southGoalKeeper.getPlayedByHuman())
+            return;
+        southGoalKeeper.getActualPositionStart().getStartPosition().setX(southGoalKeeper.getActualPositionStart().getStartPosition().getX()+ x);
+        southGoalKeeper.getActualPositionStart().getEndPosition().setX(southGoalKeeper.getActualPositionStart().getEndPosition().getX()+ x);
+        southGoalKeeper.getActualPositionEnd().getStartPosition().setX(southGoalKeeper.getActualPositionEnd().getStartPosition().getX()+ x);
+        southGoalKeeper.getActualPositionEnd().getEndPosition().setX(southGoalKeeper.getActualPositionEnd().getEndPosition().getX()+ x);
+    }
+
+    private GoalKeeper getSouthGoalKeeper(){
+        for (GoalGoalKeeper goalGoalKeeper : this.getMap().getGoalsGoalKeepers()) {
+            if (goalGoalKeeper.getGoalKeeper().getGoalPosition() == GoalPosition.South) {
+                return goalGoalKeeper.getGoalKeeper();
+            }
+        }
+        return null;
+    }
 }

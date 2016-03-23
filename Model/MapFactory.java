@@ -69,6 +69,7 @@ public class MapFactory {
         score.setPosition(this.positionProvider.getScorePosition(goalPosition));
         goalKeeper.setColor(Color.rgb(120,120,120));
         goalKeeper.setScore(score);
+        goalKeeper.setPlayedByHuman(false);
         goalKeeper.setActualPositionStart(new Line(
                 this.positionProvider.getGoalKeeperPositionStart(this.positionProvider.getStartGoalPosition(goalPosition)),
                 this.positionProvider.getGoalKeeperPositionStart(this.positionProvider.getEndGoalPosition(goalPosition))));

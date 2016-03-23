@@ -32,7 +32,6 @@ public class Map {
         synchronized (this.balls){
             return this.balls;
         }
-
     }
 
     public void setBalls(List<Ball> balls) {

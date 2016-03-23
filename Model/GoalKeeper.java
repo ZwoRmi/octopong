@@ -10,6 +10,7 @@ public class GoalKeeper {
     private Line actualPositionEnd;
     private Line targetPosition;
     private Paint color;
+    private boolean isPlayedByHuman;
 
     public GoalPosition getGoalPosition() {
         return this.goalPosition;
@@ -59,12 +60,19 @@ public class GoalKeeper {
         this.targetPosition = targetPosition;
     }
 
-
     public void setColor(Paint color) {
         this.color = color;
     }
 
     public Paint getColor() {
         return this.color;
+    }
+
+    public void setPlayedByHuman(boolean playedByHuman) {
+        isPlayedByHuman = playedByHuman;
+    }
+
+    public boolean getPlayedByHuman() {
+        return isPlayedByHuman;
     }
 }
