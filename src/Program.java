@@ -71,9 +71,6 @@ public class Program extends Application {
                 }else if (event.getCode() == KeyCode.LEFT){
                     gameController.MoveSouthGoalKeeper(-10);
                 }
-                else if (event.getCode() == KeyCode.Z){
-                    gameController.ControlSouthGoalKeeper();
-                }
                 event.consume();
             }
         });

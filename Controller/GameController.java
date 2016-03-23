@@ -105,12 +105,18 @@ public class GameController implements IGameController {
         southGoalKeeper.getActualPositionEnd().getEndPosition().setX(southGoalKeeper.getActualPositionEnd().getEndPosition().getX()+ x);
     }
 
-    private GoalKeeper getSouthGoalKeeper(){
+    @Override
+    public GoalKeeper getSouthGoalKeeper(){
         for (GoalGoalKeeper goalGoalKeeper : this.getMap().getGoalsGoalKeepers()) {
             if (goalGoalKeeper.getGoalKeeper().getGoalPosition() == GoalPosition.South) {
                 return goalGoalKeeper.getGoalKeeper();
             }
         }
         return null;
+    }
+
+    @Override
+    public void UnControlSouthGoalKeeper() {
+        this.getSouthGoalKeeper().setPlayedByHuman(false);
     }
 }

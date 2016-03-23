@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.GoalKeeper;
 import Model.Map;
 
 /**
@@ -17,8 +18,8 @@ public interface IGameController {
     void stopGame();
     void setMap(Map map);
     void setParametersController(IParametersController parametersController);
-
     void ControlSouthGoalKeeper();
-
     void MoveSouthGoalKeeper(int x);
+    GoalKeeper getSouthGoalKeeper();
+    void UnControlSouthGoalKeeper();
 }
