@@ -22,13 +22,13 @@ public class GoalGoalKeeperTest {
     public void testGetGoal() throws Exception {
         GoalKeeper expected = new GoalKeeper();
         this.goalGoalKeeper.setGoalKeeper(expected);
-        Assert.assertEquals(expected,goalGoalKeeper.getGoalKeeper());
+        Assert.assertEquals(expected, this.goalGoalKeeper.getGoalKeeper());
     }
 
     @Test
     public void testGetGoalKeeper() throws Exception {
         Goal expected = new Goal();
         this.goalGoalKeeper.setGoal(expected);
-        Assert.assertEquals(expected,goalGoalKeeper.getGoal());
+        Assert.assertEquals(expected, this.goalGoalKeeper.getGoal());
     }
 }

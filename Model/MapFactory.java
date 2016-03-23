@@ -29,7 +29,6 @@ public class MapFactory {
 
     private Ball getFirstBall() {
         Position ballPosition = new Position();
-
         ballPosition.setX(602);
         ballPosition.setY(315);
         Ball ball = new Ball();

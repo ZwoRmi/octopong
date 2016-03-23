@@ -69,10 +69,10 @@ public class GoalKeeper {
     }
 
     public void setPlayedByHuman(boolean playedByHuman) {
-        isPlayedByHuman = playedByHuman;
+        this.isPlayedByHuman = playedByHuman;
     }
 
     public boolean getPlayedByHuman() {
-        return isPlayedByHuman;
+        return this.isPlayedByHuman;
     }
 }

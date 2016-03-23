@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class Map {
     private List<Ball> balls;
-    private ArrayList<GoalGoalKeeper> goalsGoalKeepers;
+    private List<GoalGoalKeeper> goalsGoalKeepers;
     private long ballSpawnInterval;
     private float ballSpeed;
 
@@ -38,11 +38,11 @@ public class Map {
         this.balls = balls;
     }
 
-    public ArrayList<GoalGoalKeeper> getGoalsGoalKeepers() {
+    public List<GoalGoalKeeper> getGoalsGoalKeepers() {
         return this.goalsGoalKeepers;
     }
 
-    public void setGoalsGoalKeepers(ArrayList<GoalGoalKeeper> goalsGoalKeepers) {
+    public void setGoalsGoalKeepers(List<GoalGoalKeeper> goalsGoalKeepers) {
         this.goalsGoalKeepers = goalsGoalKeepers;
     }
 

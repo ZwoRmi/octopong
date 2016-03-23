@@ -16,47 +16,47 @@ public class BallTest {
 
     @Before
     public void setUp() throws Exception {
-        ball = new Ball();
+        this.ball = new Ball();
     }
 
     @Test
     public void testGetNeedToRemove() throws Exception {
-        ball.setNeedToRemove(true);
-        Assert.assertTrue(ball.getNeedToRemove());
+        this.ball.setNeedToRemove(true);
+        Assert.assertTrue(this.ball.getNeedToRemove());
     }
 
     @org.junit.Test
     public void testGetActualPosition() throws Exception {
         Position pos = new Position(432,345);
-        ball.setActualPosition(pos);
-        Assert.assertEquals(pos, ball.getActualPosition());
+        this.ball.setActualPosition(pos);
+        Assert.assertEquals(pos, this.ball.getActualPosition());
     }
 
     @org.junit.Test
     public void testGetDirection() throws Exception {
         Position pos = new Position(432,345);
-        ball.setDirection(pos);
-        Assert.assertEquals(pos, ball.getDirection());
+        this.ball.setDirection(pos);
+        Assert.assertEquals(pos, this.ball.getDirection());
     }
 
     @Test
     public void testGetColor() throws Exception {
         Paint expected = Color.BLUE;
-        ball.setColor(expected);
-        Assert.assertEquals(expected, ball.getColor());
+        this.ball.setColor(expected);
+        Assert.assertEquals(expected, this.ball.getColor());
     }
 
     @org.junit.Test
     public void testGetRadius() throws Exception {
         int expected = 3;
-        ball.setRadius(expected);
-        Assert.assertEquals(expected, ball.getRadius(), 0.00000000001);
+        this.ball.setRadius(expected);
+        Assert.assertEquals(expected, this.ball.getRadius(), 0.00000000001);
     }
 
     @org.junit.Test
     public void testGetMass() throws Exception {
         int expected = 5;
-        ball.setMass(expected);
-        Assert.assertEquals(expected, ball.getMass(), 0.00000000001);
+        this.ball.setMass(expected);
+        Assert.assertEquals(expected, this.ball.getMass(), 0.00000000001);
     }
 }
