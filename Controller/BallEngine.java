@@ -103,6 +103,7 @@ public class BallEngine implements IBallEngine {
     }
 
     private Ball getGeneratedBall() {
+        int count = 0;
         float x = 602;
         float y = 315;
         Ball ball = new Ball();
@@ -110,10 +111,11 @@ public class BallEngine implements IBallEngine {
         ball.setNeedToRemove(false);
         Random rn = new Random();
         do {
+            count++;
             ball.setActualPosition(new Position(x,y));
             x=rn.nextInt(80)+562;
             y=rn.nextInt(80)+275;
-        }while (this.getBallBallRebound(ball)!=null);
+        }while (this.getBallBallRebound(ball)!=null && count < 1000);
         return ball;
     }
 }
