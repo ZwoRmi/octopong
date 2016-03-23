@@ -3,6 +3,10 @@ package View;
 
 import Controller.IGameController;
 import Controller.IParametersController;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
 /**
@@ -46,4 +50,6 @@ public class ApplicationWindow {
         panel.setStyle("-fx-background-color: white");
         return panel;
     }
+
+
 }

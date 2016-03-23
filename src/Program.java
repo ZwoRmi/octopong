@@ -11,7 +11,10 @@ import Model.MapFactory;
 import View.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -50,6 +53,7 @@ public class Program extends Application {
         appWin.setGameController(gameController);
         appWin.setParametersController(parametersController);
         parametersController.startParameters();
+        this.initKeys(scene, gameController);
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
@@ -57,5 +61,21 @@ public class Program extends Application {
             }
         };
         timer.start();
+    }
+    private void initKeys(Scene scene, IGameController gameController) {
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode() == KeyCode.RIGHT){
+                    gameController.MoveSouthGoalKeeper(10);
+                }else if (event.getCode() == KeyCode.LEFT){
+                    gameController.MoveSouthGoalKeeper(-10);
+                }
+                else if (event.getCode() == KeyCode.Z){
+                    gameController.ControlSouthGoalKeeper();
+                }
+                event.consume();
+            }
+        });
     }
 }
