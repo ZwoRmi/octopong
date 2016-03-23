@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
  * Created by Lucas on 14/03/2016.
  */
 public class GameEngine implements IGameEngine {
-    private final IGameController gameController;
     private Timer timer;
     private Map map;
     private IGoalEngine goalEngine;
@@ -19,7 +18,6 @@ public class GameEngine implements IGameEngine {
 
     public GameEngine(Map aMap, IGameController aGameController) {
         this.map = aMap;
-        this.gameController = aGameController;
         this.init();
     }
 
