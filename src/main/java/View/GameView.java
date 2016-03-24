@@ -210,11 +210,13 @@ public class GameView implements IGameView {
         this.myPanel.add(this.timerToControlGoalKeeper,1,1);
         GridPane.setValignment(this.timerToControlGoalKeeper,VPos.CENTER);
         GridPane.setHalignment(this.timerToControlGoalKeeper,HPos.CENTER);
-        if(this.stopWatch.getTime() > 5000){
+        if(this.stopWatch.isStarted() && this.stopWatch.getTime() > 5000){
             this.setColorToSouthGoalKeeper(true);
             this.showGameInstructions = false;
             GameView.this.gameController.ControlSouthGoalKeeper();
             GameView.this.gameController.resumeGame();
+            stopWatch.stop();
+            stopWatch.reset();
         }
         else if (this.stopWatch.getTime()>4000){
             this.setColorToSouthGoalKeeper(false);
