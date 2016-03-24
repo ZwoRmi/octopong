@@ -16,4 +16,6 @@ public interface IGameEngine {
     Map getMap();
     void generateBall();
     void setMap(Map map);
+
+    IGoalEngine getGoalEngine();
 }

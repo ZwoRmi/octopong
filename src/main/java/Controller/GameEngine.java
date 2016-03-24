@@ -96,6 +96,11 @@ public class GameEngine implements IGameEngine {
     }
 
     @Override
+    public IGoalEngine getGoalEngine() {
+        return this.goalEngine;
+    }
+
+    @Override
     public void generateBall() {
         this.ballEngine.generateBall();
     }

@@ -38,7 +38,8 @@ public class GoalEngine implements IGoalEngine {
 
     }
 
-    private boolean isInLimitedArea(GoalKeeper goalKeeper, Line targetPositionStart) {
+    @Override
+    public boolean isInLimitedArea(GoalKeeper goalKeeper, Line targetPositionStart) {
         Line goalLine = this.getGoal(goalKeeper).getGoalStartLine();
         switch (goalKeeper.getGoalPosition()){
             case North:

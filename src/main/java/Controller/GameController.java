@@ -99,10 +99,17 @@ public class GameController implements IGameController {
         GoalKeeper southGoalKeeper = this.getSouthGoalKeeper();
         if (!southGoalKeeper.getPlayedByHuman())
             return;
-        southGoalKeeper.getActualPositionStart().getStartPosition().setX(southGoalKeeper.getActualPositionStart().getStartPosition().getX()+ x);
-        southGoalKeeper.getActualPositionStart().getEndPosition().setX(southGoalKeeper.getActualPositionStart().getEndPosition().getX()+ x);
-        southGoalKeeper.getActualPositionEnd().getStartPosition().setX(southGoalKeeper.getActualPositionEnd().getStartPosition().getX()+ x);
-        southGoalKeeper.getActualPositionEnd().getEndPosition().setX(southGoalKeeper.getActualPositionEnd().getEndPosition().getX()+ x);
+        Line targetPositionStart = new Line(new Position(),new Position());
+        targetPositionStart.getStartPosition().setX(southGoalKeeper.getActualPositionStart().getStartPosition().getX()+ x);
+        targetPositionStart.getStartPosition().setY(southGoalKeeper.getActualPositionStart().getStartPosition().getY());
+        targetPositionStart.getEndPosition().setX(southGoalKeeper.getActualPositionStart().getEndPosition().getX()+ x);
+        targetPositionStart.getEndPosition().setY(southGoalKeeper.getActualPositionStart().getEndPosition().getY());
+        if (this.gameEngine.getGoalEngine().isInLimitedArea(southGoalKeeper, targetPositionStart)){
+            southGoalKeeper.setActualPositionStart(targetPositionStart);
+            southGoalKeeper.getActualPositionEnd().getStartPosition().setX(southGoalKeeper.getActualPositionEnd().getStartPosition().getX()+ x);
+            southGoalKeeper.getActualPositionEnd().getEndPosition().setX(southGoalKeeper.getActualPositionEnd().getEndPosition().getX()+ x);
+        }
+
     }
 
     @Override
