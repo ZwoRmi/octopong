@@ -31,16 +31,16 @@ public class PositionTest {
 
     @Test
     public void testEqualsForNormalTrue() throws Exception {
-        Position line = new Position(1,1);
-        Position otherLine = new Position(1,1);
-        assertTrue(line.equals(otherLine));
+        Position position = new Position(1,1);
+        Position otherPosition = new Position(1,1);
+        assertTrue(position.equals(otherPosition));
     }
 
     @Test
     public void testEqualsForNormalFalse() throws Exception {
         Position line = new Position(1,1);
-        Position otherLine = new Position(5,0);
-        assertFalse(line.equals(otherLine));
+        Position otherPosition = new Position(5,0);
+        assertFalse(line.equals(otherPosition));
     }
 
     @Test
@@ -52,14 +52,14 @@ public class PositionTest {
 
     @Test
     public void testEqualsForNull() throws Exception {
-        Position line = new Position(0,0);
+        Position position = new Position(0,0);
         //noinspection ObjectEqualsNull
-        assertFalse(line.equals(null));
+        assertFalse(position.equals(null));
     }
 
     @Test
     public void testEqualsForOtherType() throws Exception {
-        Position line = new Position(1,1);
-        assertFalse(line.equals(new Object()));
+        Position position = new Position(1,1);
+        assertFalse(position.equals(new Object()));
     }
 }
