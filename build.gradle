@@ -9,3 +9,9 @@ apply plugin: 'java'
 dependencies {
     testCompile 'junit:junit:4.10'
 }
+
+test {
+    testLogging {
+        events 'started', 'passed'
+    }
+}
