@@ -1,3 +1,5 @@
+package Model;
+
 import Model.Line;
 import Model.Position;
 import org.junit.Before;

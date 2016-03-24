@@ -1,3 +1,5 @@
+package Model;
+
 import Model.Position;
 import Model.Score;
 import org.junit.Before;
