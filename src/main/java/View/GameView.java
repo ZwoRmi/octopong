@@ -57,7 +57,7 @@ public class GameView implements IGameView {
 
     private void initLogo(){
         this.logo = new ImageView();
-        Image logoImage = new Image("/src/main/resources/logoOctopong.png");
+        Image logoImage = new Image("logoOctopong.png");
         this.logo.setImage(logoImage);
     }
 
