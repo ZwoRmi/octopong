@@ -1,5 +1,3 @@
-package Tests;
-
 import Model.Line;
 import Model.PolygonBoundary;
 import Model.Position;

@@ -231,7 +231,7 @@ public class GoalEngine implements IGoalEngine {
     }
 
     private ArrayList<BallWithTargetPosition> getBallsWithTargetPosition(GoalGoalKeeper goalGoalKeeper, ArrayList<Ball> ballsInDetectionArea) {
-        ArrayList<BallWithTargetPosition> ballWithTargetPositions = new ArrayList<BallWithTargetPosition>();
+        ArrayList<BallWithTargetPosition> ballWithTargetPositions = new ArrayList<>();
         for (Ball ball : ballsInDetectionArea) {
             Position fakePosition = ball.getActualPosition();
             int count = 0;
@@ -257,7 +257,7 @@ public class GoalEngine implements IGoalEngine {
     }
 
     private ArrayList<Ball> getBallsInDetectionArea(GoalGoalKeeper goalGoalKeeper) {
-        ArrayList<Ball> ballsInArea = new ArrayList<Ball>();
+        ArrayList<Ball> ballsInArea = new ArrayList<>();
         PolygonBoundary boundary = new PolygonBoundary(goalGoalKeeper.getGoal().getGoalStartLine(), goalGoalKeeper.getGoal().getDetectionLine());
         synchronized (this.map.getBalls()){
             for (Ball ball : this.map.getBalls()) {
@@ -359,7 +359,7 @@ public class GoalEngine implements IGoalEngine {
         }
         this.ballsToRemove.clear();
         synchronized (this.map.getBalls()){
-            this.map.getBalls().removeIf(ball->ball.getNeedToRemove());
+            this.map.getBalls().removeIf(Ball::getNeedToRemove);
         }
     }
 }

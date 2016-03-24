@@ -57,7 +57,7 @@ public class GameView implements IGameView {
 
     private void initLogo(){
         this.logo = new ImageView();
-        Image logoImage = new Image("Image/logoOctopong.png");
+        Image logoImage = new Image("/src/main/resources/logoOctopong.png");
         this.logo.setImage(logoImage);
     }
 
@@ -149,56 +149,31 @@ public class GameView implements IGameView {
     private void initGenerateBallButton() {
         this.generateBallButton = new Button();
         this.generateBallButton.setText("Ajouter balle");
-        this.generateBallButton.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                GameView.this.gameController.generateBallGame();
-            }
-        });
+        this.generateBallButton.setOnMousePressed(event -> GameView.this.gameController.generateBallGame());
     }
 
     private void initRestartButton() {
         this.restartButton = new Button();
         this.restartButton.setText("Redémarrer");
-        this.restartButton.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                GameView.this.gameController.restartGame();
-            }
-        });
+        this.restartButton.setOnMousePressed(event -> GameView.this.gameController.restartGame());
     }
 
     private void initStopButton() {
         this.stopButton = new Button();
         this.stopButton.setText("Stop");
-        this.stopButton.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                GameView.this.gameController.stopGame();
-            }
-        });
+        this.stopButton.setOnMousePressed(event -> GameView.this.gameController.stopGame());
     }
 
     private void initPauseButton() {
         this.pauseButton = new Button();
         this.pauseButton.setText("Pause");
-        this.pauseButton.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                GameView.this.gameController.pauseGame();
-            }
-        });
+        this.pauseButton.setOnMousePressed(event -> GameView.this.gameController.pauseGame());
     }
 
     private void initPlayButton() {
         this.playButton = new Button();
         this.playButton.setText("Reprendre");
-        this.playButton.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                GameView.this.gameController.resumeGame();
-            }
-        });
+        this.playButton.setOnMousePressed(event -> GameView.this.gameController.resumeGame());
         this.playButton.setAlignment(Pos.CENTER);
         this.playButton.setTextAlignment(TextAlignment.CENTER);
     }
@@ -206,21 +181,18 @@ public class GameView implements IGameView {
     private void initStartGameButton() {
         this.startGameButton = new Button();
         this.startGameButton.setText("Jouer");
-        this.startGameButton.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if(gameController.getSouthGoalKeeper().getPlayedByHuman()){
-                    startGameButton.setText("Jouer");
-                    GameView.this.gameController.UnControlSouthGoalKeeper();
-                    stopWatch.reset();
-                    stopWatch.stop();
-                } else {
-                    startGameButton.setText("Animer");
-                    showGameInstructions = true;
-                    GameView.this.gameController.pauseGame();
-                    GameView.this.gameController.ControlSouthGoalKeeper();
-                    stopWatch.start();
-                }
+        this.startGameButton.setOnMousePressed(event -> {
+            if(gameController.getSouthGoalKeeper().getPlayedByHuman()){
+                startGameButton.setText("Jouer");
+                GameView.this.gameController.UnControlSouthGoalKeeper();
+                stopWatch.reset();
+                stopWatch.stop();
+            } else {
+                startGameButton.setText("Animer");
+                showGameInstructions = true;
+                GameView.this.gameController.pauseGame();
+                GameView.this.gameController.ControlSouthGoalKeeper();
+                stopWatch.start();
             }
         });
         this.startGameButton.setAlignment(Pos.CENTER);
@@ -274,7 +246,7 @@ public class GameView implements IGameView {
     }
     public void initCommandToControlGoalKeeper() {
         this.commandToControlGoalKeeper = new ImageView();
-        Image commandImage = new Image("Image/command.png");
+        Image commandImage = new Image("command.png");
         this.commandToControlGoalKeeper.setImage(commandImage);
     }
 

@@ -1,5 +1,3 @@
-package Tests;
-
 import Model.Position;
 import org.junit.Before;
 import org.junit.Test;

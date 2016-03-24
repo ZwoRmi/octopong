@@ -1,5 +1,3 @@
-package Tests;
-
 import Model.Goal;
 import Model.GoalGoalKeeper;
 import Model.GoalKeeper;
