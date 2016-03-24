@@ -1,5 +1,6 @@
 repositories {
     mavenCentral()
+    jcenter()
 }
 apply plugin: 'idea'
 apply plugin: 'java'
@@ -7,6 +8,7 @@ compileJava.options.encoding = 'UTF-8'
 
 dependencies {
     testCompile 'junit:junit:4.10'
+    testCompile 'org.mockito:mockito-core:1.+'
 }
 
 test {
