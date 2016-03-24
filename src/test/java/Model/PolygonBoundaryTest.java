@@ -1,3 +1,5 @@
+package Model;
+
 import Model.Line;
 import Model.PolygonBoundary;
 import Model.Position;

@@ -1,3 +1,5 @@
+package Model;
+
 import Model.Ball;
 import Model.GoalGoalKeeper;
 import Model.Map;

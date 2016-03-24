@@ -1,3 +1,5 @@
+package Model;
+
 import Model.Goal;
 import Model.GoalGoalKeeper;
 import Model.GoalKeeper;

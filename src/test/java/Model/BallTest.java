@@ -1,3 +1,5 @@
+package Model;
+
 import Model.Ball;
 import Model.Position;
 import javafx.scene.paint.Color;
