@@ -2,8 +2,10 @@ repositories {
     mavenCentral()
     jcenter()
 }
+
 apply plugin: 'idea'
 apply plugin: 'java'
+apply plugin: 'jacoco'
 compileJava.options.encoding = 'UTF-8'
 
 dependencies {
@@ -14,5 +16,25 @@ dependencies {
 test {
     testLogging {
         events 'failed'
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml {
+            enabled true // coveralls plugin depends on xml format report
+        }
+
+        html {
+            enabled true
+        }
+    }
+
+    afterEvaluate {
+        classDirectories = files(classDirectories.files.collect {
+            fileTree(dir: it,
+                    exclude: ['**/View/**',
+                              '**/Util/**'])
+        })
     }
 }
