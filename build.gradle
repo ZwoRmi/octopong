@@ -1,10 +1,9 @@
 repositories {
     mavenCentral()
 }
-
 apply plugin: 'idea'
-//and standard one
 apply plugin: 'java'
+compileJava.options.encoding = 'UTF-8'
 
 dependencies {
     testCompile 'junit:junit:4.10'
@@ -12,6 +11,6 @@ dependencies {
 
 test {
     testLogging {
-        events 'started', 'passed'
+        events 'failed'
     }
 }
