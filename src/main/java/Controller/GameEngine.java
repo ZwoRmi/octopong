@@ -4,19 +4,15 @@ package Controller;
 import Model.Map;
 import Model.MapFactory;
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Created by Lucas on 14/03/2016.
- */
 public class GameEngine implements IGameEngine {
     private Timer timer;
     private Map map;
     private IGoalEngine goalEngine;
     private IBallEngine ballEngine;
 
-    public GameEngine(Map aMap, IGameController aGameController) {
+    public GameEngine(Map aMap) {
         this.map = aMap;
         this.init();
     }
@@ -29,14 +25,9 @@ public class GameEngine implements IGameEngine {
 
     private Timer createTimer ()
     {
-        ActionListener action = new ActionListener()
-        {
-            @Override
-            public void actionPerformed (ActionEvent event)
-            {
-                GameEngine.this.updateBallEngine();
-                GameEngine.this.updateGoalEngine();
-            }
+        ActionListener action = event -> {
+            GameEngine.this.updateBallEngine();
+            GameEngine.this.updateGoalEngine();
         };
         return new Timer (3, action);
     }

@@ -1,8 +1,5 @@
 package Model;
 
-/**
- * Created by DanyPatient on 15/03/2016.
- */
 public class RandomPositionGenerator {
     public Position generatePosition(){
         Position randomPosition = new Position();

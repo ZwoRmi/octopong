@@ -1,19 +1,16 @@
 package Model;
 
-import Model.Position;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by Lucas on 23/03/2016.
- */
+@SuppressWarnings("RedundantThrows")
 public class PositionTest {
     private Position position;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         this.position = new Position();
     }
 

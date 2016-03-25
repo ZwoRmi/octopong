@@ -2,9 +2,6 @@ package Controller;
 
 import Model.Map;
 
-/**
- * Created by Lucas on 14/03/2016.
- */
 public interface IGameEngine {
     void startGame();
     void pauseGame();
@@ -16,6 +13,5 @@ public interface IGameEngine {
     Map getMap();
     void generateBall();
     void setMap(Map map);
-
     IGoalEngine getGoalEngine();
 }

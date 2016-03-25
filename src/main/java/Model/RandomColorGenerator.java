@@ -6,11 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- * Created by Lucas on 22/03/2016.
- */
 public class RandomColorGenerator {
-    private List<Color> colors;
+    private final List<Color> colors;
 
     public RandomColorGenerator() {
         this.colors = new ArrayList<>();

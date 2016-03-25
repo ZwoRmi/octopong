@@ -5,14 +5,12 @@ import Model.Ball;
 import Model.GoalGoalKeeper;
 import Model.PolygonBoundary;
 import Util.StopWatch;
-import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
@@ -24,9 +22,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Created by DanyPatient on 14/03/2016.
- */
 public class GameView implements IGameView {
     private GridPane myPanel;
     private IGameController gameController;
@@ -199,14 +194,14 @@ public class GameView implements IGameView {
         this.startGameButton.setTextAlignment(TextAlignment.CENTER);
     }
 
-    public void initTimerToControlGoalKeeper() {
+    private void initTimerToControlGoalKeeper() {
         this.timerToControlGoalKeeper = new Text();
         this.timerToControlGoalKeeper.setTextAlignment(TextAlignment.CENTER);
         this.timerToControlGoalKeeper.setFont(new Font(60));
         this.stopWatch = new StopWatch();
     }
 
-    public void drawTimerToControlGoalKeeper(){
+    private void drawTimerToControlGoalKeeper(){
         this.myPanel.add(this.timerToControlGoalKeeper,1,1);
         GridPane.setValignment(this.timerToControlGoalKeeper,VPos.CENTER);
         GridPane.setHalignment(this.timerToControlGoalKeeper,HPos.CENTER);
@@ -238,7 +233,7 @@ public class GameView implements IGameView {
         }
     }
 
-    public void setColorToSouthGoalKeeper(boolean isBlack){
+    private void setColorToSouthGoalKeeper(boolean isBlack){
         if(isBlack) {
             gameController.getSouthGoalKeeper().setColor(Color.BLACK);
         }
@@ -246,13 +241,13 @@ public class GameView implements IGameView {
             gameController.getSouthGoalKeeper().setColor(Color.TRANSPARENT);
         }
     }
-    public void initCommandToControlGoalKeeper() {
+    private void initCommandToControlGoalKeeper() {
         this.commandToControlGoalKeeper = new ImageView();
         Image commandImage = new Image("command.png");
         this.commandToControlGoalKeeper.setImage(commandImage);
     }
 
-    public void drawCommandToControlGoalKeeper(){
+    private void drawCommandToControlGoalKeeper(){
         this.myPanel.add(this.commandToControlGoalKeeper,1,1);
         GridPane.setValignment(this.commandToControlGoalKeeper,VPos.BOTTOM);
         GridPane.setHalignment(this.commandToControlGoalKeeper,HPos.CENTER);

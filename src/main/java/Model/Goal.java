@@ -1,8 +1,5 @@
 package Model;
 
-/**
- * Created by Lucas on 14/03/2016.
- */
 public class Goal {
     private Line goalStartLine;
     private Line goalEndLine;

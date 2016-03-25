@@ -1,8 +1,5 @@
 package Model;
 
-import Model.Ball;
-import Model.GoalGoalKeeper;
-import Model.Map;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,15 +8,13 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by Lucas on 23/03/2016.
- */
+@SuppressWarnings("RedundantThrows")
 public class MapTest {
-    Map map;
+    private Map map;
 
     @Before
-    public void setUp() throws Exception {
-        this.map = new Map();
+    public void setUp() {
+        this.map = new Map(null);
     }
 
     @Test
@@ -40,8 +35,8 @@ public class MapTest {
     public void testGetBalls() throws Exception {
         List<Ball> expected = new ArrayList<>();
         expected.add(new Ball());
-        this.map.setBalls(expected);
-        assertEquals(expected,this.map.getBalls());
+        Map aMap = new Map(expected);
+        assertEquals(expected,aMap.getBalls());
     }
 
     @Test

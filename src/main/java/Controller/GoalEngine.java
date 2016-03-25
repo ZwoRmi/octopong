@@ -5,13 +5,11 @@ import Model.*;
 import java.awt.*;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
-/**
- * Created by Lucas on 14/03/2016.
- */
 public class GoalEngine implements IGoalEngine {
-    private Map map;
-    private ArrayList<Ball> ballsToRemove;
+    private final Map map;
+    private final ArrayList<Ball> ballsToRemove;
 
     public GoalEngine(Map aMap) {
         this.map = aMap;
@@ -261,12 +259,8 @@ public class GoalEngine implements IGoalEngine {
         ArrayList<Ball> ballsInArea = new ArrayList<>();
         PolygonBoundary boundary = new PolygonBoundary(goalGoalKeeper.getGoal().getGoalStartLine(), goalGoalKeeper.getGoal().getDetectionLine());
         synchronized (this.map.getBalls()){
-            for (Ball ball : this.map.getBalls()) {
-                if (boundary.contains(ball.getActualPosition())
-                        && new ReboundCalculator(ball,goalGoalKeeper.getGoalKeeper()).isMovingToGoalKeeper()){
-                    ballsInArea.add(ball);
-                }
-            }
+            ballsInArea.addAll(this.map.getBalls().stream().filter(ball -> boundary.contains(ball.getActualPosition()) &&
+                    new ReboundCalculator(ball, goalGoalKeeper.getGoalKeeper()).isMovingToGoalKeeper()).collect(Collectors.toList()));
         }
         return ballsInArea;
     }
@@ -275,11 +269,8 @@ public class GoalEngine implements IGoalEngine {
     public void goalDetection() {
         synchronized (this.map.getBalls()){
             for (Ball ball : this.map.getBalls()) {
-                for (GoalGoalKeeper goalGoalKeeper : this.map.getGoalsGoalKeepers()) {
-                    if (this.isGoal(ball.getActualPosition(), goalGoalKeeper.getGoal())){
-                        this.onGoal(goalGoalKeeper.getGoal(), ball);
-                    }
-                }
+                this.map.getGoalsGoalKeepers().stream().filter(goalGoalKeeper -> this.isGoal(ball.getActualPosition(),
+                        goalGoalKeeper.getGoal())).forEach(goalGoalKeeper -> this.onGoal(goalGoalKeeper.getGoal(), ball));
             }
         }
     }
@@ -322,14 +313,10 @@ public class GoalEngine implements IGoalEngine {
 
     @Override
     public void centerGoalKeepers() {
-        for (GoalGoalKeeper goalGoalKeeper: this.map.getGoalsGoalKeepers()) {
-            if(this.getBallsInDetectionArea(goalGoalKeeper).isEmpty()){
-                PositionProvider positionProvider = new PositionProvider();
-                goalGoalKeeper.getGoalKeeper().setTargetPosition(new Line(
-                        positionProvider.getGoalKeeperPositionStart(positionProvider.getStartGoalPosition(goalGoalKeeper.getGoalKeeper().getGoalPosition())),
-                        positionProvider.getGoalKeeperPositionStart(positionProvider.getEndGoalPosition(goalGoalKeeper.getGoalKeeper().getGoalPosition()))));
-            }
-        }
+        this.map.getGoalsGoalKeepers().stream().filter(goalGoalKeeper -> this.getBallsInDetectionArea(goalGoalKeeper).isEmpty()).forEach(goalGoalKeeper -> {
+            PositionProvider positionProvider = new PositionProvider();
+            goalGoalKeeper.getGoalKeeper().setTargetPosition(new Line(positionProvider.getGoalKeeperPositionStart(positionProvider.getStartGoalPosition(goalGoalKeeper.getGoalKeeper().getGoalPosition())), positionProvider.getGoalKeeperPositionStart(positionProvider.getEndGoalPosition(goalGoalKeeper.getGoalKeeper().getGoalPosition()))));
+        });
     }
 
     @Override
@@ -346,14 +333,11 @@ public class GoalEngine implements IGoalEngine {
         int width = gd.getDisplayMode().getWidth();
         int height = gd.getDisplayMode().getHeight();
         synchronized (this.map.getBalls()){
-            for (Ball ball : this.map.getBalls()) {
-                if(!ball.getNeedToRemove()){
+            this.map.getBalls().stream().filter(ball -> !ball.getNeedToRemove()).forEach(ball ->
                     ball.setNeedToRemove(ball.getActualPosition().getX() > width ||
-                            ball.getActualPosition().getY() > height ||
-                            ball.getActualPosition().getX() <0||
-                            ball.getActualPosition().getY()<0);
-                }
-            }
+                    ball.getActualPosition().getY() > height ||
+                    ball.getActualPosition().getX() < 0 ||
+                    ball.getActualPosition().getY() < 0));
         }
         for (Ball ball : this.ballsToRemove) {
             ball.setNeedToRemove(true);

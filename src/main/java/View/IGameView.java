@@ -3,9 +3,6 @@ package View;
 import Controller.IGameController;
 import javafx.scene.layout.Pane;
 
-/**
- * Created by DanyPatient on 14/03/2016.
- */
 public interface IGameView {
     Pane getPanel(IGameController gameController);
     void drawGoals();

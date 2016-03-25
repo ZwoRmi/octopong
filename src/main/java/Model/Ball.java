@@ -2,9 +2,6 @@ package Model;
 
 import javafx.scene.paint.Paint;
 
-/**
- * Created by Lucas on 14/03/2016.
- */
 public class Ball {
     private Position actualPosition;
     private Position direction;

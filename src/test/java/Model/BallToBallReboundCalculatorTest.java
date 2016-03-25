@@ -1,20 +1,16 @@
 package Model;
 
-import javafx.geometry.Pos;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by DanyPatient on 24/03/2016.
- */
 public class BallToBallReboundCalculatorTest {
     private Ball ballOne;
     private Ball ballTwo;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         this.ballOne = this.getBall(new Position(10,0));
         this.ballTwo = this.getBall(new Position(-10,0));
     }
@@ -35,7 +31,7 @@ public class BallToBallReboundCalculatorTest {
         assertEquals(expectedUpdatedDirection, ballTwo.getDirection());
     }
 
-    public Ball getBall(Position p) {
+    private Ball getBall(Position p) {
         Ball ballOne = new Ball();
         ballOne.setDirection(p);
         ballOne.setMass(1);

@@ -5,14 +5,10 @@ import View.ApplicationWindow;
 
 import java.security.InvalidParameterException;
 
-/**
- * Created by DanyPatient on 14/03/2016.
- */
 public class ParametersController implements IParametersController {
-
-    private ApplicationWindow rootWindow;
+    private final ApplicationWindow rootWindow;
     private Map map;
-    private IGameController gameController;
+    private final IGameController gameController;
 
     public ParametersController(Map map, ApplicationWindow rootWindow, IGameController gameController) {
         this.map = map;

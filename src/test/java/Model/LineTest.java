@@ -1,20 +1,16 @@
 package Model;
 
-import Model.Line;
-import Model.Position;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by Lucas on 23/03/2016.
- */
+@SuppressWarnings("RedundantThrows")
 public class LineTest {
     private Line line;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         this.line = new Line();
     }
 

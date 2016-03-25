@@ -3,9 +3,6 @@ package Controller;
 import Model.GoalKeeper;
 import Model.Map;
 
-/**
- * Created by Lucas on 14/03/2016.
- */
 public interface IGameController {
     Map getMap();
     long getGameTime();

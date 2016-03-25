@@ -3,9 +3,6 @@ package Controller;
 import Model.Ball;
 import Model.Position;
 
-/**
- * Created by Lucas on 14/03/2016.
- */
 public class BallWithTargetPosition {
     private Ball ball;
     private Position targetPosition;

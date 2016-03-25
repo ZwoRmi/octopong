@@ -1,6 +1,5 @@
 package Model;
 
-import Model.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import org.junit.Before;
@@ -8,14 +7,12 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by Lucas on 23/03/2016.
- */
+@SuppressWarnings("RedundantThrows")
 public class GoalKeeperTest {
     private GoalKeeper goalKeeper;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         this.goalKeeper = new GoalKeeper();
     }
 
@@ -69,6 +66,7 @@ public class GoalKeeperTest {
         assertEquals(expected, this.goalKeeper.getColor());
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Test
     public void testGetPlayedByHuman() throws Exception {
         boolean expected = true;

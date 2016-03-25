@@ -2,14 +2,15 @@ package Model;
 
 import java.util.List;
 
-/**
- * Created by Lucas on 14/03/2016.
- */
 public class Map {
-    private List<Ball> balls;
+    private final List<Ball> balls;
     private List<GoalGoalKeeper> goalsGoalKeepers;
     private long ballSpawnInterval;
     private float ballSpeed;
+
+    public Map(List<Ball> balls) {
+        this.balls = balls;
+    }
 
     public float getBallSpeed() {
         return this.ballSpeed;
@@ -33,10 +34,6 @@ public class Map {
         }
     }
 
-    public void setBalls(List<Ball> balls) {
-        this.balls = balls;
-    }
-
     public List<GoalGoalKeeper> getGoalsGoalKeepers() {
         return this.goalsGoalKeepers;
     }
@@ -44,5 +41,4 @@ public class Map {
     public void setGoalsGoalKeepers(List<GoalGoalKeeper> goalsGoalKeepers) {
         this.goalsGoalKeepers = goalsGoalKeepers;
     }
-
 }

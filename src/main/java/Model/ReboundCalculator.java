@@ -3,8 +3,8 @@ package Model;
 import java.security.InvalidParameterException;
 
 public class ReboundCalculator {
-    private Ball ball;
-    private GoalKeeper goalKeeper;
+    private final Ball ball;
+    private final GoalKeeper goalKeeper;
 
     public ReboundCalculator(Ball ball, GoalKeeper goalKeeper) {
         this.ball = ball;

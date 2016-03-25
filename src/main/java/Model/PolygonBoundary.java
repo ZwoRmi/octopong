@@ -2,9 +2,6 @@ package Model;
 
 import javafx.scene.shape.Polygon;
 
-/**
- * Created by Lucas on 17/03/2016.
- */
 public class PolygonBoundary {
     private Polygon polygon;
 

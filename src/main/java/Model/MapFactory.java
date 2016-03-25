@@ -6,23 +6,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by Lucas on 14/03/2016.
- */
 public class MapFactory {
     private PositionProvider positionProvider;
 
     public Map create(){
-        Map map = new Map();
+        Map map = new Map(this.getBalls());
         map.setBallSpeed(1);
         map.setBallSpawnInterval(10000000);
-        map.setBalls(this.getBalls());
         map.setGoalsGoalKeepers(this.getGoalsGoalKeepers());
         return map;
     }
 
     private List<Ball> getBalls() {
-        List<Ball> balls = Collections.synchronizedList(new ArrayList<Ball>());
+        List<Ball> balls = Collections.synchronizedList(new ArrayList<>());
         balls.add(this.getFirstBall());
         return balls;
     }
@@ -40,7 +36,7 @@ public class MapFactory {
 
     private ArrayList<GoalGoalKeeper> getGoalsGoalKeepers() {
         this.positionProvider = new PositionProvider();
-        ArrayList<GoalGoalKeeper> goalGoalKeepers = new ArrayList<GoalGoalKeeper>();
+        ArrayList<GoalGoalKeeper> goalGoalKeepers = new ArrayList<>();
         goalGoalKeepers.add(this.getGoalGoalKeeper(GoalPosition.North));
         goalGoalKeepers.add(this.getGoalGoalKeeper(GoalPosition.NorthWest));
         goalGoalKeepers.add(this.getGoalGoalKeeper(GoalPosition.West));

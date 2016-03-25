@@ -1,11 +1,8 @@
 package Model;
 
-/**
- * Created by Lucas on 22/03/2016.
- */
 public class BallToBallReboundCalculator {
-    private Ball ball;
-    private Ball otherBall;
+    private final Ball ball;
+    private final Ball otherBall;
 
     public BallToBallReboundCalculator(Ball ball, Ball otherBall) {
         this.ball = ball;

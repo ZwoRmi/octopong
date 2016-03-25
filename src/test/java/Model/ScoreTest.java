@@ -1,20 +1,16 @@
 package Model;
 
-import Model.Position;
-import Model.Score;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by Lucas on 23/03/2016.
- */
+@SuppressWarnings("RedundantThrows")
 public class ScoreTest {
-    Score score;
+    private Score score;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         this.score = new Score();
     }
 

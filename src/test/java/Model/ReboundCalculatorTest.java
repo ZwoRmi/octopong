@@ -1,17 +1,17 @@
 package Model;
 
+import org.junit.Ignore;
 import org.junit.Test;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by DanyPatient on 24/03/2016.
- */
 public class ReboundCalculatorTest {
 
+    @Ignore
     @Test
     public void testGetNewDirection() throws Exception {
-
+        throw new NotImplementedException();
     }
 
     @Test
@@ -22,6 +22,7 @@ public class ReboundCalculatorTest {
         boolean value = rCalculator.isMovingToGoalKeeper();
         assertTrue(value);
     }
+
     @Test
     public void testIsMovingToGoalKeeperNorthEast() throws Exception {
         Ball ball = this.getBall(new Position(10,10));
@@ -30,6 +31,7 @@ public class ReboundCalculatorTest {
         boolean value = rCalculator.isMovingToGoalKeeper();
         assertTrue(value);
     }
+
     @Test
     public void testIsMovingToGoalKeeperEast() throws Exception {
         Ball ball = this.getBall(new Position(10,10));
@@ -38,6 +40,7 @@ public class ReboundCalculatorTest {
         boolean value = rCalculator.isMovingToGoalKeeper();
         assertTrue(value);
     }
+
     @Test
     public void testIsMovingToGoalKeeperSouthEast() throws Exception {
         Ball ball = this.getBall(new Position(10,10));
@@ -46,6 +49,7 @@ public class ReboundCalculatorTest {
         boolean value = rCalculator.isMovingToGoalKeeper();
         assertTrue(value);
     }
+
     @Test
     public void testIsMovingToGoalKeeperSouth() throws Exception {
         Ball ball = this.getBall(new Position(10,10));
@@ -54,6 +58,7 @@ public class ReboundCalculatorTest {
         boolean value = rCalculator.isMovingToGoalKeeper();
         assertTrue(value);
     }
+
     @Test
     public void testIsMovingToGoalKeeperSouthWest() throws Exception {
         Ball ball = this.getBall(new Position(10,10));
@@ -62,6 +67,7 @@ public class ReboundCalculatorTest {
         boolean value = rCalculator.isMovingToGoalKeeper();
         assertTrue(value);
     }
+
     @Test
     public void testIsMovingToGoalKeeperWest() throws Exception {
         Ball ball = this.getBall(new Position(-10,10));
@@ -70,6 +76,7 @@ public class ReboundCalculatorTest {
         boolean value = rCalculator.isMovingToGoalKeeper();
         assertTrue(value);
     }
+
     @Test
     public void testIsMovingToGoalKeeperNorthWest() throws Exception {
         Ball ball = this.getBall(new Position(-10,-10));
@@ -79,8 +86,6 @@ public class ReboundCalculatorTest {
         assertTrue(value);
     }
 
-
-
     @Test
     public void testIsMovingToGoalKeeperNorthFalse() throws Exception {
         Ball ball = this.getBall(new Position(10,10));
@@ -89,6 +94,7 @@ public class ReboundCalculatorTest {
         boolean value = rCalculator.isMovingToGoalKeeper();
         assertFalse(value);
     }
+
     @Test
     public void testIsMovingToGoalKeeperNorthEastFalse() throws Exception {
         Ball ball = this.getBall(new Position(-10,10));
@@ -97,6 +103,7 @@ public class ReboundCalculatorTest {
         boolean value = rCalculator.isMovingToGoalKeeper();
         assertFalse(value);
     }
+
     @Test
     public void testIsMovingToGoalKeeperEastFalse() throws Exception {
         Ball ball = this.getBall(new Position(-10,10));
@@ -105,6 +112,7 @@ public class ReboundCalculatorTest {
         boolean value = rCalculator.isMovingToGoalKeeper();
         assertFalse(value);
     }
+
     @Test
     public void testIsMovingToGoalKeeperSouthEastFalse() throws Exception {
         Ball ball = this.getBall(new Position(-10,-10));
@@ -113,6 +121,7 @@ public class ReboundCalculatorTest {
         boolean value = rCalculator.isMovingToGoalKeeper();
         assertFalse(value);
     }
+
     @Test
     public void testIsMovingToGoalKeeperSouthFalse() throws Exception {
         Ball ball = this.getBall(new Position(10,-10));
@@ -121,6 +130,7 @@ public class ReboundCalculatorTest {
         boolean value = rCalculator.isMovingToGoalKeeper();
         assertFalse(value);
     }
+
     @Test
     public void testIsMovingToGoalKeeperSouthWestFalse() throws Exception {
         Ball ball = this.getBall(new Position(10,-10));
@@ -129,6 +139,7 @@ public class ReboundCalculatorTest {
         boolean value = rCalculator.isMovingToGoalKeeper();
         assertFalse(value);
     }
+
     @Test
     public void testIsMovingToGoalKeeperWestFalse() throws Exception {
         Ball ball = this.getBall(new Position(10,10));
@@ -137,6 +148,7 @@ public class ReboundCalculatorTest {
         boolean value = rCalculator.isMovingToGoalKeeper();
         assertFalse(value);
     }
+
     @Test
     public void testIsMovingToGoalKeeperNorthWestFalse() throws Exception {
         Ball ball = this.getBall(new Position(10,10));
@@ -145,15 +157,15 @@ public class ReboundCalculatorTest {
         boolean value = rCalculator.isMovingToGoalKeeper();
         assertFalse(value);
     }
-    public Ball getBall(Position p) {
+
+    private Ball getBall(Position p) {
         Ball ball = new Ball();
         ball.setDirection(p);
         ball.setMass(1);
         return ball;
-
     }
 
-    public GoalKeeper getGoalKeeper(GoalPosition gp) {
+    private GoalKeeper getGoalKeeper(GoalPosition gp) {
         GoalKeeper goalKeeper = new GoalKeeper();
         goalKeeper.setGoalPosition(gp);
         return goalKeeper;

@@ -4,14 +4,11 @@ import Model.*;
 import Util.StopWatch;
 import View.ApplicationWindow;
 
-/**
- * Created by DanyPatient on 14/03/2016.
- */
 public class GameController implements IGameController {
 
     private final StopWatch stopWatch;
     private IGameEngine gameEngine;
-    private ApplicationWindow applicationWindow;
+    private final ApplicationWindow applicationWindow;
     private IParametersController parametersController;
 
     public GameController(ApplicationWindow applicationWindow) {

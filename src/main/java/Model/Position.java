@@ -1,8 +1,5 @@
 package Model;
 
-/**
- * Created by Lucas on 14/03/2016.
- */
 public class Position {
     private float x;
     private float y;
@@ -39,7 +36,6 @@ public class Position {
 
         return Float.compare(position.getX(), this.getX()) == 0 &&
                 Float.compare(position.getY(), this.getY()) == 0;
-
     }
 
     @Override

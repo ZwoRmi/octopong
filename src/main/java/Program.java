@@ -4,10 +4,8 @@ import Model.MapFactory;
 import View.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -41,7 +39,7 @@ public class Program extends Application {
         IGameController gameController = new GameController(appWin);
         IParametersController parametersController = new ParametersController(map, appWin, gameController);
         gameController.setParametersController(parametersController);
-        IGameEngine gameEngine = new GameEngine(map, gameController);
+        IGameEngine gameEngine = new GameEngine(map);
         gameController.setGameEngine(gameEngine);
         appWin.setGameController(gameController);
         appWin.setParametersController(parametersController);

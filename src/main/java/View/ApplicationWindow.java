@@ -1,22 +1,14 @@
 package View;
 
-
 import Controller.IGameController;
 import Controller.IParametersController;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
-/**
- * Created by DanyPatient on 15/03/2016.
- */
 public class ApplicationWindow {
     private IGameController gameController;
     private IParametersController parametersController;
-    private IGameView gameView;
-    private IParametersView parametersView;
+    private final IGameView gameView;
+    private final IParametersView parametersView;
     private Object currentView;
 
     public ApplicationWindow(IGameView gameView, IParametersView parametersView) {
@@ -50,6 +42,4 @@ public class ApplicationWindow {
         panel.setStyle("-fx-background-color: white");
         return panel;
     }
-
-
 }

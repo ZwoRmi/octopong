@@ -1,18 +1,13 @@
 package View;
 
 import Controller.IParametersController;
-import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-/**
- * @author maxime
- */
 public class ParametersView implements IParametersView {
     private StackPane myPanel;
     private IParametersController parametersController;

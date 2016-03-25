@@ -4,13 +4,9 @@ import Model.*;
 import Util.StopWatch;
 import java.util.Random;
 
-/**
- * Created by Lucas on 14/03/2016.
- */
 public class BallEngine implements IBallEngine {
     private final Map map;
-    private StopWatch stopWatch;
-
+    private final StopWatch stopWatch;
 
     public BallEngine(Map aMap) {
         this.stopWatch = new StopWatch();
@@ -36,9 +32,7 @@ public class BallEngine implements IBallEngine {
     @Override
     public void move() {
         synchronized (this.map.getBalls()){
-            for (Ball ball: this.map.getBalls()) {
-                this.moveBall(ball);
-            }
+            this.map.getBalls().forEach(this::moveBall);
         }
     }
 

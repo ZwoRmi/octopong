@@ -1,8 +1,5 @@
 package Model;
 
-/**
- * Created by Lucas on 16/03/2016.
- */
 public enum GoalPositions {
     StartNorth,
     EndNorth,

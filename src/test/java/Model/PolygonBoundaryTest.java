@@ -1,16 +1,10 @@
 package Model;
 
-import Model.Line;
-import Model.PolygonBoundary;
-import Model.Position;
 import javafx.scene.shape.Polygon;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by Lucas on 23/03/2016.
- */
 public class PolygonBoundaryTest {
 
     @Test
@@ -23,10 +17,7 @@ public class PolygonBoundaryTest {
     }
 
     private Polygon getPolygon() {
-        Polygon polygon = new Polygon(new double[]{
-                0,10,10,10,10,0,0,0
-        });
-        return polygon;
+        return new Polygon(0,10,10,10,10,0,0,0);
     }
 
     @Test

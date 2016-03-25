@@ -1,8 +1,5 @@
 package Model;
 
-/**
- * Created by Lucas on 14/03/2016.
- */
 public class GoalGoalKeeper {
     private Goal goal;
     private GoalKeeper goalKeeper;

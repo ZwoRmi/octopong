@@ -54,6 +54,7 @@ package Util;
  * @since 2.0
  * @version $Id: StopWatch.java 1591488 2014-04-30 21:49:35Z ggregory $
  */
+@SuppressWarnings("ALL")
 public class StopWatch {
 
     private static final long NANO_2_MILLIS = 1000000L;

@@ -1,20 +1,15 @@
 package Model;
 
-import Model.Goal;
-import Model.Line;
-import Model.Position;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Created by Lucas on 23/03/2016.
- */
+@SuppressWarnings("RedundantThrows")
 public class GoalTest {
     private Goal goal;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         this.goal = new Goal();
     }
 

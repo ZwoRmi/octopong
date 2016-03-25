@@ -1,8 +1,5 @@
 package Model;
 
-/**
- * Created by Lucas on 14/03/2016.
- */
 public class Line {
     private Position startPosition;
     private Position endPosition;
@@ -41,7 +38,6 @@ public class Line {
                 line.getStartPosition() == null && (this.getEndPosition() != null
                         ? this.getEndPosition().equals(line.getEndPosition()) :
                         line.getEndPosition() == null);
-
     }
 
     @Override

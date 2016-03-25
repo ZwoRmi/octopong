@@ -1,21 +1,16 @@
 package Model;
 
-import Model.Ball;
-import Model.Position;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Created by Lucas on 23/03/2016.
- */
 public class BallTest {
-    Ball ball;
+    private Ball ball;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         this.ball = new Ball();
     }
 
