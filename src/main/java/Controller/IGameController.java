@@ -5,7 +5,6 @@ import Model.IMap;
 
 public interface IGameController {
     IMap getMap();
-
     void setMap(IMap map);
     long getGameTime();
     void setGameEngine(IGameEngine gameEngine);
