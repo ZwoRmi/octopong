@@ -1,6 +1,7 @@
 package Model;
 
 public class PositionProvider {
+
     public Position getPositionGoalStart(GoalPositions goalPositions){
         Position position = new Position();
         switch (goalPositions){
