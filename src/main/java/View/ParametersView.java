@@ -1,12 +1,17 @@
 package View;
 
 import Controller.IParametersController;
+import Model.Tuple;
+import Util.StopWatch;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ParametersView implements IParametersView {
     private StackPane myPanel;
@@ -18,6 +23,9 @@ public class ParametersView implements IParametersView {
     private Button buttonSetIntervalBall;
     private ImageView logo;
     private Text copyrightText;
+    private List<Tuple<ImageView, Boolean>> imagesRotation;
+    private StopWatch stopWatchRotationImages;
+    private int rotate;
 
     public ParametersView() {
         this.speedBallValue = 1;
@@ -25,8 +33,54 @@ public class ParametersView implements IParametersView {
         this.initSetterSpeedBallButton();
         this.initLogo();
         this.initCopyright();
+        this.initImageList();
         this.initStartButton();
         this.initSetterIntervalBallButton();
+    }
+
+    private void initImageList() {
+        this.stopWatchRotationImages = new StopWatch();
+        this.stopWatchRotationImages.start();
+        this.imagesRotation = new ArrayList<>();
+        this.imagesRotation.add(new Tuple<>(this.getFirstImage(), false));
+        this.imagesRotation.add(new Tuple<>(this.getSecondImage(), true));
+        this.imagesRotation.add(new Tuple<>(this.getThirdImage(), true));
+    }
+
+    private ImageView getThirdImage() {
+        ImageView octogone = new ImageView();
+        Image img = new Image("octogone.png");
+        octogone.setImage(img);
+        octogone.setTranslateX(400);
+        octogone.setTranslateY(-200);
+        return octogone;
+    }
+
+    private ImageView getSecondImage() {
+        ImageView octogone = new ImageView();
+        Image img = new Image("octogone.png");
+        octogone.setImage(img);
+        octogone.setTranslateX(-500);
+        octogone.setTranslateY(300);
+        return octogone;
+    }
+
+    private void upRotate() {
+        this.rotate += 10;
+        if (this.rotate > 360) {
+            this.rotate -= 360;
+        }
+    }
+
+    private ImageView getFirstImage() {
+        ImageView octogone = new ImageView();
+        Image img = new Image("octogoneWithShadow.png");
+        octogone.setImage(img);
+        octogone.setTranslateX(0);
+        octogone.setTranslateY(0);
+        octogone.setFitWidth(450);
+        octogone.setPreserveRatio(true);
+        return octogone;
     }
 
     private void setSpeedAndIntervalValue() {
@@ -74,12 +128,28 @@ public class ParametersView implements IParametersView {
         this.parametersController = parametersController;
         this.drawLogo();
         this.drawCopyright();
+        this.drawImages();
         this.drawButtonStart();
         this.drawSetterIntervalBall();
         this.drawSetterSpeedBall();
         this.drawIntervalValue();
         this.drawSpeedBallValue();
         return this.myPanel;
+    }
+
+    private void drawImages() {
+        if (this.stopWatchRotationImages.getTime() > 350) {
+            this.upRotate();
+            this.stopWatchRotationImages.reset();
+            this.stopWatchRotationImages.start();
+        }
+        for (Tuple<ImageView, Boolean> imageRotation : this.imagesRotation) {
+
+            if (imageRotation.y) {
+                imageRotation.x.setRotate(this.rotate);
+            }
+            this.myPanel.getChildren().add(imageRotation.x);
+        }
     }
 
     @Override
