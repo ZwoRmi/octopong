@@ -7,8 +7,8 @@ import View.ApplicationWindow;
 public class GameController implements IGameController {
 
     private final StopWatch stopWatch;
-    private IGameEngine gameEngine;
     private final ApplicationWindow applicationWindow;
+    private IGameEngine gameEngine;
     private IParametersController parametersController;
 
     public GameController(ApplicationWindow applicationWindow) {
@@ -68,12 +68,12 @@ public class GameController implements IGameController {
     }
 
     @Override
-    public Map getMap() {
+    public IMap getMap() {
         return this.gameEngine.getMap();
     }
     @Override
-    public void setMap(Map map) {
-        this.gameEngine.setMap(map);
+    public void setMap(IMap IMap) {
+        this.gameEngine.setMap(IMap);
     }
 
     @Override

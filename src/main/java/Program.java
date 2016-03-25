@@ -1,5 +1,5 @@
 import Controller.*;
-import Model.Map;
+import Model.IMap;
 import Model.MapFactory;
 import View.*;
 import javafx.animation.AnimationTimer;
@@ -35,11 +35,11 @@ public class Program extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         ApplicationWindow appWin = getRootView();
-        Map map = new MapFactory().create();
+        IMap IMap = new MapFactory().create();
         IGameController gameController = new GameController(appWin);
-        IParametersController parametersController = new ParametersController(map, appWin, gameController);
+        IParametersController parametersController = new ParametersController(IMap, appWin, gameController);
         gameController.setParametersController(parametersController);
-        IGameEngine gameEngine = new GameEngine(map);
+        IGameEngine gameEngine = new GameEngine(IMap);
         gameController.setGameEngine(gameEngine);
         appWin.setGameController(gameController);
         appWin.setParametersController(parametersController);
