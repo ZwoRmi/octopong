@@ -1,17 +1,17 @@
 package Controller;
 
 import Model.IMap;
-import View.ApplicationWindow;
+import View.IApplicationWindow;
 
 import java.security.InvalidParameterException;
 
 public class ParametersController implements IParametersController {
-    private final ApplicationWindow rootWindow;
+    private final IApplicationWindow rootWindow;
     private final IGameController gameController;
-    private IMap IMap;
+    private IMap map;
 
-    public ParametersController(IMap IMap, ApplicationWindow rootWindow, IGameController gameController) {
-        this.IMap = IMap;
+    public ParametersController(IMap IMap, IApplicationWindow rootWindow, IGameController gameController) {
+        this.map = IMap;
         this.rootWindow = rootWindow;
         this.gameController = gameController;
     }
@@ -20,19 +20,19 @@ public class ParametersController implements IParametersController {
     public void setBallSpeed(int value) {
         switch (value) {
             case 1:
-                this.IMap.setBallSpeed(0.1f);
+                this.map.setBallSpeed(0.1f);
                 break;
             case 2:
-                this.IMap.setBallSpeed(0.15f);
+                this.map.setBallSpeed(0.15f);
                 break;
             case 3:
-                this.IMap.setBallSpeed(0.2f);
+                this.map.setBallSpeed(0.2f);
                 break;
             case 4:
-                this.IMap.setBallSpeed(0.25f);
+                this.map.setBallSpeed(0.25f);
                 break;
             case 5:
-                this.IMap.setBallSpeed(0.3f);
+                this.map.setBallSpeed(0.3f);
                 break;
             default:
                 throw new InvalidParameterException("value should be between 1-5 but the current value is : " + value);
@@ -43,19 +43,19 @@ public class ParametersController implements IParametersController {
     public void setBallSPawnInterval(int value) {
         switch (value) {
             case 1:
-                this.IMap.setBallSpawnInterval(20000);
+                this.map.setBallSpawnInterval(20000);
                 break;
             case 2:
-                this.IMap.setBallSpawnInterval(15000);
+                this.map.setBallSpawnInterval(15000);
                 break;
             case 3:
-                this.IMap.setBallSpawnInterval(10000);
+                this.map.setBallSpawnInterval(10000);
                 break;
             case 4:
-                this.IMap.setBallSpawnInterval(5000);
+                this.map.setBallSpawnInterval(5000);
                 break;
             case 5:
-                this.IMap.setBallSpawnInterval(2000);
+                this.map.setBallSpawnInterval(2000);
                 break;
             default:
                 throw new InvalidParameterException("value should be between 1-5 but the current value is : " + value);
@@ -74,7 +74,7 @@ public class ParametersController implements IParametersController {
     }
 
     @Override
-    public void setMap(IMap IMap) {
-        this.IMap = IMap;
+    public void setMap(IMap map) {
+        this.map = map;
     }
 }

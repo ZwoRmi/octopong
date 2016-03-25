@@ -10,11 +10,11 @@ public class MapFactory {
     private PositionProvider positionProvider;
 
     public IMap create() {
-        IMap IMap = new Map(this.getBalls());
-        IMap.setBallSpeed(1);
-        IMap.setBallSpawnInterval(10000000);
-        IMap.setGoalsGoalKeepers(this.getGoalsGoalKeepers());
-        return IMap;
+        IMap map = new Map(this.getBalls());
+        map.setBallSpeed(1);
+        map.setBallSpawnInterval(10000000);
+        map.setGoalsGoalKeepers(this.getGoalsGoalKeepers());
+        return map;
     }
 
     private List<Ball> getBalls() {

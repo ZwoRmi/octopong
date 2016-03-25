@@ -8,17 +8,17 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class GoalEngine implements IGoalEngine {
-    private final IMap IMap;
+    private final IMap map;
     private final ArrayList<Ball> ballsToRemove;
 
     public GoalEngine(IMap aIMap) {
-        this.IMap = aIMap;
+        this.map = aIMap;
         this.ballsToRemove = new ArrayList<>();
     }
 
     @Override
     public void move() {
-        for (GoalGoalKeeper goalGoalKeeper : this.IMap.getGoalsGoalKeepers()) {
+        for (GoalGoalKeeper goalGoalKeeper : this.map.getGoalsGoalKeepers()) {
             GoalKeeper goalKeeper = goalGoalKeeper.getGoalKeeper();
             if(!goalGoalKeeper.getGoalKeeper().getPlayedByHuman())
                 this.moveGoalKeeper(goalKeeper);
@@ -81,9 +81,9 @@ public class GoalEngine implements IGoalEngine {
         boolean found = false;
         int i = 0;
         Goal result = null;
-        while (i < this.IMap.getGoalsGoalKeepers().size() && !found) {
-            if (this.IMap.getGoalsGoalKeepers().get(i).getGoalKeeper().equals(goalKeeper)) {
-                result = this.IMap.getGoalsGoalKeepers().get(i).getGoal();
+        while (i < this.map.getGoalsGoalKeepers().size() && !found) {
+            if (this.map.getGoalsGoalKeepers().get(i).getGoalKeeper().equals(goalKeeper)) {
+                result = this.map.getGoalsGoalKeepers().get(i).getGoal();
                 found = true;
             }
             i++;
@@ -167,7 +167,7 @@ public class GoalEngine implements IGoalEngine {
 
     @Override
     public void checkBallInDetectionArea() {
-        for (GoalGoalKeeper goalGoalKeeper : this.IMap.getGoalsGoalKeepers()) {
+        for (GoalGoalKeeper goalGoalKeeper : this.map.getGoalsGoalKeepers()) {
             this.UpdateGoalTargetPosition(goalGoalKeeper, this.getBallsInDetectionArea(goalGoalKeeper));
         }
     }
@@ -250,16 +250,16 @@ public class GoalEngine implements IGoalEngine {
 
     private Position getNextPosition(Ball ball, Position fakePosition){
         Position targetPosition = new Position();
-        targetPosition.setX(fakePosition.getX() + ball.getDirection().getX() * this.IMap.getBallSpeed());
-        targetPosition.setY(fakePosition.getY() + ball.getDirection().getY() * this.IMap.getBallSpeed());
+        targetPosition.setX(fakePosition.getX() + ball.getDirection().getX() * this.map.getBallSpeed());
+        targetPosition.setY(fakePosition.getY() + ball.getDirection().getY() * this.map.getBallSpeed());
         return targetPosition;
     }
 
     private ArrayList<Ball> getBallsInDetectionArea(GoalGoalKeeper goalGoalKeeper) {
         ArrayList<Ball> ballsInArea = new ArrayList<>();
         PolygonBoundary boundary = new PolygonBoundary(goalGoalKeeper.getGoal().getGoalStartLine(), goalGoalKeeper.getGoal().getDetectionLine());
-        synchronized (this.IMap.getBalls()) {
-            ballsInArea.addAll(this.IMap.getBalls().stream().filter(ball -> boundary.contains(ball.getActualPosition()) &&
+        synchronized (this.map.getBalls()) {
+            ballsInArea.addAll(this.map.getBalls().stream().filter(ball -> boundary.contains(ball.getActualPosition()) &&
                     new ReboundCalculator(ball, goalGoalKeeper.getGoalKeeper()).isMovingToGoalKeeper()).collect(Collectors.toList()));
         }
         return ballsInArea;
@@ -267,9 +267,9 @@ public class GoalEngine implements IGoalEngine {
 
     @Override
     public void goalDetection() {
-        synchronized (this.IMap.getBalls()) {
-            for (Ball ball : this.IMap.getBalls()) {
-                this.IMap.getGoalsGoalKeepers().stream().filter(goalGoalKeeper -> this.isGoal(ball.getActualPosition(),
+        synchronized (this.map.getBalls()) {
+            for (Ball ball : this.map.getBalls()) {
+                this.map.getGoalsGoalKeepers().stream().filter(goalGoalKeeper -> this.isGoal(ball.getActualPosition(),
                         goalGoalKeeper.getGoal())).forEach(goalGoalKeeper -> this.onGoal(goalGoalKeeper.getGoal(), ball));
             }
         }
@@ -296,9 +296,9 @@ public class GoalEngine implements IGoalEngine {
         boolean found = false;
         int i = 0;
         GoalKeeper result = null;
-        while (i < this.IMap.getGoalsGoalKeepers().size() && !found) {
-            if (this.IMap.getGoalsGoalKeepers().get(i).getGoal().equals(goal)) {
-                result = this.IMap.getGoalsGoalKeepers().get(i).getGoalKeeper();
+        while (i < this.map.getGoalsGoalKeepers().size() && !found) {
+            if (this.map.getGoalsGoalKeepers().get(i).getGoal().equals(goal)) {
+                result = this.map.getGoalsGoalKeepers().get(i).getGoalKeeper();
                 found = true;
             }
             i++;
@@ -313,7 +313,7 @@ public class GoalEngine implements IGoalEngine {
 
     @Override
     public void centerGoalKeepers() {
-        this.IMap.getGoalsGoalKeepers().stream().filter(goalGoalKeeper -> this.getBallsInDetectionArea(goalGoalKeeper).isEmpty()).forEach(goalGoalKeeper -> {
+        this.map.getGoalsGoalKeepers().stream().filter(goalGoalKeeper -> this.getBallsInDetectionArea(goalGoalKeeper).isEmpty()).forEach(goalGoalKeeper -> {
             PositionProvider positionProvider = new PositionProvider();
             goalGoalKeeper.getGoalKeeper().setTargetPosition(new Line(positionProvider.getGoalKeeperPositionStart(positionProvider.getStartGoalPosition(goalGoalKeeper.getGoalKeeper().getGoalPosition())), positionProvider.getGoalKeeperPositionStart(positionProvider.getEndGoalPosition(goalGoalKeeper.getGoalKeeper().getGoalPosition()))));
         });
@@ -332,8 +332,8 @@ public class GoalEngine implements IGoalEngine {
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         int width = gd.getDisplayMode().getWidth();
         int height = gd.getDisplayMode().getHeight();
-        synchronized (this.IMap.getBalls()) {
-            this.IMap.getBalls().stream().filter(ball -> !ball.getNeedToRemove()).forEach(ball ->
+        synchronized (this.map.getBalls()) {
+            this.map.getBalls().stream().filter(ball -> !ball.getNeedToRemove()).forEach(ball ->
                     ball.setNeedToRemove(ball.getActualPosition().getX() > width ||
                     ball.getActualPosition().getY() > height ||
                     ball.getActualPosition().getX() < 0 ||
@@ -343,8 +343,8 @@ public class GoalEngine implements IGoalEngine {
             ball.setNeedToRemove(true);
         }
         this.ballsToRemove.clear();
-        synchronized (this.IMap.getBalls()) {
-            this.IMap.getBalls().removeIf(Ball::getNeedToRemove);
+        synchronized (this.map.getBalls()) {
+            this.map.getBalls().removeIf(Ball::getNeedToRemove);
         }
     }
 }

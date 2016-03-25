@@ -8,27 +8,26 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-@SuppressWarnings("RedundantThrows")
 public class MapTest {
-    private IMap IMap;
+    private IMap map;
 
     @Before
     public void setUp() {
-        this.IMap = new Map(null);
+        this.map = new Map(null);
     }
 
     @Test
     public void testGetBallSpeed() throws Exception {
         int expected = 5;
-        this.IMap.setBallSpeed(expected);
-        assertEquals(expected, this.IMap.getBallSpeed(), 0.00000001);
+        this.map.setBallSpeed(expected);
+        assertEquals(expected, this.map.getBallSpeed(), 0.00000001);
     }
 
     @Test
     public void testGetBallSpawnInterval() throws Exception {
         int expected = 8;
-        this.IMap.setBallSpawnInterval(expected);
-        assertEquals(expected, this.IMap.getBallSpawnInterval(), 0.00000001);
+        this.map.setBallSpawnInterval(expected);
+        assertEquals(expected, this.map.getBallSpawnInterval(), 0.00000001);
     }
 
     @Test
@@ -43,7 +42,7 @@ public class MapTest {
     public void testGetGoalsGoalKeepers() throws Exception {
         List<GoalGoalKeeper> expected = new ArrayList<>();
         expected.add(new GoalGoalKeeper());
-        this.IMap.setGoalsGoalKeepers(expected);
-        assertEquals(expected, this.IMap.getGoalsGoalKeepers());
+        this.map.setGoalsGoalKeepers(expected);
+        assertEquals(expected, this.map.getGoalsGoalKeepers());
     }
 }

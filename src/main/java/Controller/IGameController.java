@@ -6,24 +6,15 @@ import Model.IMap;
 public interface IGameController {
     IMap getMap();
 
-    void setMap(IMap IMap);
-
+    void setMap(IMap map);
     long getGameTime();
-
     void setGameEngine(IGameEngine gameEngine);
-
     void generateBallGame();
-
     void startGame();
-
     void pauseGame();
-
     void resumeGame();
-
     void restartGame();
-
     void stopGame();
-
     void setParametersController(IParametersController parametersController);
     void ControlSouthGoalKeeper();
     void MoveSouthGoalKeeper(int x);

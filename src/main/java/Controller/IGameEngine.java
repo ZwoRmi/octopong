@@ -10,12 +10,9 @@ public interface IGameEngine {
     void stopGame();
     void updateBallEngine();
     void updateGoalEngine();
-
     IMap getMap();
 
-    void setMap(IMap IMap);
-
+    void setMap(IMap map);
     void generateBall();
-
     IGoalEngine getGoalEngine();
 }

@@ -6,19 +6,19 @@ import Util.StopWatch;
 import java.util.Random;
 
 public class BallEngine implements IBallEngine {
-    private final IMap IMap;
+    private final IMap map;
     private final StopWatch stopWatch;
 
     public BallEngine(IMap aIMap) {
         this.stopWatch = new StopWatch();
-        this.IMap = aIMap;
+        this.map = aIMap;
         this.initTimeForGenerateBall();
     }
 
     @Override
     public void update() {
         this.move();
-        if (this.stopWatch.getTime() > this.IMap.getBallSpawnInterval()) {
+        if (this.stopWatch.getTime() > this.map.getBallSpawnInterval()) {
             this.generateBall();
             this.stopWatch.stop();
             this.stopWatch.reset();
@@ -32,8 +32,8 @@ public class BallEngine implements IBallEngine {
 
     @Override
     public void move() {
-        synchronized (this.IMap.getBalls()) {
-            this.IMap.getBalls().forEach(this::moveBall);
+        synchronized (this.map.getBalls()) {
+            this.map.getBalls().forEach(this::moveBall);
         }
     }
 
@@ -53,13 +53,13 @@ public class BallEngine implements IBallEngine {
         }
         Position actualPosition = ball.getActualPosition();
         Position targetPosition = new Position();
-        targetPosition.setX(actualPosition.getX() + ball.getDirection().getX() * this.IMap.getBallSpeed());
-        targetPosition.setY(actualPosition.getY() + ball.getDirection().getY() * this.IMap.getBallSpeed());
+        targetPosition.setX(actualPosition.getX() + ball.getDirection().getX() * this.map.getBallSpeed());
+        targetPosition.setY(actualPosition.getY() + ball.getDirection().getY() * this.map.getBallSpeed());
         ball.setActualPosition(targetPosition);
     }
 
     private Ball getBallBallRebound(Ball ball) {
-        for (Ball otherBall : this.IMap.getBalls()) {
+        for (Ball otherBall : this.map.getBalls()) {
             if(!ball.equals(otherBall)){
                 if (this.colliding(ball, otherBall)){
                     return otherBall;
@@ -79,7 +79,7 @@ public class BallEngine implements IBallEngine {
     }
 
     private GoalKeeper getGoalBallRebound(Ball ball) {
-        for (GoalGoalKeeper goalGoalKeeper : this.IMap.getGoalsGoalKeepers()) {
+        for (GoalGoalKeeper goalGoalKeeper : this.map.getGoalsGoalKeepers()) {
             PolygonBoundary boundary = new PolygonBoundary(goalGoalKeeper.getGoalKeeper().getActualPositionStart(), goalGoalKeeper.getGoalKeeper().getActualPositionEnd());
             if (boundary.contains(ball.getActualPosition())){
                 return goalGoalKeeper.getGoalKeeper();
@@ -93,7 +93,7 @@ public class BallEngine implements IBallEngine {
     }
     @Override
     public void generateBall() {
-        this.IMap.getBalls().add(this.getGeneratedBall());
+        this.map.getBalls().add(this.getGeneratedBall());
     }
 
     private Ball getGeneratedBall() {

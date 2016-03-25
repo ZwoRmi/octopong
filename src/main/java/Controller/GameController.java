@@ -2,16 +2,15 @@ package Controller;
 
 import Model.*;
 import Util.StopWatch;
-import View.ApplicationWindow;
+import View.IApplicationWindow;
 
 public class GameController implements IGameController {
-
     private final StopWatch stopWatch;
-    private final ApplicationWindow applicationWindow;
+    private final IApplicationWindow applicationWindow;
     private IGameEngine gameEngine;
     private IParametersController parametersController;
 
-    public GameController(ApplicationWindow applicationWindow) {
+    public GameController(IApplicationWindow applicationWindow) {
         this.applicationWindow = applicationWindow;
         this.stopWatch = new StopWatch();
     }
@@ -72,8 +71,8 @@ public class GameController implements IGameController {
         return this.gameEngine.getMap();
     }
     @Override
-    public void setMap(IMap IMap) {
-        this.gameEngine.setMap(IMap);
+    public void setMap(IMap map) {
+        this.gameEngine.setMap(map);
     }
 
     @Override

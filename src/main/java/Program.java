@@ -22,7 +22,7 @@ public class Program extends Application {
 
     }
 
-    private static ApplicationWindow getRootView() {
+    private static IApplicationWindow getRootView() {
         IGameView gameView = new GameView();
         IParametersView parametersView = new ParametersView();
         return new ApplicationWindow(gameView, parametersView);
@@ -34,7 +34,7 @@ public class Program extends Application {
         primaryStage.setTitle("OctoPong");
         primaryStage.setScene(scene);
         primaryStage.show();
-        ApplicationWindow appWin = getRootView();
+        IApplicationWindow appWin = getRootView();
         IMap IMap = new MapFactory().create();
         IGameController gameController = new GameController(appWin);
         IParametersController parametersController = new ParametersController(IMap, appWin, gameController);

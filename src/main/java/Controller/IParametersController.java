@@ -8,5 +8,5 @@ public interface IParametersController {
     void startParameters();
     void startGame();
 
-    void setMap(IMap IMap);
+    void setMap(IMap map);
 }
