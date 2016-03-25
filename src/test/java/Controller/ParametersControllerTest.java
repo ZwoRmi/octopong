@@ -12,9 +12,6 @@ import org.mockito.Mockito;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-/**
- * Created by Lucas on 25/03/2016.
- */
 public class ParametersControllerTest {
     @Mock
     IMap mockedMap;
@@ -24,7 +21,7 @@ public class ParametersControllerTest {
     IGameController mockedGameController;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         this.mockedMap = Mockito.mock(Map.class);
         this.mockedApplicationWindow = Mockito.mock(ApplicationWindow.class);
         this.mockedGameController = Mockito.mock(GameController.class);
