@@ -1,7 +1,5 @@
 package Model;
 
-import java.security.InvalidParameterException;
-
 public class ReboundCalculator {
     private final Ball ball;
     private final GoalKeeper goalKeeper;
@@ -41,8 +39,6 @@ public class ReboundCalculator {
                 position.setX(actualDirection.getY()*-1);
                 position.setY(actualDirection.getX()*-1);
                 break;
-            default:
-                throw new InvalidParameterException("Unknown enum member");
         }
         return position;
     }
