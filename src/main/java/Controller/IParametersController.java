@@ -1,11 +1,12 @@
 package Controller;
 
-import Model.Map;
+import Model.IMap;
 
 public interface IParametersController {
     void setBallSpeed(int value);
     void setBallSPawnInterval (int value);
     void startParameters();
     void startGame();
-    void setMap(Map map);
+
+    void setMap(IMap IMap);
 }

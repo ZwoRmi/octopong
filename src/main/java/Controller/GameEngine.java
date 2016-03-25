@@ -1,25 +1,26 @@
 package Controller;
 
 
-import Model.Map;
+import Model.IMap;
 import Model.MapFactory;
+
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
 public class GameEngine implements IGameEngine {
     private Timer timer;
-    private Map map;
+    private IMap IMap;
     private IGoalEngine goalEngine;
     private IBallEngine ballEngine;
 
-    public GameEngine(Map aMap) {
-        this.map = aMap;
+    public GameEngine(IMap aIMap) {
+        this.IMap = aIMap;
         this.init();
     }
 
     private void init(){
-        this.goalEngine = new GoalEngine(this.map);
-        this.ballEngine = new BallEngine(this.map);
+        this.goalEngine = new GoalEngine(this.IMap);
+        this.ballEngine = new BallEngine(this.IMap);
         this.timer = this.createTimer();
     }
 
@@ -49,20 +50,20 @@ public class GameEngine implements IGameEngine {
 
     @Override
     public void restartGame() {
-        Map oldMap = this.map;
-        this.map = new MapFactory().create();
-        this.ballEngine = new BallEngine(this.map);
-        this.goalEngine = new GoalEngine(this.map);
-        this.map.setBallSpawnInterval(oldMap.getBallSpawnInterval());
-        this.map.setBallSpeed(oldMap.getBallSpeed());
+        IMap oldIMap = this.IMap;
+        this.IMap = new MapFactory().create();
+        this.ballEngine = new BallEngine(this.IMap);
+        this.goalEngine = new GoalEngine(this.IMap);
+        this.IMap.setBallSpawnInterval(oldIMap.getBallSpawnInterval());
+        this.IMap.setBallSpeed(oldIMap.getBallSpeed());
         this.timer.restart();
         this.timer.start();
     }
 
     @Override
     public void stopGame() {
-        this.ballEngine = new BallEngine(this.map);
-        this.goalEngine = new GoalEngine(this.map);
+        this.ballEngine = new BallEngine(this.IMap);
+        this.goalEngine = new GoalEngine(this.IMap);
         this.timer.stop();
     }
 
@@ -77,13 +78,13 @@ public class GameEngine implements IGameEngine {
     }
 
     @Override
-    public Map getMap() {
-        return this.map;
+    public IMap getMap() {
+        return this.IMap;
     }
 
     @Override
-    public void setMap(Map map) {
-        this.map = map;
+    public void setMap(IMap IMap) {
+        this.IMap = IMap;
     }
 
     @Override

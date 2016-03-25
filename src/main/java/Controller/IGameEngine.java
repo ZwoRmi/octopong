@@ -1,6 +1,6 @@
 package Controller;
 
-import Model.Map;
+import Model.IMap;
 
 public interface IGameEngine {
     void startGame();
@@ -10,8 +10,12 @@ public interface IGameEngine {
     void stopGame();
     void updateBallEngine();
     void updateGoalEngine();
-    Map getMap();
+
+    IMap getMap();
+
+    void setMap(IMap IMap);
+
     void generateBall();
-    void setMap(Map map);
+
     IGoalEngine getGoalEngine();
 }
