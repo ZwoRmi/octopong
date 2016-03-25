@@ -150,13 +150,23 @@ public class GameView implements IGameView {
     private void initRestartButton() {
         this.restartButton = new Button();
         this.restartButton.setText("Redémarrer");
-        this.restartButton.setOnMousePressed(event -> GameView.this.gameController.restartGame());
+        this.restartButton.setOnMousePressed(event -> {
+            GameView.this.gameController.restartGame();
+            this.showGameInstructions = false;
+            this.stopWatch.reset();
+            this.startGameButton.setText("Jouer");
+        });
     }
 
     private void initStopButton() {
         this.stopButton = new Button();
         this.stopButton.setText("Stop");
-        this.stopButton.setOnMousePressed(event -> GameView.this.gameController.stopGame());
+        this.stopButton.setOnMousePressed(event -> {
+            GameView.this.gameController.stopGame();
+            this.showGameInstructions = false;
+            this.stopWatch.reset();
+            this.startGameButton.setText("Jouer");
+        });
     }
 
     private void initPauseButton() {
@@ -177,12 +187,11 @@ public class GameView implements IGameView {
         this.startGameButton = new Button();
         this.startGameButton.setText("Jouer");
         this.startGameButton.setOnMousePressed(event -> {
-            if(gameController.getSouthGoalKeeper().getPlayedByHuman()){
+            if(!showGameInstructions && gameController.getSouthGoalKeeper().getPlayedByHuman()){
                 startGameButton.setText("Jouer");
                 GameView.this.gameController.UnControlSouthGoalKeeper();
                 stopWatch.reset();
-                stopWatch.stop();
-            } else {
+            } else if(!showGameInstructions){
                 startGameButton.setText("Animer");
                 showGameInstructions = true;
                 GameView.this.gameController.pauseGame();
@@ -210,7 +219,7 @@ public class GameView implements IGameView {
             this.showGameInstructions = false;
             GameView.this.gameController.ControlSouthGoalKeeper();
             GameView.this.gameController.resumeGame();
-            stopWatch.stop();
+            GameView.this.gameController.resumeGame();
             stopWatch.reset();
         }
         else if (this.stopWatch.getTime()>4000){

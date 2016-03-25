@@ -20,7 +20,6 @@ public class BallEngine implements IBallEngine {
         this.move();
         if (this.stopWatch.getTime() > this.map.getBallSpawnInterval()) {
             this.generateBall();
-            this.stopWatch.stop();
             this.stopWatch.reset();
             this.initTimeForGenerateBall();
         }
