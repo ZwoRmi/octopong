@@ -11,8 +11,13 @@ public interface IGameEngine {
     void updateBallEngine();
     void updateGoalEngine();
     IMap getMap();
-
     void setMap(IMap map);
     void generateBall();
     IGoalEngine getGoalEngine();
+
+    void setGoalEngine(IGoalEngine goalEngine);
+
+    IBallEngine getBallEngine();
+
+    void setBallEngine(IBallEngine ballEngine);
 }
