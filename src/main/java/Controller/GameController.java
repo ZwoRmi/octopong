@@ -76,40 +76,34 @@ public class GameController implements IGameController {
     }
 
     @Override
-    public void setParametersController(IParametersController parametersController) {
-        this.parametersController = parametersController;
-    }
-
-    @Override
     public long getGameTime() {
         return this.stopWatch.getNanoTime();
     }
 
     @Override
-    public void ControlSouthGoalKeeper(){
+    public void ControlSouthGoalKeeper() {
         this.getSouthGoalKeeper().setPlayedByHuman(true);
     }
 
     @Override
-    public void MoveSouthGoalKeeper(int x){
+    public void MoveSouthGoalKeeper(int x) {
         GoalKeeper southGoalKeeper = this.getSouthGoalKeeper();
-        if (!southGoalKeeper.getPlayedByHuman())
-            return;
-        Line targetPositionStart = new Line(new Position(),new Position());
-        targetPositionStart.getStartPosition().setX(southGoalKeeper.getActualPositionStart().getStartPosition().getX()+ x);
+        if (!southGoalKeeper.getPlayedByHuman()) return;
+        Line targetPositionStart = new Line(new Position(), new Position());
+        targetPositionStart.getStartPosition().setX(southGoalKeeper.getActualPositionStart().getStartPosition().getX() + x);
         targetPositionStart.getStartPosition().setY(southGoalKeeper.getActualPositionStart().getStartPosition().getY());
-        targetPositionStart.getEndPosition().setX(southGoalKeeper.getActualPositionStart().getEndPosition().getX()+ x);
+        targetPositionStart.getEndPosition().setX(southGoalKeeper.getActualPositionStart().getEndPosition().getX() + x);
         targetPositionStart.getEndPosition().setY(southGoalKeeper.getActualPositionStart().getEndPosition().getY());
-        if (this.gameEngine.getGoalEngine().isInLimitedArea(southGoalKeeper, targetPositionStart)){
+        if (this.gameEngine.getGoalEngine().isInLimitedArea(southGoalKeeper, targetPositionStart)) {
             southGoalKeeper.setActualPositionStart(targetPositionStart);
-            southGoalKeeper.getActualPositionEnd().getStartPosition().setX(southGoalKeeper.getActualPositionEnd().getStartPosition().getX()+ x);
-            southGoalKeeper.getActualPositionEnd().getEndPosition().setX(southGoalKeeper.getActualPositionEnd().getEndPosition().getX()+ x);
+            southGoalKeeper.getActualPositionEnd().getStartPosition().setX(southGoalKeeper.getActualPositionEnd().getStartPosition().getX() + x);
+            southGoalKeeper.getActualPositionEnd().getEndPosition().setX(southGoalKeeper.getActualPositionEnd().getEndPosition().getX() + x);
         }
 
     }
 
     @Override
-    public GoalKeeper getSouthGoalKeeper(){
+    public GoalKeeper getSouthGoalKeeper() {
         for (GoalGoalKeeper goalGoalKeeper : this.getMap().getGoalsGoalKeepers()) {
             if (goalGoalKeeper.getGoalKeeper().getGoalPosition() == GoalPosition.South) {
                 return goalGoalKeeper.getGoalKeeper();
@@ -121,5 +115,15 @@ public class GameController implements IGameController {
     @Override
     public void UnControlSouthGoalKeeper() {
         this.getSouthGoalKeeper().setPlayedByHuman(false);
+    }
+
+    @Override
+    public IParametersController getParametersController() {
+        return this.parametersController;
+    }
+
+    @Override
+    public void setParametersController(IParametersController parametersController) {
+        this.parametersController = parametersController;
     }
 }

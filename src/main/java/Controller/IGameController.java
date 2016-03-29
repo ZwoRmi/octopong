@@ -14,9 +14,16 @@ public interface IGameController {
     void resumeGame();
     void restartGame();
     void stopGame();
-    void setParametersController(IParametersController parametersController);
+
     void ControlSouthGoalKeeper();
+
     void MoveSouthGoalKeeper(int x);
+
     GoalKeeper getSouthGoalKeeper();
+
     void UnControlSouthGoalKeeper();
+
+    IParametersController getParametersController();
+
+    void setParametersController(IParametersController parametersController);
 }
