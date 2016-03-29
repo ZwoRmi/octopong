@@ -28,10 +28,9 @@ public class GameView implements IGameView {
     private GridPane myPanel;
     private IGameController gameController;
     private GridPane myButtonsPanel;
-    private Button playButton;
+    private Button playPauseButton;
     private Button restartButton;
     private Button stopButton;
-    private Button pauseButton;
     private Button startGameButton;
     private Button generateBallButton;
     private ImageView logo;
@@ -41,9 +40,11 @@ public class GameView implements IGameView {
     private Text timerToControlGoalKeeper;
     private boolean showGameInstructions;
     private StopWatch stopWatch;
+    private boolean isPlaying;
 
     public GameView() {
         this.showGameInstructions = false;
+        this.isPlaying = true;
         this.initButtons();
         this.initPaneButtons();
         this.initLogo();
@@ -135,8 +136,7 @@ public class GameView implements IGameView {
     }
 
     private void initButtons() {
-        this.initPlayButton();
-        this.initPauseButton();
+        this.initPlayPauseButton();
         this.initStopButton();
         this.initRestartButton();
         this.initStartGameButton();
@@ -144,74 +144,74 @@ public class GameView implements IGameView {
     }
 
     private void initGenerateBallButton() {
-        this.generateBallButton = new Button();
-        this.generateBallButton.setPrefWidth(105);
+        this.generateBallButton = new ImageButton("addBallIconButton.png");
+        this.generateBallButton.setPrefWidth(1);
         this.generateBallButton.setAlignment(Pos.CENTER);
-        this.generateBallButton.setText("Ajouter balle");
         this.generateBallButton.setOnMousePressed(event -> GameView.this.gameController.generateBallGame());
     }
 
     private void initRestartButton() {
-        this.restartButton = new Button();
-        this.restartButton.setText("Redémarrer");
+        this.restartButton = new ImageButton("restartIconButton.png");
         this.restartButton.setAlignment(Pos.CENTER);
-        this.restartButton.setPrefWidth(105);
+        this.restartButton.setPrefWidth(1);
         this.restartButton.setOnMousePressed(event -> {
             GameView.this.gameController.restartGame();
             this.showGameInstructions = false;
             this.stopWatch.reset();
-            this.startGameButton.setText("Jouer");
+            this.startGameButton.setGraphic(new ImageView("playIconButton.png"));
         });
     }
 
     private void initStopButton() {
-        this.stopButton = new Button();
-        this.stopButton.setText("Stop");
-        this.stopButton.setPrefWidth(105);
+        this.stopButton = new ImageButton("stopIconButton.png");
+        this.stopButton.setPrefWidth(1);
         this.stopButton.setAlignment(Pos.CENTER);
         this.stopButton.setOnMousePressed(event -> {
             GameView.this.gameController.stopGame();
             this.showGameInstructions = false;
             this.stopWatch.reset();
-            this.startGameButton.setText("Jouer");
+            this.startGameButton.setGraphic(new ImageView("playIconButton.png"));
         });
     }
 
-    private void initPauseButton() {
-        this.pauseButton = new ImageButton("pauseIconButton.png");
-        this.pauseButton.setAlignment(Pos.CENTER);
-        this.pauseButton.setPrefSize(50, 50);
-        this.pauseButton.setOnMousePressed(event -> GameView.this.gameController.pauseGame());
-    }
-
-    private void initPlayButton() {
-        this.playButton = new Button();
-        this.playButton.setText("Reprendre");
-        this.playButton.setPrefWidth(105);
-        this.playButton.setOnMousePressed(event -> GameView.this.gameController.resumeGame());
-        this.playButton.setAlignment(Pos.CENTER);
-        this.playButton.setTextAlignment(TextAlignment.CENTER);
+    private void initPlayPauseButton() {
+        this.playPauseButton = new ImageButton("pauseIconButton.png");
+        this.playPauseButton.setPrefWidth(1);
+        this.playPauseButton.setAlignment(Pos.CENTER);
+        this.playPauseButton.setTextAlignment(TextAlignment.CENTER);
+        this.playPauseButton.setOnMousePressed(
+                event -> {
+                    if(!this.isPlaying){
+                        GameView.this.gameController.resumeGame();
+                        this.playPauseButton.setGraphic(new ImageView("pauseIconButton.png"));
+                        this.isPlaying = true;
+                    } else {
+                        GameView.this.gameController.pauseGame();
+                        this.playPauseButton.setGraphic(new ImageView("resumeIconButton.png"));
+                        this.isPlaying = false;
+                    }
+                }
+        );
     }
 
     private void initStartGameButton() {
-        this.startGameButton = new Button();
-        this.startGameButton.setText("Jouer");
-        this.startGameButton.setPrefWidth(105);
-        this.startGameButton.setOnMousePressed(event -> {
-            if(!showGameInstructions && gameController.getSouthGoalKeeper().getPlayedByHuman()){
-                startGameButton.setText("Jouer");
-                GameView.this.gameController.UnControlSouthGoalKeeper();
-                stopWatch.reset();
-            } else if(!showGameInstructions){
-                startGameButton.setText("Animer");
-                showGameInstructions = true;
-                GameView.this.gameController.pauseGame();
-                GameView.this.gameController.ControlSouthGoalKeeper();
-                stopWatch.start();
-            }
-        });
+        this.startGameButton = new ImageButton("playIconButton.png");
+        this.startGameButton.setPrefWidth(1);
         this.startGameButton.setAlignment(Pos.CENTER);
         this.startGameButton.setTextAlignment(TextAlignment.CENTER);
+        this.startGameButton.setOnMousePressed(event -> {
+            if(!showGameInstructions && gameController.getSouthGoalKeeper().getPlayedByHuman()){
+                this.startGameButton.setGraphic(new ImageView("playIconButton.png"));
+                GameView.this.gameController.UnControlSouthGoalKeeper();
+                this.stopWatch.reset();
+            } else if(!showGameInstructions){
+                this.startGameButton.setGraphic(new ImageView("stopPlayIconButton.png"));
+                this.showGameInstructions = true;
+                GameView.this.gameController.pauseGame();
+                GameView.this.gameController.ControlSouthGoalKeeper();
+                this.stopWatch.start();
+            }
+        });
     }
 
     private void initTimerToControlGoalKeeper() {
@@ -275,30 +275,26 @@ public class GameView implements IGameView {
 
     private void initPaneButtons() {
         this.myButtonsPanel = new GridPane();
-        this.myButtonsPanel.getColumnConstraints().add(new ColumnConstraints(240));
-        this.myButtonsPanel.getColumnConstraints().add(new ColumnConstraints(240));
-        this.myButtonsPanel.getColumnConstraints().add(new ColumnConstraints(240));
-        this.myButtonsPanel.getColumnConstraints().add(new ColumnConstraints(240));
+        this.myButtonsPanel.getColumnConstraints().add(new ColumnConstraints(320));
+        this.myButtonsPanel.getColumnConstraints().add(new ColumnConstraints(320));
+        this.myButtonsPanel.getColumnConstraints().add(new ColumnConstraints(320));
         this.myButtonsPanel.getRowConstraints().add(new RowConstraints(60));
         this.myButtonsPanel.getRowConstraints().add(new RowConstraints(60));
-        this.myButtonsPanel.add(this.pauseButton, 0, 0);
-        GridPane.setHalignment(this.pauseButton, HPos.CENTER);
-        GridPane.setValignment(this.pauseButton, VPos.CENTER);
-        this.myButtonsPanel.add(this.playButton, 1, 0);
-        GridPane.setHalignment(this.playButton, HPos.CENTER);
-        GridPane.setValignment(this.playButton, VPos.CENTER);
-        this.myButtonsPanel.add(this.stopButton, 3, 0);
-        GridPane.setHalignment(this.stopButton, HPos.CENTER);
-        GridPane.setValignment(this.stopButton, VPos.CENTER);
-        this.myButtonsPanel.add(this.restartButton, 2, 0);
+        this.myButtonsPanel.add(this.playPauseButton, 0, 0);
+        GridPane.setHalignment(this.playPauseButton, HPos.CENTER);
+        GridPane.setValignment(this.playPauseButton, VPos.CENTER);
+        this.myButtonsPanel.add(this.restartButton, 1, 0);
         GridPane.setHalignment(this.restartButton, HPos.CENTER);
         GridPane.setValignment(this.restartButton, VPos.CENTER);
-        this.myButtonsPanel.add(this.startGameButton, 2, 1);
-        GridPane.setHalignment(this.startGameButton, HPos.CENTER);
-        GridPane.setValignment(this.startGameButton, VPos.CENTER);
-        this.myButtonsPanel.add(this.generateBallButton, 1, 1);
+        this.myButtonsPanel.add(this.stopButton, 2, 0);
+        GridPane.setHalignment(this.stopButton, HPos.CENTER);
+        GridPane.setValignment(this.stopButton, VPos.CENTER);
+        this.myButtonsPanel.add(this.generateBallButton, 0, 1, 2, 1);
         GridPane.setHalignment(this.generateBallButton, HPos.CENTER);
         GridPane.setValignment(this.generateBallButton, VPos.CENTER);
+        this.myButtonsPanel.add(this.startGameButton, 1, 1, 2, 1);
+        GridPane.setHalignment(this.startGameButton, HPos.CENTER);
+        GridPane.setValignment(this.startGameButton, VPos.CENTER);
     }
 
     private void initPane() {
@@ -308,10 +304,10 @@ public class GameView implements IGameView {
         this.myPanel.getColumnConstraints().add(new ColumnConstraints(120));
         this.myPanel.getRowConstraints().add(new RowConstraints(120));
         this.myPanel.getRowConstraints().add(new RowConstraints(660));
-        this.myPanel.getRowConstraints().add(new RowConstraints(80));
-        this.myPanel.getRowConstraints().add(new RowConstraints(40));
+        this.myPanel.getRowConstraints().add(new RowConstraints(120));
         this.myPanel.getRowConstraints().add(new RowConstraints(40));
         this.myPanel.setGridLinesVisible(false);
+        this.myButtonsPanel.setGridLinesVisible(false);
     }
 
     @Override
