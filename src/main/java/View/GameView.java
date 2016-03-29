@@ -13,7 +13,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.*;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
+import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -176,11 +178,9 @@ public class GameView implements IGameView {
     }
 
     private void initPauseButton() {
-        this.pauseButton = new Button();
-        this.pauseButton.setText("Pause");
-        this.pauseButton.setStyle("-fx-base: #C8C8C8;");
+        this.pauseButton = new ImageButton("pauseIconButton.png");
         this.pauseButton.setAlignment(Pos.CENTER);
-        this.pauseButton.setPrefWidth(105);
+        this.pauseButton.setPrefSize(50, 50);
         this.pauseButton.setOnMousePressed(event -> GameView.this.gameController.pauseGame());
     }
 
