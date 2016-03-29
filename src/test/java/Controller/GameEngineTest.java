@@ -131,7 +131,7 @@ public class GameEngineTest {
     public synchronized void testStartGameUpdateBallEngine() throws Exception {
         this.gameEngine.setBallEngine(mockedBallEngine);
         this.gameEngine.startGame();
-        Thread.sleep(500);
+        Thread.sleep(800);
         verify(mockedBallEngine, atLeastOnce()).update();
     }
 
