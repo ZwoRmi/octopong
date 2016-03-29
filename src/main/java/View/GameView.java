@@ -143,6 +143,8 @@ public class GameView implements IGameView {
 
     private void initGenerateBallButton() {
         this.generateBallButton = new Button();
+        this.generateBallButton.setPrefWidth(105);
+        this.generateBallButton.setAlignment(Pos.CENTER);
         this.generateBallButton.setText("Ajouter balle");
         this.generateBallButton.setOnMousePressed(event -> GameView.this.gameController.generateBallGame());
     }
@@ -150,6 +152,8 @@ public class GameView implements IGameView {
     private void initRestartButton() {
         this.restartButton = new Button();
         this.restartButton.setText("Redémarrer");
+        this.restartButton.setAlignment(Pos.CENTER);
+        this.restartButton.setPrefWidth(105);
         this.restartButton.setOnMousePressed(event -> {
             GameView.this.gameController.restartGame();
             this.showGameInstructions = false;
@@ -161,6 +165,8 @@ public class GameView implements IGameView {
     private void initStopButton() {
         this.stopButton = new Button();
         this.stopButton.setText("Stop");
+        this.stopButton.setPrefWidth(105);
+        this.stopButton.setAlignment(Pos.CENTER);
         this.stopButton.setOnMousePressed(event -> {
             GameView.this.gameController.stopGame();
             this.showGameInstructions = false;
@@ -172,12 +178,16 @@ public class GameView implements IGameView {
     private void initPauseButton() {
         this.pauseButton = new Button();
         this.pauseButton.setText("Pause");
+        this.pauseButton.setStyle("-fx-base: #C8C8C8;");
+        this.pauseButton.setAlignment(Pos.CENTER);
+        this.pauseButton.setPrefWidth(105);
         this.pauseButton.setOnMousePressed(event -> GameView.this.gameController.pauseGame());
     }
 
     private void initPlayButton() {
         this.playButton = new Button();
         this.playButton.setText("Reprendre");
+        this.playButton.setPrefWidth(105);
         this.playButton.setOnMousePressed(event -> GameView.this.gameController.resumeGame());
         this.playButton.setAlignment(Pos.CENTER);
         this.playButton.setTextAlignment(TextAlignment.CENTER);
@@ -186,6 +196,7 @@ public class GameView implements IGameView {
     private void initStartGameButton() {
         this.startGameButton = new Button();
         this.startGameButton.setText("Jouer");
+        this.startGameButton.setPrefWidth(105);
         this.startGameButton.setOnMousePressed(event -> {
             if(!showGameInstructions && gameController.getSouthGoalKeeper().getPlayedByHuman()){
                 startGameButton.setText("Jouer");
@@ -270,22 +281,22 @@ public class GameView implements IGameView {
         this.myButtonsPanel.getColumnConstraints().add(new ColumnConstraints(240));
         this.myButtonsPanel.getRowConstraints().add(new RowConstraints(60));
         this.myButtonsPanel.getRowConstraints().add(new RowConstraints(60));
-        this.myButtonsPanel.add(this.playButton, 0, 0);
-        GridPane.setHalignment(this.playButton, HPos.CENTER);
-        GridPane.setValignment(this.playButton, VPos.CENTER);
-        this.myButtonsPanel.add(this.pauseButton, 1, 0);
+        this.myButtonsPanel.add(this.pauseButton, 0, 0);
         GridPane.setHalignment(this.pauseButton, HPos.CENTER);
         GridPane.setValignment(this.pauseButton, VPos.CENTER);
-        this.myButtonsPanel.add(this.stopButton, 2, 0);
+        this.myButtonsPanel.add(this.playButton, 1, 0);
+        GridPane.setHalignment(this.playButton, HPos.CENTER);
+        GridPane.setValignment(this.playButton, VPos.CENTER);
+        this.myButtonsPanel.add(this.stopButton, 3, 0);
         GridPane.setHalignment(this.stopButton, HPos.CENTER);
         GridPane.setValignment(this.stopButton, VPos.CENTER);
-        this.myButtonsPanel.add(this.restartButton, 3, 0);
+        this.myButtonsPanel.add(this.restartButton, 2, 0);
         GridPane.setHalignment(this.restartButton, HPos.CENTER);
         GridPane.setValignment(this.restartButton, VPos.CENTER);
-        this.myButtonsPanel.add(this.startGameButton, 1, 1);
+        this.myButtonsPanel.add(this.startGameButton, 2, 1);
         GridPane.setHalignment(this.startGameButton, HPos.CENTER);
         GridPane.setValignment(this.startGameButton, VPos.CENTER);
-        this.myButtonsPanel.add(this.generateBallButton, 2, 1);
+        this.myButtonsPanel.add(this.generateBallButton, 1, 1);
         GridPane.setHalignment(this.generateBallButton, HPos.CENTER);
         GridPane.setValignment(this.generateBallButton, VPos.CENTER);
     }
@@ -299,6 +310,7 @@ public class GameView implements IGameView {
         this.myPanel.getRowConstraints().add(new RowConstraints(660));
         this.myPanel.getRowConstraints().add(new RowConstraints(80));
         this.myPanel.getRowConstraints().add(new RowConstraints(40));
+        this.myPanel.getRowConstraints().add(new RowConstraints(40));
         this.myPanel.setGridLinesVisible(false);
     }
 
@@ -307,6 +319,7 @@ public class GameView implements IGameView {
         for (GoalGoalKeeper goalGoalKeeper : this.gameController.getMap().getGoalsGoalKeepers()) {
             Line line = new Line();
             line.setStrokeWidth(3);
+            line.setStroke(Color.rgb(222,175,85));
             line.setStartX(goalGoalKeeper.getGoal().getGoalStartLine().getStartPosition().getX()-125);
             line.setStartY(goalGoalKeeper.getGoal().getGoalStartLine().getStartPosition().getY());
             line.setEndX(goalGoalKeeper.getGoal().getGoalStartLine().getEndPosition().getX()-125);
@@ -348,6 +361,7 @@ public class GameView implements IGameView {
         for (GoalGoalKeeper goalGoalKeeper : this.gameController.getMap().getGoalsGoalKeepers()) {
             Text score = new Text();
             score.setFont(new Font(20));
+            score.setStroke(Color.rgb(120,120,120));
             score.setText(goalGoalKeeper.getGoalKeeper().getScore().getScore() + "");
             score.setX(goalGoalKeeper.getGoalKeeper().getScore().getPosition().getX());
             score.setY(goalGoalKeeper.getGoalKeeper().getScore().getPosition().getY());
@@ -358,12 +372,12 @@ public class GameView implements IGameView {
 
     @Override
     public void drawTime() {
-        HBox hbox = new HBox();
         Text t = new Text();
         t.setFont(new Font(20));
         t.setText(this.getGameTimeFormatted());
-        hbox.getChildren().add(t);
-        this.myPanel.add(hbox, 2, 0);
+        GridPane.setHalignment(t,HPos.CENTER);
+        GridPane.setValignment(t,VPos.CENTER);
+        this.myPanel.add(t, 2, 0);
     }
 
     private String getGameTimeFormatted() {
@@ -380,8 +394,9 @@ public class GameView implements IGameView {
     }
 
     private void drawCopyright(){
-        this.myPanel.add(this.copyrightText,1,3);
+        this.myPanel.add(this.copyrightText,1,4);
         GridPane.setHalignment(this.copyrightText,HPos.CENTER);
+        GridPane.setValignment(this.copyrightText,VPos.BOTTOM);
         this.myPanel.setAlignment(Pos.CENTER);
     }
 
