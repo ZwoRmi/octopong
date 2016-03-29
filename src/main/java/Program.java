@@ -30,7 +30,8 @@ public class Program extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Scene scene = new Scene(new StackPane(), 1200, 800);
+        Scene scene = new Scene(new StackPane(), 1920, 1000);
+        primaryStage.setFullScreen(true);
         primaryStage.setTitle("OctoPong");
         primaryStage.setScene(scene);
         primaryStage.show();

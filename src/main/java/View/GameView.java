@@ -20,6 +20,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -381,7 +383,8 @@ public class GameView implements IGameView {
         long millis = TimeUnit.MILLISECONDS.convert(nanoseconds, TimeUnit.NANOSECONDS);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date(millis));
-        return (calendar.get(Calendar.HOUR) - 1) + "H " + calendar.get(Calendar.MINUTE) + "M " + calendar.get(Calendar.SECOND) + "S ";
+        NumberFormat formatter = new DecimalFormat("00");
+        return (formatter.format(calendar.get(Calendar.HOUR) - 1)) + ":" + formatter.format(calendar.get(Calendar.MINUTE)) + ":" + formatter.format(calendar.get(Calendar.SECOND));
     }
 
     @Override

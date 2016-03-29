@@ -60,8 +60,8 @@ public class ParametersView implements IParametersView {
         ImageView octogone = new ImageView();
         Image img = new Image("octogone.png");
         octogone.setImage(img);
-        octogone.setTranslateX(-500);
-        octogone.setTranslateY(300);
+        octogone.setTranslateX(-400);
+        octogone.setTranslateY(200);
         return octogone;
     }
 
@@ -92,30 +92,30 @@ public class ParametersView implements IParametersView {
         this.logo = new ImageView();
         Image logoImage = new Image("logoOctopong.png");
         this.logo.setImage(logoImage);
-        this.logo.setTranslateX(-400);
-        this.logo.setTranslateY(-300);
+        this.logo.setTranslateX(-450);
+        this.logo.setTranslateY(-417);
     }
 
     private void initCopyright() {
         this.copyrightText = new Text();
         this.copyrightText.setFont(new Font(10));
         this.copyrightText.setText("Copyright © 2016 ZwoD. All rights reserved.");
-        this.copyrightText.setTranslateY(350);
+        this.copyrightText.setTranslateY(470);
     }
 
     private void initSetterIntervalBallButton() {
         this.buttonSetIntervalBall = new Button();
         this.buttonSetIntervalBall.setText("Fréquence d'apparition des billes");
+        this.buttonSetIntervalBall.setPrefWidth(245);
         this.buttonSetIntervalBall.setTranslateX(0);
         this.buttonSetIntervalBall.setTranslateY(0);
         this.buttonSetIntervalBall.setOnMousePressed(event -> ParametersView.this.changeIntervalBallValue());
     }
 
     private void initStartButton() {
-        this.buttonStart = new Button();
-        this.buttonStart.setText("Start");
+        this.buttonStart = new ImageButton("resumeIconButton.png");
         this.buttonStart.setTranslateX(0);
-        this.buttonStart.setTranslateY(100);
+        this.buttonStart.setTranslateY(125);
         this.buttonStart.setOnMousePressed(event -> {
             ParametersView.this.setSpeedAndIntervalValue();
             ParametersView.this.parametersController.startGame();
@@ -175,6 +175,7 @@ public class ParametersView implements IParametersView {
     private void initSetterSpeedBallButton() {
         this.buttonSetSpeedBall = new Button();
         this.buttonSetSpeedBall.setText("Vitesse de déplacement des billes");
+        this.buttonSetSpeedBall.setPrefWidth(245);
         this.buttonSetSpeedBall.setTranslateX(0);
         this.buttonSetSpeedBall.setTranslateY(-100);
         this.buttonSetSpeedBall.setOnMousePressed(event -> ParametersView.this.changeSpeedBallValue());
