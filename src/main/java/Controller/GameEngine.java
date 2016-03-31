@@ -1,6 +1,5 @@
 package Controller;
 
-
 import Model.IMap;
 import Model.MapFactory;
 
@@ -18,19 +17,18 @@ public class GameEngine implements IGameEngine {
         this.init();
     }
 
-    private void init(){
+    private void init() {
         this.goalEngine = new GoalEngine(this.map);
         this.ballEngine = new BallEngine(this.map);
         this.timer = this.createTimer();
     }
 
-    private Timer createTimer ()
-    {
+    private Timer createTimer() {
         ActionListener action = event -> {
             GameEngine.this.updateBallEngine();
             GameEngine.this.updateGoalEngine();
         };
-        return new Timer (3, action);
+        return new Timer(3, action);
     }
 
     @Override

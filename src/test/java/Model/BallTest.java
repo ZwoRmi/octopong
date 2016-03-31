@@ -22,14 +22,14 @@ public class BallTest {
 
     @org.junit.Test
     public void testGetActualPosition() throws Exception {
-        Position pos = new Position(432,345);
+        Position pos = new Position(432, 345);
         this.ball.setActualPosition(pos);
         Assert.assertEquals(pos, this.ball.getActualPosition());
     }
 
     @org.junit.Test
     public void testGetDirection() throws Exception {
-        Position pos = new Position(432,3345);
+        Position pos = new Position(432, 3345);
         this.ball.setDirection(pos);
         Assert.assertEquals(pos, this.ball.getDirection());
     }

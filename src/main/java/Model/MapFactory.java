@@ -62,15 +62,19 @@ public class MapFactory {
         Score score = new Score();
         score.setScore(0);
         score.setPosition(this.positionProvider.getScorePosition(goalPosition));
-        goalKeeper.setColor(Color.rgb(120,120,120));
+        goalKeeper.setColor(Color.rgb(120, 120, 120));
         goalKeeper.setScore(score);
         goalKeeper.setPlayedByHuman(false);
         goalKeeper.setActualPositionStart(new Line(
-                this.positionProvider.getGoalKeeperPositionStart(this.positionProvider.getStartGoalPosition(goalPosition)),
-                this.positionProvider.getGoalKeeperPositionStart(this.positionProvider.getEndGoalPosition(goalPosition))));
+                this.positionProvider.getGoalKeeperPositionStart(this.positionProvider.getStartGoalPosition
+                        (goalPosition)),
+                this.positionProvider.getGoalKeeperPositionStart(this.positionProvider.getEndGoalPosition
+                        (goalPosition))));
         goalKeeper.setActualPositionEnd(new Line(
-                this.positionProvider.getGoalKeeperPositionEnd(this.positionProvider.getStartGoalPosition(goalPosition)),
-                this.positionProvider.getGoalKeeperPositionEnd(this.positionProvider.getEndGoalPosition(goalPosition))));
+                this.positionProvider.getGoalKeeperPositionEnd(this.positionProvider.getStartGoalPosition
+                        (goalPosition)),
+                this.positionProvider.getGoalKeeperPositionEnd(this.positionProvider.getEndGoalPosition(goalPosition)
+                )));
         goalKeeper.setGoalPosition(goalPosition);
         goalKeeper.setSpeed(1);
         goalKeeper.setTargetPosition(goalKeeper.getActualPositionStart());

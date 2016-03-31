@@ -55,13 +55,13 @@ public class GameView implements IGameView {
         this.initTimerToControlGoalKeeper();
     }
 
-    private void initLogo(){
+    private void initLogo() {
         this.logo = new ImageView();
         Image logoImage = new Image("logoOctopong.png");
         this.logo.setImage(logoImage);
     }
 
-    private void initCopyright(){
+    private void initCopyright() {
         this.copyrightText = new Text();
         this.copyrightText.setTextAlignment(TextAlignment.CENTER);
         this.copyrightText.setFont(new Font(10));
@@ -86,11 +86,11 @@ public class GameView implements IGameView {
         this.drawBalls();
         this.drawGoalsKeeper();
         this.drawScores();
-        if(this.showGameInstructions){
+        if (this.showGameInstructions) {
             this.drawCommandToControlGoalKeeper();
             this.drawTimerToControlGoalKeeper();
         }
-        this.myPanel.add(this.gamePanel,1,1);
+        this.myPanel.add(this.gamePanel, 1, 1);
     }
 
     private void drawGoalsKeepersArea() {
@@ -109,9 +109,9 @@ public class GameView implements IGameView {
         for (GoalGoalKeeper goalGoalKeeper : this.gameController.getMap().getGoalsGoalKeepers()) {
             Line line = new Line();
             line.setStrokeWidth(1);
-            line.setStartX(goalGoalKeeper.getGoal().getDetectionLine().getStartPosition().getX()-125);
+            line.setStartX(goalGoalKeeper.getGoal().getDetectionLine().getStartPosition().getX() - 125);
             line.setStartY(goalGoalKeeper.getGoal().getDetectionLine().getStartPosition().getY());
-            line.setEndX(goalGoalKeeper.getGoal().getDetectionLine().getEndPosition().getX()-125);
+            line.setEndX(goalGoalKeeper.getGoal().getDetectionLine().getEndPosition().getX() - 125);
             line.setEndY(goalGoalKeeper.getGoal().getDetectionLine().getEndPosition().getY());
             this.gamePanel.getChildren().add(line);
         }
@@ -121,9 +121,9 @@ public class GameView implements IGameView {
         for (GoalGoalKeeper goalGoalKeeper : this.gameController.getMap().getGoalsGoalKeepers()) {
             Line line = new Line();
             line.setStrokeWidth(1);
-            line.setStartX(goalGoalKeeper.getGoal().getGoalEndLine().getStartPosition().getX()-125);
+            line.setStartX(goalGoalKeeper.getGoal().getGoalEndLine().getStartPosition().getX() - 125);
             line.setStartY(goalGoalKeeper.getGoal().getGoalEndLine().getStartPosition().getY());
-            line.setEndX(goalGoalKeeper.getGoal().getGoalEndLine().getEndPosition().getX()-125);
+            line.setEndX(goalGoalKeeper.getGoal().getGoalEndLine().getEndPosition().getX() - 125);
             line.setEndY(goalGoalKeeper.getGoal().getGoalEndLine().getEndPosition().getY());
             this.gamePanel.getChildren().add(line);
         }
@@ -183,7 +183,7 @@ public class GameView implements IGameView {
         this.playPauseButton.setTextAlignment(TextAlignment.CENTER);
         this.playPauseButton.setOnMousePressed(
                 event -> {
-                    if(!this.isPlaying){
+                    if (!this.isPlaying) {
                         GameView.this.gameController.resumeGame();
                         this.playPauseButton.setGraphic(new ImageView("pauseIconButton.png"));
                         this.isPlaying = true;
@@ -202,11 +202,11 @@ public class GameView implements IGameView {
         this.startGameButton.setAlignment(Pos.CENTER);
         this.startGameButton.setTextAlignment(TextAlignment.CENTER);
         this.startGameButton.setOnMousePressed(event -> {
-            if(!showGameInstructions && gameController.getSouthGoalKeeper().getPlayedByHuman()){
+            if (!showGameInstructions && gameController.getSouthGoalKeeper().getPlayedByHuman()) {
                 this.startGameButton.setGraphic(new ImageView("playIconButton.png"));
                 GameView.this.gameController.UnControlSouthGoalKeeper();
                 this.stopWatch.reset();
-            } else if(!showGameInstructions){
+            } else if (!showGameInstructions) {
                 this.startGameButton.setGraphic(new ImageView("stopPlayIconButton.png"));
                 this.showGameInstructions = true;
                 GameView.this.gameController.pauseGame();
@@ -223,56 +223,53 @@ public class GameView implements IGameView {
         this.stopWatch = new StopWatch();
     }
 
-    private void drawTimerToControlGoalKeeper(){
-        this.myPanel.add(this.timerToControlGoalKeeper,1,1);
-        GridPane.setValignment(this.timerToControlGoalKeeper,VPos.CENTER);
-        GridPane.setHalignment(this.timerToControlGoalKeeper,HPos.CENTER);
-        if(this.stopWatch.isStarted() && this.stopWatch.getTime() > 5000){
+    private void drawTimerToControlGoalKeeper() {
+        this.myPanel.add(this.timerToControlGoalKeeper, 1, 1);
+        GridPane.setValignment(this.timerToControlGoalKeeper, VPos.CENTER);
+        GridPane.setHalignment(this.timerToControlGoalKeeper, HPos.CENTER);
+        if (this.stopWatch.isStarted() && this.stopWatch.getTime() > 5000) {
             this.setColorToSouthGoalKeeper(true);
             this.showGameInstructions = false;
             GameView.this.gameController.ControlSouthGoalKeeper();
             GameView.this.gameController.resumeGame();
             GameView.this.gameController.resumeGame();
             stopWatch.reset();
-        }
-        else if (this.stopWatch.getTime()>4000){
+        } else if (this.stopWatch.getTime() > 4000) {
             this.setColorToSouthGoalKeeper(false);
             this.timerToControlGoalKeeper.setText("1");
-        }
-        else if (this.stopWatch.getTime()>3000){
+        } else if (this.stopWatch.getTime() > 3000) {
             this.setColorToSouthGoalKeeper(true);
             this.timerToControlGoalKeeper.setText("2");
-        }
-        else if (this.stopWatch.getTime()>2000){
+        } else if (this.stopWatch.getTime() > 2000) {
             this.setColorToSouthGoalKeeper(false);
             this.timerToControlGoalKeeper.setText("3");
-        }else if (this.stopWatch.getTime()>1000){
+        } else if (this.stopWatch.getTime() > 1000) {
             this.setColorToSouthGoalKeeper(true);
             this.timerToControlGoalKeeper.setText("4");
-        }else {
+        } else {
             this.setColorToSouthGoalKeeper(false);
             this.timerToControlGoalKeeper.setText("5");
         }
     }
 
-    private void setColorToSouthGoalKeeper(boolean isBlack){
-        if(isBlack) {
+    private void setColorToSouthGoalKeeper(boolean isBlack) {
+        if (isBlack) {
             gameController.getSouthGoalKeeper().setColor(Color.BLACK);
-        }
-        else{
+        } else {
             gameController.getSouthGoalKeeper().setColor(Color.TRANSPARENT);
         }
     }
+
     private void initCommandToControlGoalKeeper() {
         this.commandToControlGoalKeeper = new ImageView();
         Image commandImage = new Image("command.png");
         this.commandToControlGoalKeeper.setImage(commandImage);
     }
 
-    private void drawCommandToControlGoalKeeper(){
-        this.myPanel.add(this.commandToControlGoalKeeper,1,1);
-        GridPane.setValignment(this.commandToControlGoalKeeper,VPos.BOTTOM);
-        GridPane.setHalignment(this.commandToControlGoalKeeper,HPos.CENTER);
+    private void drawCommandToControlGoalKeeper() {
+        this.myPanel.add(this.commandToControlGoalKeeper, 1, 1);
+        GridPane.setValignment(this.commandToControlGoalKeeper, VPos.BOTTOM);
+        GridPane.setHalignment(this.commandToControlGoalKeeper, HPos.CENTER);
     }
 
     private void initPaneButtons() {
@@ -317,10 +314,10 @@ public class GameView implements IGameView {
         for (GoalGoalKeeper goalGoalKeeper : this.gameController.getMap().getGoalsGoalKeepers()) {
             Line line = new Line();
             line.setStrokeWidth(3);
-            line.setStroke(Color.rgb(222,175,85));
-            line.setStartX(goalGoalKeeper.getGoal().getGoalStartLine().getStartPosition().getX()-125);
+            line.setStroke(Color.rgb(222, 175, 85));
+            line.setStartX(goalGoalKeeper.getGoal().getGoalStartLine().getStartPosition().getX() - 125);
             line.setStartY(goalGoalKeeper.getGoal().getGoalStartLine().getStartPosition().getY());
-            line.setEndX(goalGoalKeeper.getGoal().getGoalStartLine().getEndPosition().getX()-125);
+            line.setEndX(goalGoalKeeper.getGoal().getGoalStartLine().getEndPosition().getX() - 125);
             line.setEndY(goalGoalKeeper.getGoal().getGoalStartLine().getEndPosition().getY());
             this.gamePanel.getChildren().add(line);
         }
@@ -332,9 +329,9 @@ public class GameView implements IGameView {
             Line line = new Line();
             line.setStrokeWidth(3);
             line.setStroke(goalGoalKeeper.getGoalKeeper().getColor());
-            line.setStartX(goalGoalKeeper.getGoalKeeper().getActualPositionStart().getStartPosition().getX()-125);
+            line.setStartX(goalGoalKeeper.getGoalKeeper().getActualPositionStart().getStartPosition().getX() - 125);
             line.setStartY(goalGoalKeeper.getGoalKeeper().getActualPositionStart().getStartPosition().getY());
-            line.setEndX(goalGoalKeeper.getGoalKeeper().getActualPositionStart().getEndPosition().getX()-125);
+            line.setEndX(goalGoalKeeper.getGoalKeeper().getActualPositionStart().getEndPosition().getX() - 125);
             line.setEndY(goalGoalKeeper.getGoalKeeper().getActualPositionStart().getEndPosition().getY());
             this.gamePanel.getChildren().add(line);
         }
@@ -359,7 +356,7 @@ public class GameView implements IGameView {
         for (GoalGoalKeeper goalGoalKeeper : this.gameController.getMap().getGoalsGoalKeepers()) {
             Text score = new Text();
             score.setFont(new Font(20));
-            score.setStroke(Color.rgb(120,120,120));
+            score.setStroke(Color.rgb(120, 120, 120));
             score.setText(goalGoalKeeper.getGoalKeeper().getScore().getScore() + "");
             score.setX(goalGoalKeeper.getGoalKeeper().getScore().getPosition().getX());
             score.setY(goalGoalKeeper.getGoalKeeper().getScore().getPosition().getY());
@@ -373,8 +370,8 @@ public class GameView implements IGameView {
         Text t = new Text();
         t.setFont(new Font(20));
         t.setText(this.getGameTimeFormatted());
-        GridPane.setHalignment(t,HPos.CENTER);
-        GridPane.setValignment(t,VPos.CENTER);
+        GridPane.setHalignment(t, HPos.CENTER);
+        GridPane.setValignment(t, VPos.CENTER);
         this.myPanel.add(t, 2, 0);
     }
 
@@ -384,18 +381,19 @@ public class GameView implements IGameView {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date(millis));
         NumberFormat formatter = new DecimalFormat("00");
-        return (formatter.format(calendar.get(Calendar.HOUR) - 1)) + ":" + formatter.format(calendar.get(Calendar.MINUTE)) + ":" + formatter.format(calendar.get(Calendar.SECOND));
+        return (formatter.format(calendar.get(Calendar.HOUR) - 1)) + ":" + formatter.format(calendar.get(Calendar
+                .MINUTE)) + ":" + formatter.format(calendar.get(Calendar.SECOND));
     }
 
     @Override
-    public void drawLogo(){
-        this.myPanel.add(this.logo,0,0);
+    public void drawLogo() {
+        this.myPanel.add(this.logo, 0, 0);
     }
 
-    private void drawCopyright(){
-        this.myPanel.add(this.copyrightText,1,4);
-        GridPane.setHalignment(this.copyrightText,HPos.CENTER);
-        GridPane.setValignment(this.copyrightText,VPos.BOTTOM);
+    private void drawCopyright() {
+        this.myPanel.add(this.copyrightText, 1, 4);
+        GridPane.setHalignment(this.copyrightText, HPos.CENTER);
+        GridPane.setValignment(this.copyrightText, VPos.BOTTOM);
         this.myPanel.setAlignment(Pos.CENTER);
     }
 

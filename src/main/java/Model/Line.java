@@ -3,9 +3,11 @@ package Model;
 public class Line {
     private Position startPosition;
     private Position endPosition;
-    public Line(){}
 
-    public Line(Position startPosition, Position endPosition){
+    public Line() {
+    }
+
+    public Line(Position startPosition, Position endPosition) {
         this.setStartPosition(startPosition);
         this.setEndPosition(endPosition);
     }

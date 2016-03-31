@@ -1,6 +1,6 @@
 package Model;
 
-public enum GoalPosition{
+public enum GoalPosition {
     North,
     NorthEast,
     East,

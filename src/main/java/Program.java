@@ -54,14 +54,15 @@ public class Program extends Application {
         };
         timer.start();
     }
+
     private void initKeys(Scene scene, final IGameController gameController) {
         scene.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.RIGHT){
-                for (int i = 0;i<10;i++){
+            if (event.getCode() == KeyCode.RIGHT) {
+                for (int i = 0; i < 10; i++) {
                     gameController.MoveSouthGoalKeeper(1);
                 }
-            }else if (event.getCode() == KeyCode.LEFT){
-                for (int i = 0;i<10;i++){
+            } else if (event.getCode() == KeyCode.LEFT) {
+                for (int i = 0; i < 10; i++) {
                     gameController.MoveSouthGoalKeeper(-1);
                 }
             }

@@ -22,7 +22,7 @@ public class GameController implements IGameController {
 
     @Override
     public void startGame() {
-        if (this.stopWatch.isStopped()){
+        if (this.stopWatch.isStopped()) {
             this.stopWatch.start();
             this.gameEngine.startGame();
         }
@@ -30,7 +30,7 @@ public class GameController implements IGameController {
 
     @Override
     public void resumeGame() {
-        if (this.stopWatch.isSuspended()){
+        if (this.stopWatch.isSuspended()) {
             this.stopWatch.resume();
             this.gameEngine.resumeGame();
         }
@@ -38,7 +38,7 @@ public class GameController implements IGameController {
 
     @Override
     public void pauseGame() {
-        if (!this.stopWatch.isSuspended()){
+        if (!this.stopWatch.isSuspended()) {
             this.stopWatch.suspend();
             this.gameEngine.pauseGame();
         }
@@ -70,6 +70,7 @@ public class GameController implements IGameController {
     public IMap getMap() {
         return this.gameEngine.getMap();
     }
+
     @Override
     public void setMap(IMap map) {
         this.gameEngine.setMap(map);
@@ -90,14 +91,17 @@ public class GameController implements IGameController {
         GoalKeeper southGoalKeeper = this.getSouthGoalKeeper();
         if (!southGoalKeeper.getPlayedByHuman()) return;
         Line targetPositionStart = new Line(new Position(), new Position());
-        targetPositionStart.getStartPosition().setX(southGoalKeeper.getActualPositionStart().getStartPosition().getX() + x);
+        targetPositionStart.getStartPosition().setX(southGoalKeeper.getActualPositionStart().getStartPosition().getX
+                () + x);
         targetPositionStart.getStartPosition().setY(southGoalKeeper.getActualPositionStart().getStartPosition().getY());
         targetPositionStart.getEndPosition().setX(southGoalKeeper.getActualPositionStart().getEndPosition().getX() + x);
         targetPositionStart.getEndPosition().setY(southGoalKeeper.getActualPositionStart().getEndPosition().getY());
         if (this.gameEngine.getGoalEngine().isInLimitedArea(southGoalKeeper, targetPositionStart)) {
             southGoalKeeper.setActualPositionStart(targetPositionStart);
-            southGoalKeeper.getActualPositionEnd().getStartPosition().setX(southGoalKeeper.getActualPositionEnd().getStartPosition().getX() + x);
-            southGoalKeeper.getActualPositionEnd().getEndPosition().setX(southGoalKeeper.getActualPositionEnd().getEndPosition().getX() + x);
+            southGoalKeeper.getActualPositionEnd().getStartPosition().setX(southGoalKeeper.getActualPositionEnd()
+                    .getStartPosition().getX() + x);
+            southGoalKeeper.getActualPositionEnd().getEndPosition().setX(southGoalKeeper.getActualPositionEnd()
+                    .getEndPosition().getX() + x);
         }
 
     }

@@ -1,7 +1,7 @@
 package Model;
 
 public class RandomPositionGenerator {
-    public Position generatePosition(){
+    public Position generatePosition() {
         Position randomPosition = new Position();
         randomPosition.setX(this.randRange(-2, 2));
         randomPosition.setY(this.randRange(-2, 2));
@@ -14,11 +14,11 @@ public class RandomPositionGenerator {
     private boolean isDirectionOk(Position randomPosition) {
         float maxValue = 1.2f;
         float minValue = 0.8f;
-        double value = Math.sqrt(Math.pow(randomPosition.getX(),2)+Math.pow(randomPosition.getY(),2));
-        return value>minValue && value<maxValue;
+        double value = Math.sqrt(Math.pow(randomPosition.getX(), 2) + Math.pow(randomPosition.getY(), 2));
+        return value > minValue && value < maxValue;
     }
 
     private float randRange(float min, float max) {
-        return min + (float)Math.random() * (max - min);
+        return min + (float) Math.random() * (max - min);
     }
 }

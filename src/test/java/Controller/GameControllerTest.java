@@ -2,7 +2,6 @@ package Controller;
 
 import Model.*;
 import View.ApplicationWindow;
-import View.IApplicationWindow;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -18,16 +17,14 @@ import static org.mockito.Mockito.verify;
 public class GameControllerTest {
     private IGameController gameController;
     private IGameEngine mockedGameEngine;
-    private IApplicationWindow mockedApplicationWindow;
     private IParametersController mockedParametersController;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         this.mockedGameEngine = Mockito.mock(GameEngine.class);
         Mockito.when(mockedGameEngine.getMap()).thenReturn(this.getMap());
         this.mockedParametersController = Mockito.mock(ParametersController.class);
-        this.mockedApplicationWindow = Mockito.mock(ApplicationWindow.class);
-        this.gameController = new GameController(this.mockedApplicationWindow);
+        this.gameController = new GameController(Mockito.mock(ApplicationWindow.class));
     }
 
     @Test
@@ -86,7 +83,6 @@ public class GameControllerTest {
         this.gameController.setMap(map);
         assertEquals(map, this.gameController.getMap());
     }
-
 
     @Test
     public void testSetParametersController() throws Exception {

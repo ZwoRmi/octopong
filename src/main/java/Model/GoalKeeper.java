@@ -60,19 +60,19 @@ public class GoalKeeper {
         this.targetPosition = targetPosition;
     }
 
-    public void setColor(Paint color) {
-        this.color = color;
-    }
-
     public Paint getColor() {
         return this.color;
     }
 
-    public void setPlayedByHuman(boolean playedByHuman) {
-        this.isPlayedByHuman = playedByHuman;
+    public void setColor(Paint color) {
+        this.color = color;
     }
 
     public boolean getPlayedByHuman() {
         return this.isPlayedByHuman;
+    }
+
+    public void setPlayedByHuman(boolean playedByHuman) {
+        this.isPlayedByHuman = playedByHuman;
     }
 }

@@ -3,7 +3,7 @@ package Model;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class BallToBallReboundCalculatorTest {
     private Ball ballOne;
@@ -11,22 +11,22 @@ public class BallToBallReboundCalculatorTest {
 
     @Before
     public void setUp() {
-        this.ballOne = this.getBall(new Position(10,0));
-        this.ballTwo = this.getBall(new Position(-10,0));
+        this.ballOne = this.getBall(new Position(10, 0));
+        this.ballTwo = this.getBall(new Position(-10, 0));
     }
 
     @Test
     public void testUpdateDirectionsBallOne() throws Exception {
-        Position expectedUpdatedDirection = new Position(-10,0);
-        BallToBallReboundCalculator BallToBallRC = new BallToBallReboundCalculator(ballOne,ballTwo);
+        Position expectedUpdatedDirection = new Position(-10, 0);
+        BallToBallReboundCalculator BallToBallRC = new BallToBallReboundCalculator(ballOne, ballTwo);
         BallToBallRC.updateDirections();
         assertEquals(expectedUpdatedDirection, ballOne.getDirection());
     }
 
     @Test
     public void testUpdateDirectionsBallTwo() throws Exception {
-        Position expectedUpdatedDirection = new Position(10,0);
-        BallToBallReboundCalculator BallToBallRC = new BallToBallReboundCalculator(ballOne,ballTwo);
+        Position expectedUpdatedDirection = new Position(10, 0);
+        BallToBallReboundCalculator BallToBallRC = new BallToBallReboundCalculator(ballOne, ballTwo);
         BallToBallRC.updateDirections();
         assertEquals(expectedUpdatedDirection, ballTwo.getDirection());
     }

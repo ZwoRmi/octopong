@@ -5,14 +5,6 @@ import javafx.scene.shape.Polygon;
 public class PolygonBoundary {
     private Polygon polygon;
 
-    public Polygon getPolygon() {
-        return this.polygon;
-    }
-
-    private void setPolygon(Polygon polygon) {
-        this.polygon = polygon;
-    }
-
     public PolygonBoundary(Line startLine, Line endLine) {
         double[] points = {
                 startLine.getEndPosition().getX(),
@@ -24,10 +16,18 @@ public class PolygonBoundary {
                 startLine.getStartPosition().getX(),
                 startLine.getStartPosition().getY()
         };
-        this.setPolygon (new Polygon(points));
+        this.setPolygon(new Polygon(points));
     }
 
-    public boolean contains(Position pos){
+    public Polygon getPolygon() {
+        return this.polygon;
+    }
+
+    private void setPolygon(Polygon polygon) {
+        this.polygon = polygon;
+    }
+
+    public boolean contains(Position pos) {
         return this.polygon.contains(pos.getX(), pos.getY());
     }
 }

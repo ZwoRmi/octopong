@@ -30,35 +30,35 @@ public class PositionTest {
 
     @Test
     public void testEqualsForNormalTrue() throws Exception {
-        Position position = new Position(1,1);
-        Position otherPosition = new Position(1,1);
+        Position position = new Position(1, 1);
+        Position otherPosition = new Position(1, 1);
         assertTrue(position.equals(otherPosition));
     }
 
     @Test
     public void testEqualsForNormalFalse() throws Exception {
-        Position line = new Position(1,1);
-        Position otherPosition = new Position(5,0);
+        Position line = new Position(1, 1);
+        Position otherPosition = new Position(5, 0);
         assertFalse(line.equals(otherPosition));
     }
 
     @Test
     public void testEqualsForSameReference() throws Exception {
-        Position line = new Position(0,0);
+        Position line = new Position(0, 0);
         //noinspection EqualsWithItself
         assertTrue(line.equals(line));
     }
 
     @Test
     public void testEqualsForNull() throws Exception {
-        Position position = new Position(0,0);
+        Position position = new Position(0, 0);
         //noinspection ObjectEqualsNull
         assertFalse(position.equals(null));
     }
 
     @Test
     public void testEqualsForOtherType() throws Exception {
-        Position position = new Position(1,1);
+        Position position = new Position(1, 1);
         assertFalse(position.equals(new Object()));
     }
 }

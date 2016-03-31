@@ -139,7 +139,7 @@ public class GameEngineTest {
     public synchronized void testStartGameUpdateGoalEngine() throws Exception {
         this.gameEngine.setGoalEngine(mockedGoalEngine);
         this.gameEngine.startGame();
-        Thread.sleep(500);
+        Thread.sleep(800);
         verify(mockedGoalEngine, atLeastOnce()).update();
     }
 

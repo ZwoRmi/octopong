@@ -44,6 +44,10 @@ public class Ball {
         return this.color;
     }
 
+    public void setColor(Paint color) {
+        this.color = color;
+    }
+
     public float getRadius() {
         return this.radius;
     }
@@ -54,10 +58,6 @@ public class Ball {
 
     public float getMass() {
         return this.mass;
-    }
-
-    public void setColor(Paint color) {
-        this.color = color;
     }
 
     public void setMass(float mass) {

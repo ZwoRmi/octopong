@@ -34,7 +34,7 @@ public class Map implements IMap {
 
     @Override
     public List<Ball> getBalls() {
-        synchronized (this.balls){
+        synchronized (this.balls) {
             return this.balls;
         }
     }

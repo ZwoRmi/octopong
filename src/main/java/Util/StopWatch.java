@@ -16,11 +16,12 @@
  */
 
 package Util;
+
 /**
  * <p>
  * <code>StopWatch</code> provides a convenient API for timings.
  * </p>
- *
+ * <p>
  * <p>
  * To start the watch, call {@link #start()}. At this point you can:
  * </p>
@@ -31,123 +32,51 @@ package Util;
  * suspend and resume will not be counted in the total. At this point, these three options are available again.</li>
  * <li>{@link #stop()} the watch to complete the timing session.</li>
  * </ul>
- *
+ * <p>
  * <p>
  * It is intended that the output methods {@link #toString()} and {@link #getTime()} should only be called after stop,
  * split or suspend, however a suitable result will be returned at other points.
  * </p>
- *
+ * <p>
  * <p>
  * NOTE: As from v2.1, the methods protect against inappropriate calls. Thus you cannot now call stop before start,
  * resume before suspend or unsplit before split.
  * </p>
- *
+ * <p>
  * <p>
  * 1. split(), suspend(), or stop() cannot be invoked twice<br>
  * 2. unsplit() may only be called if the watch has been split()<br>
  * 3. resume() may only be called if the watch has been suspend()<br>
  * 4. start() cannot be called twice without calling reset()
  * </p>
- *
+ * <p>
  * <p>This class is not thread-safe</p>
  *
- * @since 2.0
  * @version $Id: StopWatch.java 1591488 2014-04-30 21:49:35Z ggregory $
+ * @since 2.0
  */
 @SuppressWarnings("ALL")
 public class StopWatch {
 
     private static final long NANO_2_MILLIS = 1000000L;
-
-    /**
-     * Enumeration type which indicates the status of stopwatch.
-     */
-    private enum State {
-
-        UNSTARTED {
-            @Override boolean isStarted() { return false; }
-            @Override boolean isStopped() { return true;  }
-            @Override boolean isSuspended() { return false; }
-        },
-        RUNNING {
-            @Override boolean isStarted() { return true; }
-            @Override boolean isStopped() { return false; }
-            @Override boolean isSuspended() { return false; }
-        },
-        STOPPED {
-            @Override boolean isStarted() { return false; }
-            @Override boolean isStopped() { return true; }
-            @Override boolean isSuspended() { return false; }
-        },
-        SUSPENDED {
-            @Override boolean isStarted() { return true; }
-            @Override boolean isStopped() { return false; }
-            @Override  boolean isSuspended() { return true; }
-        };
-
-        /**
-         * <p>
-         * The method is used to find out if the StopWatch is started. A suspended
-         * StopWatch is also started watch.
-         * </p>
-
-         * @return boolean
-         *             If the StopWatch is started.
-         */
-        abstract boolean isStarted();
-
-        /**
-         * <p>
-         * This method is used to find out whether the StopWatch is stopped. The
-         * stopwatch which's not yet started and explicitly stopped stopwatch is
-         * considered as stopped.
-         * </p>
-         *
-         * @return boolean
-         *             If the StopWatch is stopped.
-         */
-        abstract boolean isStopped();
-
-        /**
-         * <p>
-         * This method is used to find out whether the StopWatch is suspended.
-         * </p>
-         *
-         * @return boolean
-         *             If the StopWatch is suspended.
-         */
-        abstract boolean isSuspended();
-    }
-
-    /**
-     * Enumeration type which indicates the split status of stopwatch.
-     */
-    private enum SplitState {
-        SPLIT,
-        UNSPLIT
-    }
     /**
      * The current running state of the StopWatch.
      */
     private State runningState = State.UNSTARTED;
-
     /**
      * Whether the stopwatch has a split time recorded.
      */
     private SplitState splitState = SplitState.UNSPLIT;
-
     /**
      * The start time.
      */
     private long startTime;
-
     /**
      * The start time in Millis - nanoTime is only for elapsed time so we
      * need to also store the currentTimeMillis to maintain the old
      * getStartTime API.
      */
     private long startTimeMillis;
-
     /**
      * The stop time.
      */
@@ -165,13 +94,12 @@ public class StopWatch {
      * <p>
      * Start the stopwatch.
      * </p>
-     *
+     * <p>
      * <p>
      * This method starts a new timing session, clearing any previous values.
      * </p>
      *
-     * @throws IllegalStateException
-     *             if the StopWatch is already running.
+     * @throws IllegalStateException if the StopWatch is already running.
      */
     public void start() {
         if (this.runningState == State.STOPPED) {
@@ -185,18 +113,16 @@ public class StopWatch {
         this.runningState = State.RUNNING;
     }
 
-
     /**
      * <p>
      * Stop the stopwatch.
      * </p>
-     *
+     * <p>
      * <p>
      * This method ends a new timing session, allowing the time to be retrieved.
      * </p>
      *
-     * @throws IllegalStateException
-     *             if the StopWatch is not running.
+     * @throws IllegalStateException if the StopWatch is not running.
      */
     public void stop() {
         if (this.runningState != State.RUNNING && this.runningState != State.SUSPENDED) {
@@ -212,7 +138,7 @@ public class StopWatch {
      * <p>
      * Resets the stopwatch. Stops it if need be.
      * </p>
-     *
+     * <p>
      * <p>
      * This method clears the internal values to allow the object to be reused.
      * </p>
@@ -226,14 +152,13 @@ public class StopWatch {
      * <p>
      * Split the time.
      * </p>
-     *
+     * <p>
      * <p>
      * This method sets the stop time of the watch to allow a time to be extracted. The start time is unaffected,
      * enabling {@link #unsplit()} to continue the timing from the original start point.
      * </p>
      *
-     * @throws IllegalStateException
-     *             if the StopWatch is not running.
+     * @throws IllegalStateException if the StopWatch is not running.
      */
     public void split() {
         if (this.runningState != State.RUNNING) {
@@ -247,14 +172,13 @@ public class StopWatch {
      * <p>
      * Remove a split.
      * </p>
-     *
+     * <p>
      * <p>
      * This method clears the stop time. The start time is unaffected, enabling timing from the original start point to
      * continue.
      * </p>
      *
-     * @throws IllegalStateException
-     *             if the StopWatch has not been split.
+     * @throws IllegalStateException if the StopWatch has not been split.
      */
     public void unsplit() {
         if (this.splitState != SplitState.SPLIT) {
@@ -267,14 +191,13 @@ public class StopWatch {
      * <p>
      * Suspend the stopwatch for later resumption.
      * </p>
-     *
+     * <p>
      * <p>
      * This method suspends the watch until it is resumed. The watch will not include time between the suspend and
      * resume calls in the total time.
      * </p>
      *
-     * @throws IllegalStateException
-     *             if the StopWatch is not currently running.
+     * @throws IllegalStateException if the StopWatch is not currently running.
      */
     public void suspend() {
         if (this.runningState != State.RUNNING) {
@@ -288,14 +211,13 @@ public class StopWatch {
      * <p>
      * Resume the stopwatch after a suspend.
      * </p>
-     *
+     * <p>
      * <p>
      * This method resumes the watch after it was suspended. The watch will not include time between the suspend and
      * resume calls in the total time.
      * </p>
      *
-     * @throws IllegalStateException
-     *             if the StopWatch has not been suspended.
+     * @throws IllegalStateException if the StopWatch has not been suspended.
      */
     public void resume() {
         if (this.runningState != State.SUSPENDED) {
@@ -309,7 +231,7 @@ public class StopWatch {
      * <p>
      * Get the time on the stopwatch.
      * </p>
-     *
+     * <p>
      * <p>
      * This is either the time between the start and the moment this method is called, or the amount of time between
      * start and stop.
@@ -320,11 +242,12 @@ public class StopWatch {
     public long getTime() {
         return this.getNanoTime() / NANO_2_MILLIS;
     }
+
     /**
      * <p>
      * Get the time on the stopwatch in nanoseconds.
      * </p>
-     *
+     * <p>
      * <p>
      * This is either the time between the start and the moment this method is called, or the amount of time between
      * start and stop.
@@ -348,33 +271,30 @@ public class StopWatch {
      * <p>
      * Get the split time on the stopwatch.
      * </p>
-     *
+     * <p>
      * <p>
      * This is the time between start and latest split.
      * </p>
      *
      * @return the split time in milliseconds
-     *
-     * @throws IllegalStateException
-     *             if the StopWatch has not yet been split.
+     * @throws IllegalStateException if the StopWatch has not yet been split.
      * @since 2.1
      */
     public long getSplitTime() {
         return this.getSplitNanoTime() / NANO_2_MILLIS;
     }
+
     /**
      * <p>
      * Get the split time on the stopwatch in nanoseconds.
      * </p>
-     *
+     * <p>
      * <p>
      * This is the time between start and latest split.
      * </p>
      *
      * @return the split time in nanoseconds
-     *
-     * @throws IllegalStateException
-     *             if the StopWatch has not yet been split.
+     * @throws IllegalStateException if the StopWatch has not yet been split.
      * @since 3.0
      */
     public long getSplitNanoTime() {
@@ -388,8 +308,7 @@ public class StopWatch {
      * Returns the time this stopwatch was started.
      *
      * @return the time this stopwatch was started
-     * @throws IllegalStateException
-     *             if this StopWatch has not been started
+     * @throws IllegalStateException if this StopWatch has not been started
      * @since 2.4
      */
     public long getStartTime() {
@@ -400,7 +319,6 @@ public class StopWatch {
         return this.startTimeMillis;
     }
 
-
     /**
      * <p>
      * The method is used to find out if the StopWatch is started. A suspended
@@ -408,7 +326,7 @@ public class StopWatch {
      * </p>
      *
      * @return boolean
-     *             If the StopWatch is started.
+     * If the StopWatch is started.
      * @since 3.2
      */
     public boolean isStarted() {
@@ -421,7 +339,7 @@ public class StopWatch {
      * </p>
      *
      * @return boolean
-     *             If the StopWatch is suspended.
+     * If the StopWatch is suspended.
      * @since 3.2
      */
     public boolean isSuspended() {
@@ -436,11 +354,123 @@ public class StopWatch {
      * </p>
      *
      * @return boolean
-     *             If the StopWatch is stopped.
+     * If the StopWatch is stopped.
      * @since 3.2
      */
     public boolean isStopped() {
         return this.runningState.isStopped();
+    }
+
+    /**
+     * Enumeration type which indicates the status of stopwatch.
+     */
+    private enum State {
+
+        UNSTARTED {
+            @Override
+            boolean isStarted() {
+                return false;
+            }
+
+            @Override
+            boolean isStopped() {
+                return true;
+            }
+
+            @Override
+            boolean isSuspended() {
+                return false;
+            }
+        },
+        RUNNING {
+            @Override
+            boolean isStarted() {
+                return true;
+            }
+
+            @Override
+            boolean isStopped() {
+                return false;
+            }
+
+            @Override
+            boolean isSuspended() {
+                return false;
+            }
+        },
+        STOPPED {
+            @Override
+            boolean isStarted() {
+                return false;
+            }
+
+            @Override
+            boolean isStopped() {
+                return true;
+            }
+
+            @Override
+            boolean isSuspended() {
+                return false;
+            }
+        },
+        SUSPENDED {
+            @Override
+            boolean isStarted() {
+                return true;
+            }
+
+            @Override
+            boolean isStopped() {
+                return false;
+            }
+
+            @Override
+            boolean isSuspended() {
+                return true;
+            }
+        };
+
+        /**
+         * <p>
+         * The method is used to find out if the StopWatch is started. A suspended
+         * StopWatch is also started watch.
+         * </p>
+         *
+         * @return boolean
+         * If the StopWatch is started.
+         */
+        abstract boolean isStarted();
+
+        /**
+         * <p>
+         * This method is used to find out whether the StopWatch is stopped. The
+         * stopwatch which's not yet started and explicitly stopped stopwatch is
+         * considered as stopped.
+         * </p>
+         *
+         * @return boolean
+         * If the StopWatch is stopped.
+         */
+        abstract boolean isStopped();
+
+        /**
+         * <p>
+         * This method is used to find out whether the StopWatch is suspended.
+         * </p>
+         *
+         * @return boolean
+         * If the StopWatch is suspended.
+         */
+        abstract boolean isSuspended();
+    }
+
+    /**
+     * Enumeration type which indicates the split status of stopwatch.
+     */
+    private enum SplitState {
+        SPLIT,
+        UNSPLIT
     }
 
 }

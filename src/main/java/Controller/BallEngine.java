@@ -25,7 +25,7 @@ public class BallEngine implements IBallEngine {
         }
     }
 
-    private void initTimeForGenerateBall(){
+    private void initTimeForGenerateBall() {
         this.stopWatch.start();
     }
 
@@ -38,16 +38,17 @@ public class BallEngine implements IBallEngine {
 
     private void moveBall(Ball ball) {
         GoalKeeper goalKeeper = this.getGoalBallRebound(ball);
-        if(goalKeeper!=null){
-            ReboundCalculator reboundCalculator = new ReboundCalculator(ball,goalKeeper);
-            if (reboundCalculator.isMovingToGoalKeeper()){
-                this.setColorToGoalkeeper(ball,goalKeeper);
+        if (goalKeeper != null) {
+            ReboundCalculator reboundCalculator = new ReboundCalculator(ball, goalKeeper);
+            if (reboundCalculator.isMovingToGoalKeeper()) {
+                this.setColorToGoalkeeper(ball, goalKeeper);
                 ball.setDirection(reboundCalculator.getNewDirection());
             }
         }
         Ball reboundBall = this.getBallBallRebound(ball);
-        if(reboundBall!=null){
-            BallToBallReboundCalculator ballToBallReboundCalculator= new BallToBallReboundCalculator(ball, reboundBall);
+        if (reboundBall != null) {
+            BallToBallReboundCalculator ballToBallReboundCalculator = new BallToBallReboundCalculator(ball,
+                    reboundBall);
             ballToBallReboundCalculator.updateDirections();
         }
         Position actualPosition = ball.getActualPosition();
@@ -59,8 +60,8 @@ public class BallEngine implements IBallEngine {
 
     private Ball getBallBallRebound(Ball ball) {
         for (Ball otherBall : this.map.getBalls()) {
-            if(!ball.equals(otherBall)){
-                if (this.colliding(ball, otherBall)){
+            if (!ball.equals(otherBall)) {
+                if (this.colliding(ball, otherBall)) {
                     return otherBall;
                 }
             }
@@ -74,22 +75,24 @@ public class BallEngine implements IBallEngine {
         float sumRadius = ball.getRadius() + otherBall.getRadius();
         float sqrRadius = sumRadius * sumRadius;
         float distSqr = (xd * xd) + (yd * yd);
-        return  (distSqr <= sqrRadius);
+        return (distSqr <= sqrRadius);
     }
 
     private GoalKeeper getGoalBallRebound(Ball ball) {
         for (GoalGoalKeeper goalGoalKeeper : this.map.getGoalsGoalKeepers()) {
-            PolygonBoundary boundary = new PolygonBoundary(goalGoalKeeper.getGoalKeeper().getActualPositionStart(), goalGoalKeeper.getGoalKeeper().getActualPositionEnd());
-            if (boundary.contains(ball.getActualPosition())){
+            PolygonBoundary boundary = new PolygonBoundary(goalGoalKeeper.getGoalKeeper().getActualPositionStart(),
+                    goalGoalKeeper.getGoalKeeper().getActualPositionEnd());
+            if (boundary.contains(ball.getActualPosition())) {
                 return goalGoalKeeper.getGoalKeeper();
             }
         }
         return null;
     }
 
-    private void setColorToGoalkeeper(Ball ball,GoalKeeper goalKeeper){
+    private void setColorToGoalkeeper(Ball ball, GoalKeeper goalKeeper) {
         goalKeeper.setColor(ball.getColor());
     }
+
     @Override
     public void generateBall() {
         this.map.getBalls().add(this.getGeneratedBall());
@@ -105,10 +108,10 @@ public class BallEngine implements IBallEngine {
         Random rn = new Random();
         do {
             count++;
-            ball.setActualPosition(new Position(x,y));
-            x=rn.nextInt(80)+562;
-            y=rn.nextInt(80)+275;
-        }while (this.getBallBallRebound(ball)!=null && count < 1000);
+            ball.setActualPosition(new Position(x, y));
+            x = rn.nextInt(80) + 562;
+            y = rn.nextInt(80) + 275;
+        } while (this.getBallBallRebound(ball) != null && count < 1000);
         return ball;
     }
 }

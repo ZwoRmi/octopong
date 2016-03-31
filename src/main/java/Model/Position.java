@@ -9,7 +9,8 @@ public class Position {
         this.setY(y);
     }
 
-    public Position() {}
+    public Position() {
+    }
 
     public float getX() {
         return this.x;

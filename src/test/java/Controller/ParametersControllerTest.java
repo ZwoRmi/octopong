@@ -33,16 +33,19 @@ public class ParametersControllerTest {
     @Test
     public void testSetBallSpeedCase1() throws Exception {
         //arrange
-        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow, mockedGameController);
+        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow,
+                mockedGameController);
         //act
         parametersController.setBallSpeed(1);
         //assert
         verify(mockedMap, times(1)).setBallSpeed(0.1f);
     }
+
     @Test
     public void testSetBallSpeedCase2() throws Exception {
         //arrange
-        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow, mockedGameController);
+        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow,
+                mockedGameController);
         //act
         parametersController.setBallSpeed(2);
         //assert
@@ -52,7 +55,8 @@ public class ParametersControllerTest {
     @Test
     public void testSetBallSpeedCase3() throws Exception {
         //arrange
-        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow, mockedGameController);
+        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow,
+                mockedGameController);
         //act
         parametersController.setBallSpeed(3);
         //assert
@@ -62,7 +66,8 @@ public class ParametersControllerTest {
     @Test
     public void testSetBallSpeedCase4() throws Exception {
         //arrange
-        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow, mockedGameController);
+        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow,
+                mockedGameController);
         //act
         parametersController.setBallSpeed(4);
         //assert
@@ -72,7 +77,8 @@ public class ParametersControllerTest {
     @Test
     public void testSetBallSpeedCase5() throws Exception {
         //arrange
-        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow, mockedGameController);
+        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow,
+                mockedGameController);
         //act
         parametersController.setBallSpeed(5);
         //assert
@@ -82,7 +88,8 @@ public class ParametersControllerTest {
     @Test(expected = InvalidParameterException.class)
     public void testSetBallSpeedCaseDefault() throws Exception {
         //arrange
-        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow, mockedGameController);
+        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow,
+                mockedGameController);
         //act
         parametersController.setBallSpeed(-1);
     }
@@ -90,7 +97,8 @@ public class ParametersControllerTest {
     @Test
     public void testSetBallSPawnIntervalCase1() throws Exception {
         //arrange
-        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow, mockedGameController);
+        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow,
+                mockedGameController);
         //act
         parametersController.setBallSPawnInterval(1);
         //assert
@@ -100,40 +108,41 @@ public class ParametersControllerTest {
     @Test
     public void testSetBallSPawnIntervalCase2() throws Exception {
         //arrange
-        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow, mockedGameController);
+        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow,
+                mockedGameController);
         //act
         parametersController.setBallSPawnInterval(2);
         //assert
         verify(mockedMap, times(1)).setBallSpawnInterval(15000);
     }
 
-
     @Test
     public void testSetBallSPawnIntervalCase3() throws Exception {
         //arrange
-        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow, mockedGameController);
+        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow,
+                mockedGameController);
         //act
         parametersController.setBallSPawnInterval(3);
         //assert
         verify(mockedMap, times(1)).setBallSpawnInterval(10000);
     }
 
-
     @Test
     public void testSetBallSPawnIntervalCase4() throws Exception {
         //arrange
-        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow, mockedGameController);
+        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow,
+                mockedGameController);
         //act
         parametersController.setBallSPawnInterval(4);
         //assert
         verify(mockedMap, times(1)).setBallSpawnInterval(5000);
     }
 
-
     @Test
     public void testSetBallSPawnIntervalCase5() throws Exception {
         //arrange
-        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow, mockedGameController);
+        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow,
+                mockedGameController);
         //act
         parametersController.setBallSPawnInterval(5);
         //assert
@@ -143,28 +152,32 @@ public class ParametersControllerTest {
     @Test(expected = InvalidParameterException.class)
     public void testSetBallSPawnIntervalCaseDefault() throws Exception {
         //arrange
-        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow, mockedGameController);
+        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow,
+                mockedGameController);
         //act
         parametersController.setBallSPawnInterval(-5);
     }
 
     @Test
     public void testStartParameters() throws Exception {
-        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow, mockedGameController);
+        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow,
+                mockedGameController);
         parametersController.startParameters();
         verify(mockedApplicationWindow, times(1)).showParameters();
     }
 
     @Test
     public void testStartGameAppWin() throws Exception {
-        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow, mockedGameController);
+        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow,
+                mockedGameController);
         parametersController.startGame();
         verify(mockedApplicationWindow, times(1)).showGame();
     }
 
     @Test
     public void testStartGameGameController() throws Exception {
-        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow, mockedGameController);
+        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow,
+                mockedGameController);
         parametersController.startGame();
         verify(mockedGameController, times(1)).startGame();
     }
@@ -172,7 +185,8 @@ public class ParametersControllerTest {
     @Test
     public void testSetMap() throws Exception {
         IMap anotherMockedMap = Mockito.mock(Map.class);
-        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow, mockedGameController);
+        ParametersController parametersController = new ParametersController(mockedMap, mockedApplicationWindow,
+                mockedGameController);
         //act
         parametersController.setMap(anotherMockedMap);
         parametersController.setBallSPawnInterval(5);
