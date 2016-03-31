@@ -32,7 +32,7 @@ public class Program extends Application {
     public void start(Stage primaryStage) {
         Scene scene = new Scene(new StackPane(), 1920, 1000);
         primaryStage.setFullScreen(true);
-        primaryStage.setTitle("OctoPong");
+        primaryStage.setTitle("Octogone");
         primaryStage.setScene(scene);
         primaryStage.show();
         IApplicationWindow appWin = getRootView();

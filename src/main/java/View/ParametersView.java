@@ -105,7 +105,7 @@ public class ParametersView implements IParametersView {
 
     private void initSetterIntervalBallButton() {
         this.buttonSetIntervalBall = new Button();
-        this.buttonSetIntervalBall.setText("Fréquence d'apparition des billes");
+        this.buttonSetIntervalBall.setText("Fréquence d'apparition des balles");
         this.buttonSetIntervalBall.setPrefWidth(245);
         this.buttonSetIntervalBall.setTranslateX(0);
         this.buttonSetIntervalBall.setTranslateY(0);
@@ -174,7 +174,7 @@ public class ParametersView implements IParametersView {
 
     private void initSetterSpeedBallButton() {
         this.buttonSetSpeedBall = new Button();
-        this.buttonSetSpeedBall.setText("Vitesse de déplacement des billes");
+        this.buttonSetSpeedBall.setText("Vitesse de déplacement des balles");
         this.buttonSetSpeedBall.setPrefWidth(245);
         this.buttonSetSpeedBall.setTranslateX(0);
         this.buttonSetSpeedBall.setTranslateY(-100);
